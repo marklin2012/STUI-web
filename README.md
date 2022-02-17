@@ -192,7 +192,7 @@ export default Alert
 
 .@{popupPrefix} {
   padding: 20px;
-  color: white;
+  color: black;
   background: white;
   border-radius: 3px;
 }
@@ -243,6 +243,7 @@ order: 1
 ```jsx
 import React from 'react'
 import { Alert } from 'stui'
+import './style'
 
 export default () => <Alert kind="warning">这是一条警告提示</Alert>
 ```
