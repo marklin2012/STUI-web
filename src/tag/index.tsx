@@ -15,6 +15,7 @@ export interface TagProps {
   tagSize: TagSizes['size']
   color?: string
   backgroundColor?: string
+  borderColor?: string
   icon?: React.ReactNode
   onClosed?: () => void
   onAdded?: () => void
@@ -25,6 +26,7 @@ const Tag: React.FC<TagProps> = ({
   tagType = 'normal',
   tagSize = 'normal',
   color,
+  borderColor,
   backgroundColor,
   icon,
   onClosed,
@@ -35,6 +37,7 @@ const Tag: React.FC<TagProps> = ({
     className={prefixCls}
     style={{
       backgroundColor: backgroundColor,
+      borderColor: borderColor,
       color: color,
       borderStyle: tagType == 'add' ? 'dotted' : 'solid',
       height: tagSize == 'max' ? 44.0 : tagSize == 'middle' ? 36.0 : 22.0,
