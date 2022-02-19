@@ -1,18 +1,23 @@
-import React, { ReactNode } from 'react'
+import React, { useState } from 'react'
 
 const prefixCls = 'st-tag'
 
-export interface TagTypes {
-  kind: 'normal' | 'closed' | 'add'
+export interface TagSizesPrps {
+  kind: 'normal' | 'middle' | 'max'
 }
 
-export interface TagSizes {
-  size: 'normal' | 'middle' | 'max'
+export type SizesMap = Record<Required<TagSizesPrps>['kind'], string>
+
+const SizeTypes: SizesMap = {
+  normal: 'normal',
+  middle: 'middle',
+  max: 'max',
 }
 
 export interface TagProps {
-  tagType: TagTypes['kind']
-  tagSize: TagSizes['size']
+  closable?: boolean
+  isAddBtn?: boolean
+  tagSize?: string
   color?: string
   backgroundColor?: string
   borderColor?: string
@@ -23,50 +28,91 @@ export interface TagProps {
 
 const Tag: React.FC<TagProps> = ({
   children,
-  tagType = 'normal',
-  tagSize = 'normal',
+  closable = false,
+  isAddBtn = false,
+  tagSize = SizeTypes.normal,
   color,
   borderColor,
   backgroundColor,
   icon,
   onClosed,
-  onAdded,
-  ...rest
-}) => (
-  <div
-    className={prefixCls}
-    style={{
-      backgroundColor: backgroundColor,
-      borderColor: borderColor,
-      color: color,
-      borderStyle: tagType == 'add' ? 'dotted' : 'solid',
-      height: tagSize == 'max' ? 44.0 : tagSize == 'middle' ? 36.0 : 22.0,
-    }}
-  >
-    {icon != null ? IconTag(icon) : tagType == 'add' ? addTag(onAdded) : null}
-    {children}
-    {tagType == 'closed' ? closeTag(onClosed) : null}
-  </div>
-)
+}) => {
+  const [visible, setVisible] = useState(true)
 
-function IconTag(props: React.ReactNode) {
-  return { props }
-}
-
-function closeTag(props?: () => void) {
+  if (visible == false) {
+    return null
+  }
   return (
-    <button type="button" onClick={props}>
-      x
-    </button>
+    <div
+      className={prefixCls}
+      style={{
+        backgroundColor: backgroundColor,
+        borderColor: borderColor,
+        color: color,
+        borderStyle: isAddBtn ? 'dashed' : 'solid',
+        height: tagSize == SizeTypes.max ? 44.0 : tagSize == SizeTypes.middle ? 36.0 : 22.0,
+      }}
+    >
+      {icon != null ? { icon } : null}
+      {children}
+      {closable ? closeTag() : null}
+    </div>
   )
+
+  function closeTag() {
+    return (
+      <button type="button" onClick={closeClick}>
+        x
+      </button>
+    )
+  }
+
+  function closeClick() {
+    console.log('内部关闭')
+    if (onClosed) {
+      onClosed!()
+    }
+    setVisible(false)
+  }
 }
 
-function addTag(props?: () => void) {
-  return (
-    <button className="addTagButton" type="button" onClick={props}>
-      +
-    </button>
-  )
+export interface CheckableTagProps {
+  className?: string
+  checked: boolean
+  onChanged?: (checked: boolean) => void
 }
 
-export default Tag
+const CheckableTag: React.FC<CheckableTagProps> = ({
+  children,
+  className,
+  checked = false,
+  onChanged,
+}) => {
+  const [selected, setSelected] = useState(checked)
+
+  if (selected) {
+    return (
+      <span className={className} onClick={clickAction}>
+        <Tag backgroundColor="#095BF9" color="white" borderColor="transparent">
+          {children}
+        </Tag>
+      </span>
+    )
+  } else {
+    return (
+      <span className={className} onClick={clickAction}>
+        <Tag>{children}</Tag>
+      </span>
+    )
+  }
+
+  function clickAction() {
+    const current = !selected
+    if (onChanged) {
+      onChanged!(current)
+    }
+    setSelected(current)
+  }
+}
+
+export { Tag, CheckableTag }

@@ -1,2 +1,2 @@
 export { default as Alert } from './alert'
-export { default as Tag } from './tag'
+export { Tag, CheckableTag } from './tag'

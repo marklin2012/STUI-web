@@ -24,62 +24,71 @@ import './style'
 export default () => (
   <div className="container">
     <Tag>Tag1</Tag>
-    <span />
     <Tag>
       <a href="http://localhost:8080">link</a>
     </Tag>
-    <span />
-    <Tag tagType="closed" onClosed={onClosedAction}>
-      Tag2
-    </Tag>
-    <span />
-    <Tag tagType="closed" onClosed={onClosedAction}>
-      Prevent Default
-    </Tag>
+    <Tag closable={true}>Prevent Default</Tag>
   </div>
 )
-
-function onClosedAction() {
-  console.log('点击了关闭')
-}
 ```
 
 ### 动态编辑
 
 ```jsx
-import React from 'react'
+import React, { useState } from 'react'
 import { Tag } from 'stui'
 import './style'
 
-export default () => (
-  <div className="container">
-    <Tag>Tag1</Tag>
-    <span />
-    <Tag tagType="closed" onClosed={onClosedAction}>
-      Tag2
-    </Tag>
-    <span />
-    <Tag tagType="closed" onClosed={onClosedAction}>
-      Tag3
-    </Tag>
-    <span />
-    <Tag tagType="closed" onClosed={onClosedAction}>
-      Tag4
-    </Tag>
-    <span />
-    <Tag tagType="add" onAdded={onAddedAction}>
-      New Tag
-    </Tag>
-    <span />
-  </div>
-)
+export default () => {
+  return (
+    <div>
+      <DynamicEditing />
+    </div>
+  )
 
-function onClosedAction() {
-  console.log('点击了关闭')
-}
+  function DynamicEditing() {
+    const [titleTags, setTitleTags] = useState(['Unremovable', 'Tag 2', 'Tag 3'])
 
-function onAddedAction() {
-  console.log('点击了添加')
+    let children = titleTags.map((title, index) => {
+      if (index == 0) {
+        return (
+          <Tag key={title} tagSize={'normal'}>
+            {title}
+          </Tag>
+        )
+      } else {
+        return (
+          <Tag key={title} closable={true} tagSize={'normal'} onClosed={() => closedAction(title)}>
+            {title}
+          </Tag>
+        )
+      }
+    })
+
+    return (
+      <div className="box">
+        {children}
+        <Tag isAddBtn={true}>
+          <button className="addTagButton" type="button" onClick={addAction}>
+            {' '}
+            add Tag
+          </button>
+        </Tag>
+      </div>
+    )
+
+    function addAction() {
+      let length = titleTags.length + 1
+      let newTagTitle = 'Tag ' + length
+      setTitleTags([...titleTags, newTagTitle])
+    }
+
+    function closedAction(tag) {
+      const tags = titleTags.filter((temp) => temp != tag)
+      console.log(tags)
+      setTitleTags(tags)
+    }
+  }
 }
 ```
 
@@ -90,51 +99,81 @@ import React from 'react'
 import { Tag } from 'stui'
 import './style'
 
-export default () => (
-  <div className="sizeContainer">
+export default () => {
+  return (
     <div>
-      <Tag>Tag1</Tag>
-      <Tag>
-        <a href="http://localhost:8080">link</a>
-      </Tag>
-      <Tag tagType="closed" onClosed={onClosedAction}>
-        Tag2
-      </Tag>
-      <Tag tagType="closed" onClosed={onClosedAction}>
-        Prevent Default
-      </Tag>
+      <DifferentSizeTags />
     </div>
+  )
 
+  function DifferentSizeTags() {
+    const tagSizes = ['normal', 'middle', 'max']
+
+    let children = tagSizes.map((size) => {
+      return (
+        <div key={size} className="container">
+          <Tag tagSize={size}>Tag1</Tag>
+          <Tag tagSize={size}>
+            <a href="http://localhost:8080">link</a>
+          </Tag>
+          <Tag tagSize={size} closable={true}>
+            Tag2
+          </Tag>
+          <Tag tagSize={size} closable={true}>
+            Prevent Default
+          </Tag>
+        </div>
+      )
+    })
+
+    return <div className="box">{children}</div>
+  }
+}
+```
+
+### 可选择标签
+
+```jsx
+import React, { useState } from 'react'
+import { CheckableTag } from 'stui'
+import './style'
+
+export default () => {
+  return (
     <div>
-      <Tag tagSize="middle">Tag1</Tag>
-      <Tag tagSize="middle">
-        <a href="http://localhost:8080">link</a>
-      </Tag>
-      <Tag tagSize="middle" tagType="closed" onClosed={onClosedAction}>
-        Tag2
-      </Tag>
-      <Tag tagSize="middle" tagType="closed" onClosed={onClosedAction}>
-        Prevent Default
-      </Tag>
+      <SelectedTags />
     </div>
+  )
 
-    <div>
-      <Tag tagSize="max">Tag1</Tag>
-      <Tag tagSize="max">
-        <a href="http://localhost:8080">link</a>
-      </Tag>
-      <Tag tagSize="max" tagType="closed" onClosed={onClosedAction}>
-        Tag2
-      </Tag>
-      <Tag tagSize="max" tagType="closed" onClosed={onClosedAction}>
-        Prevent Default
-      </Tag>
-    </div>
-  </div>
-)
+  function SelectedTags() {
+    const [checks, setChecks] = useState([false, false, false, false])
 
-function onClosedAction() {
-  console.log('点击了关闭')
+    const tagsData = ['Movies', 'Books', 'Music', 'Sports']
+    let children = tagsData.map((tagData, index) => {
+      const selected = checks[index]
+      return (
+        <CheckableTag
+          key={tagData}
+          checked={selected}
+          onChanged={(checked) => checkedAction(index, checked)}
+        >
+          {tagData}
+        </CheckableTag>
+      )
+    })
+    return (
+      <div className="container">
+        <span>Categories: </span>
+        {children}
+      </div>
+    )
+
+    function checkedAction(index, checked) {
+      let temps = checks
+      temps[index] = checked
+      setChecks(temps)
+    }
+  }
 }
 ```
 
@@ -146,7 +185,7 @@ import { Tag } from 'stui'
 import './style'
 
 export default () => (
-  <div className="sizeContainer">
+  <div className="box">
     <Tag backgroundColor="red" color="white">
       Red
     </Tag>
@@ -180,7 +219,7 @@ import { Tag } from 'stui'
 import './style'
 
 export default () => (
-  <div className="sizeContainer">
+  <div className="box">
     <div>
       <Tag backgroundColor="#49C56425" borderColor="#49C564" color="#49C564">
         成功状态
