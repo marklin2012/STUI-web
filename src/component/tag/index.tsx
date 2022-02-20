@@ -45,12 +45,12 @@ const Tag: React.FC<TagProps> = ({
   return (
     <div
       className={prefixCls}
+      id={tagSize}
       style={{
         backgroundColor: backgroundColor,
         borderColor: borderColor,
         color: color,
         borderStyle: isAddBtn ? 'dashed' : 'solid',
-        height: tagSize == SizeTypes.max ? 44.0 : tagSize == SizeTypes.middle ? 36.0 : 22.0,
       }}
     >
       {icon != null ? { icon } : null}
@@ -62,7 +62,7 @@ const Tag: React.FC<TagProps> = ({
   function closeTag() {
     return (
       <button type="button" onClick={closeClick}>
-        x
+        X
       </button>
     )
   }

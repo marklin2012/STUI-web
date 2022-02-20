@@ -2,17 +2,30 @@
 
 .@{popupPrefix} {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  float: left;
-  margin: 12px;
-  padding-right: 8px;
-  padding-left: 8px;
+  margin: 0px 12px;
   color: black;
   background: white;
   border-color: #dfe2e7;
   border-style: solid;
   border-width: 1px;
   border-radius: 2px;
+}
+
+#normal {
+  height: 22px;
+  padding: 1px 8px;
+}
+
+#middle {
+  height: 36px;
+  padding: 8px;
+}
+
+#max {
+  height: 44px;
+  padding: 12px;
 }
 
 button {
@@ -28,7 +41,9 @@ button {
 
 .container {
   display: flex;
-  align-items: center; //垂直居中
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
 }
 
 .box {

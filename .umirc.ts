@@ -15,7 +15,7 @@ export default defineConfig({
       },
       {
         title: '反馈',
-        children: ['/component/alert/index.md'],
+        children: ['/component/alert'],
       },
     ],
   },
