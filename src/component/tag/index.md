@@ -6,7 +6,9 @@
 
 ### 基本用法
 
-<code scr='/src/site/tag/tag-demo.tsx'></code>
+测试
+
+<code src='../../site/tag/index.tsx'></code>
 
 <!-- ```jsx
 import React from 'react'

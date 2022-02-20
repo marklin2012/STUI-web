@@ -1,8 +1,9 @@
 import React from 'react'
 import { Tag } from '../../index'
 import './index.less'
+import '../../component/tag/style'
 
-function baseDemo() {
+export default () => {
   return (
     <div className="container">
       <Tag>Tag1</Tag>
@@ -13,5 +14,3 @@ function baseDemo() {
     </div>
   )
 }
-
-export default baseDemo
