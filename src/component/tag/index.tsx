@@ -76,23 +76,19 @@ const Tag: React.FC<TagProps> = ({
   }
 }
 
+const checkableTagCls = 'st-checkable-tag'
+
 export interface CheckableTagProps {
-  className?: string
   checked: boolean
   onChanged?: (checked: boolean) => void
 }
 
-const CheckableTag: React.FC<CheckableTagProps> = ({
-  children,
-  className,
-  checked = false,
-  onChanged,
-}) => {
+const CheckableTag: React.FC<CheckableTagProps> = ({ children, checked = false, onChanged }) => {
   const [selected, setSelected] = useState(checked)
 
   if (selected) {
     return (
-      <span className={className} onClick={clickAction}>
+      <span className={checkableTagCls} onClick={clickAction}>
         <Tag backgroundColor="#095BF9" color="white" borderColor="transparent">
           {children}
         </Tag>
@@ -100,7 +96,7 @@ const CheckableTag: React.FC<CheckableTagProps> = ({
     )
   } else {
     return (
-      <span className={className} onClick={clickAction}>
+      <span className={checkableTagCls} onClick={clickAction}>
         <Tag>{children}</Tag>
       </span>
     )
