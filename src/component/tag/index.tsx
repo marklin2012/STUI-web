@@ -23,7 +23,6 @@ export interface TagProps {
   borderColor?: string
   icon?: React.ReactNode
   onClosed?: () => void
-  onAdded?: () => void
 }
 
 const Tag: React.FC<TagProps> = ({

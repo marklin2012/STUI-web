@@ -1,14 +1,9 @@
 import React from 'react'
 import { Tag } from '../../component/tag'
 import './index.less'
+import '../../component/tag/style'
 
-export default () => {
-  return (
-    <div>
-      <DifferentSizeTags />
-    </div>
-  )
-}
+export default () => <DifferentSizeTags />
 
 const DifferentSizeTags: React.FC = () => {
   const tagSizes = ['normal', 'middle', 'max']
@@ -38,5 +33,5 @@ const DifferentSizeTags: React.FC = () => {
     )
   })
 
-  return <div className="box">{children}</div>
+  return <div>{children}</div>
 }

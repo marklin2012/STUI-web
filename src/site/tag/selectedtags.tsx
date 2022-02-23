@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { CheckableTag } from '../../component/tag'
 import './index.less'
+import '../../component/tag/style'
 
 export default () => {
   return (
