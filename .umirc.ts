@@ -11,7 +11,7 @@ export default defineConfig({
     '/component': [
       {
         title: '数据展示',
-        children: ['/component/tag'],
+        children: ['/component/tag', '/component/badge'],
       },
       {
         title: '反馈',
