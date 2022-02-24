@@ -33,7 +33,7 @@ const DynamicEditing: React.FC = () => {
   })
 
   return (
-    <div className="container">
+    <div className="tag">
       {children}
       <Tag isAddBtn={true}>
         <button className="addTagButton" type="button" onClick={addAction}>

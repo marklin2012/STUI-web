@@ -12,7 +12,7 @@ const DifferentSizeTags: React.FC = () => {
     return (
       <div
         key={size}
-        className="container"
+        className="tag"
         style={{
           marginBottom: index != 2 ? 52 : 0,
         }}

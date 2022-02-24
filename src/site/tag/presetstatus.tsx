@@ -4,7 +4,7 @@ import './index.less'
 import '../../component/tag/style'
 
 export default () => (
-  <div className="container">
+  <div className="tag">
     <Tag backgroundColor="#49C56425" borderColor="#49C564" color="#49C564">
       <p>成功状态</p>
     </Tag>

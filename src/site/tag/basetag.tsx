@@ -5,7 +5,7 @@ import '../../component/tag/style'
 
 export default () => {
   return (
-    <div className="container">
+    <div className="tag">
       <Tag>
         <p>Tag1</p>
       </Tag>

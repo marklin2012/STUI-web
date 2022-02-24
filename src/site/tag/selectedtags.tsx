@@ -27,7 +27,7 @@ const SelectedTags: React.FC = () => {
       </CheckableTag>
     )
   })
-  return <div className="container">{children}</div>
+  return <div className="tag">{children}</div>
 
   function checkedAction(index: number, checked: boolean) {
     let temps = checks
