@@ -17,7 +17,7 @@ const ChangeBadgeNumber: React.FC = () => {
 
   return (
     <div>
-      <div className="box">
+      <div className="badge">
         <div className="sub">
           <Badge count={count}>
             <div
@@ -43,7 +43,7 @@ const ChangeBadgeNumber: React.FC = () => {
 
       <br />
 
-      <div className="box">
+      <div className="badge">
         <div className="sub">
           <Badge dot={isDot}>
             <div
@@ -57,10 +57,8 @@ const ChangeBadgeNumber: React.FC = () => {
           </Badge>
         </div>
 
-        <div className="box">
-          <button className="changeDot" onClick={changeDotClick}>
-            切换
-          </button>
+        <div className="changeDot" onClick={changeDotClick}>
+          切换
         </div>
       </div>
     </div>

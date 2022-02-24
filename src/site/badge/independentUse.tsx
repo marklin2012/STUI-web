@@ -5,7 +5,7 @@ import './index.less'
 
 export default () => {
   return (
-    <div className="box">
+    <div className="badge">
       <div className="sub">
         <Badge count={9}></Badge>
       </div>

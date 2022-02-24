@@ -5,7 +5,7 @@ import './index.less'
 
 export default () => {
   return (
-    <div className="box">
+    <div className="badge">
       <Badge.Ribbon text="缎带微标的样式" color={'pink'}>
         <div className="ribbon-box">这里是内容的文字；</div>
       </Badge.Ribbon>

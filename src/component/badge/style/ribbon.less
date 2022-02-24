@@ -29,11 +29,12 @@
     height: 3px;
     color: @shade-color-25;
     border: 2px solid;
+    transform: scaleY(0.75);
+    transform-origin: top;
     // If not support IE 11, use filter: brightness(75%) instead
     &::after {
       position: absolute;
-      top: 0px;
-      left: 0px;
+      box-sizing: border-box;
       width: inherit;
       height: inherit;
       color: @shade-color-25;
@@ -41,19 +42,6 @@
       content: '';
     }
   }
-
-  // colors
-  // mixin to iterate over colors and create CSS class for each one
-  // .make-color-classes(@i: length(@preset-colors)) when (@i > 0) {
-  //   .make-color-classes(@i - 1);
-  //   @color: extract(@preset-colors, @i);
-  //   @darkColor: '@{color}-6';
-  //   &-color-@{color} {
-  //     color: @@darkColor;
-  //     background: @@darkColor;
-  //   }
-  // }
-  // .make-color-classes();
 
   // placement
   &.@{ribbon-prefix-cls}-placement-end {

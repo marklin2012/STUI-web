@@ -6,7 +6,7 @@ import './index.less'
 export default () => {
   return (
     <div>
-      <div className="box">
+      <div className="badge">
         <div className="sub">
           <Badge status="success" />
         </div>
@@ -24,19 +24,19 @@ export default () => {
         </div>
       </div>
       <br />
-      <div className="lineRow">
+      <div className="badgeLineRow">
         <Badge status="error" text="错误" />
       </div>
-      <div className="lineRow">
+      <div className="badgeLineRow">
         <Badge status="default" text="默认" />
       </div>
-      <div className="lineRow">
+      <div className="badgeLineRow">
         <Badge status="success" text="成功" />
       </div>
-      <div className="lineRow">
+      <div className="badgeLineRow">
         <Badge status="warning" text="警告" />
       </div>
-      <div className="lineRow">
+      <div className="badgeLineRow">
         <Badge status="processing" text="处理中" />
       </div>
     </div>
