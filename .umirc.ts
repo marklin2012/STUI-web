@@ -17,6 +17,10 @@ export default defineConfig({
         title: '反馈',
         children: ['/component/alert'],
       },
+      {
+        title: '表单组件',
+        children: ['./component/switch'],
+      },
     ],
   },
   navs: [
