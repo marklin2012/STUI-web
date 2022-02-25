@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Badge } from '../../index'
+import { Badge, Switch } from '../../index'
 import '../../component/badge/style'
 import './index.less'
 
@@ -57,9 +57,7 @@ const ChangeBadgeNumber: React.FC = () => {
           </Badge>
         </div>
 
-        <div className="changeDot" onClick={changeDotClick}>
-          切换
-        </div>
+        <Switch checked={isDot} onChange={(checkd: boolean) => changeDotClick(checkd)}></Switch>
       </div>
     </div>
   )
@@ -77,8 +75,7 @@ const ChangeBadgeNumber: React.FC = () => {
     setCount(temp)
   }
 
-  function changeDotClick() {
-    let temp = !isDot
-    setIsDot(temp)
+  function changeDotClick(checked: boolean) {
+    setIsDot(checked)
   }
 }
