@@ -10,6 +10,10 @@ export default defineConfig({
   menus: {
     '/component': [
       {
+        title: '通用',
+        children: ['/component/icon'],
+      },
+      {
         title: '数据展示',
         children: [
           '/component/tag',
