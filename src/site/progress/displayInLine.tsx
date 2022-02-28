@@ -7,23 +7,16 @@ export default () => {
   return (
     <div className="progress">
       <div className="rowOne">
-        <Progress percent={30} />
+        <Progress percent={50} display={'in'} />
       </div>
-
       <div className="rowOne">
-        <Progress percent={100} />
+        <Progress percent={100} display={'in'} />
       </div>
-
       <div className="rowOne">
-        <Progress percent={70} status={'exception'} />
+        <Progress percent={75} display={'in'} status={'exception'} />
       </div>
-
       <div className="rowOne">
-        <Progress percent={70} status={'warning'} />
-      </div>
-
-      <div className="rowOne-last">
-        <Progress percent={50} showInfo={false} />
+        <Progress percent={50} display={'in'} status={'warning'} />
       </div>
     </div>
   )

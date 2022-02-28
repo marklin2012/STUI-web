@@ -1,15 +1,15 @@
 import classNames from 'classnames'
-import React, { Children } from 'react'
+import React from 'react'
+import Icon from '../icon'
 import { tuple } from '../_util/type'
 import Circle from './Circle'
 import Line from './Line'
 import Steps from './Steps'
 import { validProgress } from './utils'
-import './style'
 
 const ProgressTypes = tuple('line', 'circle', 'dashboard')
 export type ProgressType = typeof ProgressTypes[number]
-const ProgressStatuses = tuple('normal', 'exception', 'active', 'success')
+const ProgressStatuses = tuple('normal', 'exception', 'active', 'success', 'warning')
 export type ProgressSize = 'default' | 'small'
 export type StringGradients = { [percentage: string]: string }
 type FromToGradients = { from: string; to: string }
@@ -39,7 +39,10 @@ export interface ProgressProps {
   gapPositon?: 'top' | 'bottom' | 'left' | 'right' // 仪表盘进度条缺口方向
   size?: ProgressSize
   steps?: number // 线条进度条总共的条数
+  isDot?: boolean // steps是否圆点样式
   direction?: 'ltr' | 'rtl'
+  display?: 'out' | 'in' // Line时显示在内部还是外部
+  axis?: 'vertical' | 'horizontal' // Line时垂直显示
 }
 
 const prefixCls = 'st-progress'
@@ -77,20 +80,53 @@ const Progress: React.FC<ProgressProps> = ({
     let text
     const textFormatter = restProps.format || ((percentNumber) => `${percentNumber}%`)
     const isLineType = type === 'line'
-    if (restProps.format || (progressStatus !== 'exception' && progressStatus !== 'success')) {
+    if (
+      restProps.format ||
+      (progressStatus !== 'exception' &&
+        progressStatus !== 'success' &&
+        progressStatus !== 'warning')
+    ) {
       text = textFormatter(validProgress(percent), validProgress(successPercent))
     } else if (progressStatus === 'exception') {
-      text = isLineType ? <span>el</span> : <span>eol</span>
+      text = isLineType ? (
+        <Icon icon={'circle-xmark'} size={'lg'} />
+      ) : (
+        <Icon icon={'xmark'} size={'lg'} />
+      )
     } else if (progressStatus === 'success') {
-      text = isLineType ? <span>sl</span> : <span>sol</span>
+      text = isLineType ? (
+        <Icon icon={'circle-check'} size={'lg'} />
+      ) : (
+        <Icon icon={'check'} size={'lg'} />
+      )
+    } else if (progressStatus === 'warning') {
+      text = isLineType ? (
+        <Icon icon={'circle-exclamation'} size={'lg'} />
+      ) : (
+        <Icon icon={'exclamation'} size={'lg'} />
+      )
     }
 
+    let prefixClassName = `${prefixCls}`
+    if (isLineAndVertical()) {
+      prefixClassName += '-vertical'
+    }
+    let textName = `${prefixClassName}-text`
+    if (restProps.display === 'in') {
+      textName += '-in'
+    }
+    const textClassName = classNames(textName, {
+      [`${textName}-success`]: isLineType && getProgressStatus() === 'success',
+    })
+
     return (
-      <span className={`${prefixCls}-text`} title={typeof text === 'string' ? text : undefined}>
+      <span className={textClassName} title={typeof text === 'string' ? text : undefined}>
         {text}
       </span>
     )
   }
+
+  const isLineAndVertical = () => type === 'line' && restProps.axis === 'vertical'
 
   const renderProgress = () => {
     const progressStatus = getProgressStatus()
@@ -109,6 +145,7 @@ const Progress: React.FC<ProgressProps> = ({
           strokeWidth={restProps.strokeWidth}
           strokeColor={typeof strokeColor === 'string' ? strokeColor : undefined}
           trailColor={restProps.trailColor}
+          isDot={restProps.isDot}
         >
           {progressInfo}
         </Steps>
@@ -124,6 +161,10 @@ const Progress: React.FC<ProgressProps> = ({
           trailColor={restProps.trailColor}
           strokeWidth={restProps.strokeWidth}
           size={size}
+          width={restProps.width ?? 380}
+          display={restProps.display}
+          axis={restProps.axis}
+          showInfo={showInfo}
         >
           {progressInfo}
         </Line>
@@ -149,19 +190,35 @@ const Progress: React.FC<ProgressProps> = ({
       )
     }
 
+    let prefixClsName = `${prefixCls}`
+    if (isLineAndVertical()) {
+      prefixClsName += '-vertical'
+    }
     const classNameStr = classNames(
-      prefixCls,
+      prefixClsName,
       {
-        [`${prefixCls}-${
+        [`${prefixClsName}-${
           (type === 'dashboard' && 'circle') || (restProps.steps && 'steps') || type
-        }`]: true, /// MarkDown
-        [`${prefixCls}-status-${progressStatus}`]: true,
-        [`${prefixCls}-show-info`]: showInfo,
-        [`${prefixCls}-${size}`]: size,
-        [`${prefixCls}-rtl`]: restProps.direction === 'rtl',
+        }`]: true,
+        [`${prefixClsName}-status-${progressStatus}`]: true,
+        [`${prefixClsName}-show-info`]: showInfo,
+        [`${prefixClsName}-${size}`]: size,
+        [`${prefixClsName}-rtl`]: restProps.direction === 'rtl',
       },
       restProps.className,
     )
+
+    if (isLineAndVertical()) {
+      let progressStyle = {}
+      progressStyle = {
+        height: restProps.width ?? 380,
+      } as React.CSSProperties
+      return (
+        <div className={classNameStr} style={progressStyle}>
+          {progress}
+        </div>
+      )
+    }
 
     return <div className={classNameStr}>{progress}</div>
   }

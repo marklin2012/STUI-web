@@ -14,28 +14,33 @@ const Steps: React.FC<StepsProps> = (props) => {
     size,
     steps,
     percent = 0,
-    strokeWidth = 8,
+    strokeWidth = 24,
     strokeColor,
     trailColor,
     prefixCls,
     children,
+    isDot,
   } = props
 
   const current = Math.round(steps * (percent / 100))
-  const stepWidth = size === 'small' ? 2 : 14
+  const stepWidth = size === 'small' ? 6 : 12
   const styleSteps = []
+  let stepsPrefixCls = `${prefixCls}-steps-item`
+  if (isDot) {
+    stepsPrefixCls += 'Dot'
+  }
 
   for (let i = 0; i < steps; i++) {
     styleSteps.push(
       <div
         key={i}
-        className={classNames(`${prefixCls}-steps-item`, {
-          [`${prefixCls}-steps-item-active`]: i <= current - 1,
+        className={classNames(stepsPrefixCls, {
+          [`${stepsPrefixCls}-active`]: i <= current - 1,
         })}
         style={{
           backgroundColor: i <= current - 1 ? strokeColor : trailColor,
           width: stepWidth,
-          height: strokeWidth,
+          height: isDot ? stepWidth : strokeWidth,
         }}
       />,
     )

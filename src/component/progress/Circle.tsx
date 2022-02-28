@@ -18,7 +18,7 @@ function getStrokeColor({
   strokeColor,
 }: Partial<CircleProps>): (string | Record<string, string>)[] {
   const { strokeColor: successColor } = success
-  return [successColor || 'green', strokeColor || null!] /// MarkDown
+  return [successColor || 'green', strokeColor || null!]
 }
 
 const Circle: React.FC<CircleProps> = (props) => {
@@ -27,7 +27,7 @@ const Circle: React.FC<CircleProps> = (props) => {
     width,
     strokeWidth,
     strokeColor,
-    trailColor,
+    trailColor = '#EFF3F9',
     strokeLinecap,
     gapPositon,
     gapDegree,
@@ -55,7 +55,7 @@ const Circle: React.FC<CircleProps> = (props) => {
     }
     return undefined
   }
-  /// MarkDown
+
   const isGradient = Object.prototype.toString.call(strokeColor) === '[object object]'
   const realStrokeColor = getStrokeColor({ success, strokeColor: strokeColor })
 
