@@ -1,3 +1,4 @@
+import { identity, omit, pick, pickBy } from 'lodash'
 import React, { useState } from 'react'
 
 const prefixCls = 'st-tag'
@@ -41,16 +42,20 @@ const Tag: React.FC<TagProps> = ({
   if (visible == false) {
     return null
   }
+
   return (
     <div
       className={prefixCls}
       id={tagSize}
-      style={{
-        backgroundColor: backgroundColor,
-        borderColor: borderColor,
-        color: color,
-        borderStyle: isAddBtn ? 'dashed' : 'solid',
-      }}
+      style={pickBy(
+        {
+          backgroundColor: backgroundColor,
+          borderColor: borderColor,
+          color: color,
+          borderStyle: isAddBtn ? 'dashed' : 'solid',
+        },
+        identity,
+      )}
     >
       {icon != null ? { icon } : null}
       {children}
