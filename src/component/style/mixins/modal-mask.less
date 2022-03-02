@@ -1,0 +1,31 @@
+@import 'box';
+
+.modal-mask() {
+  pointer-events: none;
+
+  &.st-zoom-enter,
+  &.st-zoom-appear {
+    transform: none; // reset scale avoid mousePosition bug
+    opacity: 0;
+    animation-duration: 0.3s;
+    user-select: none; // https://github.com/ant-design/ant-design/issues/11777
+  }
+
+  &-mask {
+    .box(fixed);
+    z-index: auto;
+    height: 100%;
+    background-color: fade(@black, 45%);
+
+    &-hidden {
+      display: none;
+    }
+  }
+
+  &-wrap {
+    .box(fixed);
+    overflow: auto;
+    outline: 0;
+    -webkit-overflow-scrolling: touch;
+  }
+}
