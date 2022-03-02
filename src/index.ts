@@ -9,5 +9,7 @@ export { default as Switch } from './component/switch'
 export { default as Tooltip } from './component/tooltip'
 export { default as Progress } from './component/progress/progress'
 export { default as Icon } from './component/icon'
+export { default as Avatar } from './component/avatar'
+export { default as Image } from './component/image'
 
 library.add(fas, far)

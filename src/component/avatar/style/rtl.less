@@ -1,0 +1,15 @@
+.@{avatar-prefix-cls}-group {
+  &-rtl {
+    .@{avatar-prefix-cls}:not(:first-child) {
+      margin-right: 20px;
+      margin-left: 0;
+    }
+  }
+
+  &-popover.st-popover-rtl {
+    .st-avatar + .st-avatar {
+      margin-right: 2px;
+      margin-left: 0;
+    }
+  }
+}

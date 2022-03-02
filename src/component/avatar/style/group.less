@@ -1,0 +1,20 @@
+@import '../../style/index.less';
+
+.@{avatar-prefix-cls}-group {
+  display: inline-flex;
+
+  .@{avatar-prefix-cls} {
+    box-sizing: border-box;
+    border: 1px solid @white;
+
+    &:not(:first-child) {
+      margin-left: -8px;
+    }
+  }
+
+  &-popover {
+    .st-avatar + .st-avatar {
+      margin-left: 2px;
+    }
+  }
+}
