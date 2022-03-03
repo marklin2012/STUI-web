@@ -1,5 +1,6 @@
 import React from 'react'
 import { Progress } from '../../index'
+import '../../component/progress/style'
 import './index.less'
 
 export default () => {
@@ -18,10 +19,10 @@ export default () => {
       </div>
 
       <div className="rowOne">
-        <Progress percent={70} strokeColor={'yellow'} />
+        <Progress percent={70} status={'warning'} />
       </div>
 
-      <div className="rowOne">
+      <div className="rowOne-last">
         <Progress percent={50} showInfo={false} />
       </div>
     </div>

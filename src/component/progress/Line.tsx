@@ -2,6 +2,7 @@ import { DirectionType } from '../_util/type'
 import { ProgressGradient, ProgressProps, StringGradients } from './progress'
 import React from 'react'
 import { validProgress } from './utils'
+import classNames from 'classnames'
 
 interface LineProps extends ProgressProps {
   direction?: DirectionType
@@ -46,6 +47,9 @@ const Line: React.FC<LineProps> = (props) => {
     children,
     trailColor,
     success,
+    display = 'out',
+    axis = 'horizontal',
+    showInfo,
   } = props
 
   const backgroundProps =
@@ -55,9 +59,16 @@ const Line: React.FC<LineProps> = (props) => {
 
   const trailStyle = trailColor ? { backgroundColor: trailColor } : undefined
 
+  const isDisplayIn = () => display === 'in'
+
+  const isAxisVertical = () => axis === 'vertical'
+
+  const mainLength = `${validProgress(percent)}%`
+  const crossLength = strokeWidth || (display === 'in' && 24) || (size === 'small' ? 6 : 8)
+
   const percentStyle = {
-    width: `${validProgress(percent)}%`,
-    height: strokeWidth || (size === 'small' ? 6 : 8),
+    width: isAxisVertical() ? crossLength : mainLength,
+    height: isAxisVertical() ? mainLength : crossLength,
     borderRadius: strokeLinecap === 'square' ? 0 : '',
     ...backgroundProps,
   } as React.CSSProperties
@@ -65,8 +76,8 @@ const Line: React.FC<LineProps> = (props) => {
   const successPercent = success?.percent
 
   const successPercentStyle = {
-    width: `${validProgress(successPercent)}%`,
-    height: strokeWidth || (size === 'small' ? 6 : 8),
+    width: isAxisVertical() ? crossLength : mainLength,
+    height: isAxisVertical() ? mainLength : crossLength,
     borderRadius: strokeLinecap === 'square' ? 0 : '',
     backgroundColor: success?.strokeColor,
     ...backgroundProps,
@@ -77,15 +88,27 @@ const Line: React.FC<LineProps> = (props) => {
       <div className={`${prefixCls}-success-bg`} style={successPercentStyle} />
     ) : null
 
+  let prefixClsName = `${prefixCls}`
+  if (isAxisVertical()) {
+    prefixClsName += '-vertical'
+  }
+
+  let outerClassName = classNames(`${prefixClsName}-outer`, {
+    [`${prefixClsName}-outer-show-info`]: showInfo,
+  })
+
   return (
     <>
-      <div className={`${prefixCls}-outer`}>
-        <div className={`${prefixCls}-inner`} style={trailStyle}>
-          <div className={`${prefixCls}-bg`} style={percentStyle} />
+      {(isAxisVertical() && !isDisplayIn() && children) || null}
+      <div className={outerClassName}>
+        <div className={`${prefixClsName}-inner`} style={trailStyle}>
+          <div className={`${prefixClsName}-bg`} style={percentStyle}>
+            {isDisplayIn() ? children : null}
+          </div>
           {successSegment}
         </div>
       </div>
-      {children}
+      {(!isAxisVertical() && !isDisplayIn() && children) || null}
     </>
   )
 }

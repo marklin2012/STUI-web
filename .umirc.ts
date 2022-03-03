@@ -16,10 +16,12 @@ export default defineConfig({
       {
         title: '数据展示',
         children: [
-          '/component/tag',
+          '/component/avatar',
           '/component/badge',
-          '/component/tooltip',
+          '/component/collapse',
           '/component/progress',
+          '/component/tag',
+          '/component/tooltip',
         ],
       },
       {

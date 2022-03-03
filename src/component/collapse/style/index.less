@@ -1,0 +1,164 @@
+@import '../../style/index.less';
+
+@collapse-prefix-cls: st-collapse;
+
+.@{collapse-prefix-cls} {
+  background-color: @backgroundColor;
+  border: 1px solid @grey-3;
+  border-bottom: 0;
+  border-radius: 4px;
+
+  & > &-item {
+    border-bottom: 1px solid @grey-3;
+
+    &:last-child {
+      &,
+      & > .@{collapse-prefix-cls}-header {
+        border-radius: 0 0 4px 4px;
+      }
+    }
+
+    > .@{collapse-prefix-cls}-header {
+      position: relative; // Compatible with old version of antd, should remove in next version
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: flex-start;
+      padding: 12px 16px;
+      color: @black;
+      font-size: @font-size-14;
+      line-height: 22px;
+      cursor: pointer;
+      transition: all 0.3s, visibility 0s;
+
+      .@{collapse-prefix-cls}-arrow {
+        display: inline-block;
+        margin-right: 16px;
+        vertical-align: -1px;
+
+        & svg {
+          transition: transform 0.24s;
+        }
+      }
+
+      .@{collapse-prefix-cls}-extra {
+        margin-left: auto;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .@{collapse-prefix-cls}-header-collapsible-only {
+      cursor: default;
+      .@{collapse-prefix-cls}-header-text {
+        cursor: pointer;
+      }
+    }
+
+    &.@{collapse-prefix-cls}-no-arrow {
+      > .@{collapse-prefix-cls}-header {
+        padding-left: 16px;
+      }
+    }
+  }
+
+  // Expand Icon right
+  &-icon-position-right {
+    & > .@{collapse-prefix-cls}-item {
+      > .@{collapse-prefix-cls}-header {
+        position: relative;
+        padding: 16px;
+        padding-right: 16px;
+
+        .@{collapse-prefix-cls}-arrow {
+          position: absolute;
+          top: 50%;
+          right: 16px;
+          left: auto;
+          margin: 0;
+          transform: translateY(-50%);
+        }
+      }
+    }
+  }
+
+  &-content {
+    color: @text-color-2;
+    background-color: @white;
+    border-top: 1px solid @grey-3;
+
+    & > &-box {
+      padding: 16px;
+
+      & > {
+        font-size: @font-size-12;
+      }
+    }
+
+    &-hidden {
+      display: none;
+    }
+  }
+
+  &-item:last-child {
+    > .@{collapse-prefix-cls}-content {
+      border-radius: 0 0 4px 4px;
+    }
+  }
+
+  &-borderless {
+    background-color: transparent;
+    border: 0;
+  }
+
+  &-borderless > &-item {
+    border-bottom: 1px solid @grey-3;
+    > .@{collapse-prefix-cls}-header {
+      padding: 12px 16px;
+      line-height: 22px;
+    }
+  }
+
+  &-borderless > &-item:last-child,
+  &-borderless > &-item:last-child &-header {
+    border-radius: 0;
+  }
+
+  &-borderless > &-item > &-content {
+    background-color: transparent;
+  }
+
+  &-borderless > &-item > &-content > &-content-box {
+    padding: 0px 16px;
+  }
+
+  &-ghost {
+    background-color: @white;
+    border: 0;
+    > .@{collapse-prefix-cls}-item {
+      border-bottom: 0;
+      > .@{collapse-prefix-cls}-header {
+        padding: 12px 16px;
+        line-height: 22px;
+      }
+      > .@{collapse-prefix-cls}-content {
+        background-color: @white;
+        border-top: 0;
+        > .@{collapse-prefix-cls}-content-box {
+          padding: 0px 16px;
+        }
+      }
+    }
+  }
+
+  & &-item-disabled > &-header {
+    &,
+    & > .arrow {
+      color: @text-color-4;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@import './rtl';

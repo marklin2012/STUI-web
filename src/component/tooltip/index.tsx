@@ -8,8 +8,9 @@ import { placements as Placements } from 'rc-tooltip/lib/placements'
 import { cloneElement, isValidElement } from '../_util/reactNode'
 import classNames from 'classnames'
 import './style'
+import { RenderFunction } from '../_util/getRenderPropValue'
 
-export { AdjustOverflow, PlacementsConfig }
+// export { AdjustOverflow, PlacementsConfig }
 
 export type TooltipPlacement =
   | 'top'
@@ -49,8 +50,6 @@ export interface AbstractTooltipProps extends Partial<Omit<RcTooltipProps, 'chil
   children?: React.ReactNode
   direction?: 'ltr' | 'rtl'
 }
-
-export type RenderFunction = () => React.ReactNode
 
 export interface TooltipPropsWithOverlay extends AbstractTooltipProps {
   title?: React.ReactNode | RenderFunction

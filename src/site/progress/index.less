@@ -1,12 +1,59 @@
+@import '../../component/style/index.less';
+
 .progress {
   display: block;
   margin: 0;
-  padding: 20px;
+  padding: 7px 16px;
 
   .rowOne {
     position: relative;
     display: inline-block;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 66px;
+
+    &-last {
+      margin-bottom: 0;
+    }
+  }
+
+  .buttonGroup {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    width: 82px;
+    height: 32px;
+    margin-bottom: 45px;
+    padding: 0px;
+    background: @white;
+
+    .reducebutton {
+      top: 0;
+      left: 0;
+      width: 41px;
+      height: 32px;
+      border-radius: 4px 0 0 4px;
+      box-shadow: inset 0px -1px 0px #dfe2e7, inset 0px 1px 0px #dfe2e7, inset 1px 0px 0px #dfe2e7;
+    }
+
+    .addbutton {
+      top: 0;
+      left: 41px;
+      width: 41px;
+      height: 32px;
+      background: @blue-1;
+      border-radius: 0 4px 4px 0;
+      box-shadow: inset 1px 0px 0px #dfe2e7, inset 0px -1px 0px #dfe2e7, inset 0px 1px 0px #dfe2e7,
+        inset -1px 0px 0px #dfe2e7;
+    }
+  }
+}
+
+.progress-circle {
+  display: flex;
+
+  .row {
+    position: relative;
+    margin-right: 50px;
   }
 }

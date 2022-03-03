@@ -13,11 +13,11 @@ export type ThemeProps =
   | 'dark'
 
 export interface IconProps extends FontAwesomeIconProps {
-  theme: ThemeProps
+  theme?: ThemeProps
 }
 
 const Icon: React.FC<IconProps> = (props) => {
-  const { className, theme, ...rest } = props
+  const { className, theme = 'primary', ...rest } = props
   const classes = classNames('st-icon', className, {
     [`icon-${theme}`]: theme,
   })
