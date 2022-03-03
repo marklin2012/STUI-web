@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { identity, omit, pick, pickBy } from 'lodash'
 import React, { useState } from 'react'
 
@@ -45,8 +46,7 @@ const Tag: React.FC<TagProps> = ({
 
   return (
     <div
-      className={prefixCls}
-      id={tagSize}
+      className={classNames(prefixCls, `${prefixCls}-${tagSize}`)}
       style={pickBy(
         {
           backgroundColor: backgroundColor,
@@ -65,7 +65,7 @@ const Tag: React.FC<TagProps> = ({
 
   function closeTag() {
     return (
-      <button type="button" onClick={closeClick}>
+      <button className={'close-button'} type="button" onClick={closeClick}>
         X
       </button>
     )
@@ -90,21 +90,17 @@ export interface CheckableTagProps {
 const CheckableTag: React.FC<CheckableTagProps> = ({ children, checked = false, onChanged }) => {
   const [selected, setSelected] = useState(checked)
 
-  if (selected) {
-    return (
-      <span className={checkableTagCls} onClick={clickAction}>
+  return (
+    <span className={checkableTagCls} onClick={clickAction}>
+      {selected ? (
         <Tag backgroundColor="#095BF9" color="white" borderColor="transparent">
           {children}
         </Tag>
-      </span>
-    )
-  } else {
-    return (
-      <span className={checkableTagCls} onClick={clickAction}>
+      ) : (
         <Tag>{children}</Tag>
-      </span>
-    )
-  }
+      )}
+    </span>
+  )
 
   function clickAction() {
     const current = !selected

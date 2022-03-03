@@ -13,36 +13,34 @@
   border-style: solid;
   border-width: 1px;
   border-radius: 2px;
-  :hover {
-    color: #5a5c5f85 !important;
-    opacity: 0.3;
+
+  .close-button {
+    color: @grey-2;
+    text-align: center;
+    background: @white;
+    border: 0;
+    cursor: pointer;
+  }
+
+  &-normal {
+    height: 22px;
+    padding: 1px 8px;
+  }
+
+  &-middle {
+    height: 36px;
+    padding: 8px;
+  }
+
+  &-max {
+    height: 44px;
+    padding: 12px;
   }
 }
 
 .st-checkable-tag {
+  cursor: pointer;
   :hover {
     opacity: 0.3;
   }
-}
-
-#normal {
-  height: 22px;
-  padding: 1px 8px;
-}
-
-#middle {
-  height: 36px;
-  padding: 8px;
-}
-
-#max {
-  height: 44px;
-  padding: 12px;
-}
-
-button {
-  color: @grey-2;
-  text-align: center;
-  background: @white;
-  border: 0;
 }
