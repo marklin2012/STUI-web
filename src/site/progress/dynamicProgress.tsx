@@ -12,12 +12,12 @@ const DynamicProgress: React.FC = () => {
   return (
     <div className="progress">
       <div className="buttonGroup">
-        <button className="reducebutton" onClick={reduceClick}>
+        <span className="reducebutton" onClick={reduceClick}>
           -
-        </button>
-        <button className="addbutton" onClick={addClick}>
+        </span>
+        <span className="addbutton" onClick={addClick}>
           +
-        </button>
+        </span>
       </div>
 
       <div className="rowOne">
