@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { identity, omit, pick, pickBy } from 'lodash'
+import { identity, pickBy } from 'lodash'
 import React, { useState } from 'react'
 
 const prefixCls = 'st-tag'
@@ -27,17 +27,23 @@ export interface TagProps {
   onClosed?: () => void
 }
 
-const Tag: React.FC<TagProps> = ({
-  children,
-  closable = false,
-  isAddBtn = false,
-  tagSize = SizeTypes.normal,
-  color,
-  borderColor,
-  backgroundColor,
-  icon,
-  onClosed,
-}) => {
+export interface TagCompounded extends React.FC<TagProps> {
+  CheckableTag: typeof CheckableTag
+}
+
+const Tag: TagCompounded = (props) => {
+  const {
+    children,
+    closable = false,
+    isAddBtn = false,
+    tagSize = SizeTypes.normal,
+    color,
+    borderColor,
+    backgroundColor,
+    icon,
+    onClosed,
+  } = props
+
   const [visible, setVisible] = useState(true)
 
   if (visible == false) {
@@ -72,7 +78,6 @@ const Tag: React.FC<TagProps> = ({
   }
 
   function closeClick() {
-    console.log('内部关闭')
     if (onClosed) {
       onClosed!()
     }
@@ -83,7 +88,7 @@ const Tag: React.FC<TagProps> = ({
 const checkableTagCls = 'st-checkable-tag'
 
 export interface CheckableTagProps {
-  checked: boolean
+  checked?: boolean
   onChanged?: (checked: boolean) => void
 }
 
@@ -111,4 +116,6 @@ const CheckableTag: React.FC<CheckableTagProps> = ({ children, checked = false, 
   }
 }
 
-export { Tag, CheckableTag }
+Tag.CheckableTag = CheckableTag
+
+export default Tag

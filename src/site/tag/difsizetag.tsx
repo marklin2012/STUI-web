@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tag } from '../../component/tag'
+import { Tag } from '../..'
 import './index.less'
 import '../../component/tag/style'
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CheckableTag } from '../../component/tag'
+import { Tag } from '../..'
 import './index.less'
 import '../../component/tag/style'
 
@@ -18,13 +18,13 @@ const SelectedTags: React.FC = () => {
   let children = tagsData.map((tagData, index) => {
     const selected = checks[index]
     return (
-      <CheckableTag
+      <Tag.CheckableTag
         key={tagData}
         checked={selected}
         onChanged={(checked) => checkedAction(index, checked)}
       >
         {tagData}
-      </CheckableTag>
+      </Tag.CheckableTag>
     )
   })
   return <div className="tag">{children}</div>

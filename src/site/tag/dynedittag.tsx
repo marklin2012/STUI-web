@@ -36,10 +36,10 @@ const DynamicEditing: React.FC = () => {
     <div className="tag">
       {children}
       <Tag isAddBtn={true}>
-        <button className="addTagButton" type="button" onClick={addAction}>
+        <span className="addTag" onClick={addAction}>
           {' '}
           add Tag
-        </button>
+        </span>
       </Tag>
     </div>
   )
