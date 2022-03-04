@@ -1,0 +1,237 @@
+@import '../../style/index.less';
+
+@card-prefix-cls: st-card;
+@card-action-icon-size: 16px;
+@card-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12),
+  0 5px 12px 4px rgba(0, 0, 0, 0.09);
+
+.@{card-prefix-cls} {
+  position: relative;
+  background: @white;
+  border-radius: 4px;
+
+  &-rtl {
+    direction: rtl;
+  }
+
+  &-hoverable {
+    cursor: pointer;
+    transition: box-shadow 0.3s, border-color 0.3s;
+
+    &:hover {
+      border-color: transparent;
+      box-shadow: @card-shadow;
+    }
+  }
+
+  &-bordered {
+    box-sizing: border-box;
+    border: 1px solid @grey-3;
+    border-radius: 4px;
+  }
+
+  &-head {
+    min-height: 56px;
+    margin-bottom: -1px;
+    padding: 0 24px;
+    color: @text-color-1;
+    font-weight: 500;
+    font-size: @font-size-16;
+    background: @white;
+    border-bottom: 1px solid @grey-3;
+    border-radius: 4px 4px 0 0;
+
+    &-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    &-title {
+      display: inline-block;
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &-extra {
+    float: right;
+    margin-left: auto;
+    padding: 16px 0;
+    color: @blue-1;
+    font-weight: 400;
+    font-size: @font-size-14;
+
+    .@{card-prefix-cls}-rtl & {
+      margin-right: auto;
+      margin-left: 0;
+    }
+  }
+
+  &-body {
+    padding: 24px;
+
+    & p {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    :last-child {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &-contain-grid {
+    &-body {
+      margin: -1px 0 0 -1px;
+      padding: 0;
+    }
+  }
+
+  &-grid {
+    float: left;
+    width: 33.33%;
+    padding: 24px;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0px 4px 10px @fade-black-10;
+    transform: all 0.3s;
+
+    .@{card-prefix-cls}-rtl & {
+      float: right;
+    }
+
+    &-hoverable {
+      &:hover {
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 4px 10px @fade-black-50;
+      }
+    }
+  }
+
+  &-bordered &-cover {
+    margin-top: -1px;
+    margin-right: -1px;
+    margin-left: -1px;
+  }
+
+  &-cover {
+    > * {
+      display: block;
+      width: 100%;
+    }
+
+    img {
+      border-radius: 4px 4px 0 0;
+    }
+  }
+
+  &-actions {
+    height: 48px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: @white;
+    border-top: 1px solid @grey-3;
+
+    &::before {
+      display: table;
+      content: '';
+    }
+
+    & > li {
+      float: left;
+      margin: 12px 0;
+      color: @text-color-3;
+      text-align: center;
+
+      .@{card-prefix-cls}-rtl & {
+        float: right;
+      }
+
+      > span {
+        position: relative;
+        display: block;
+        min-width: 32px;
+        font-size: @font-size-14;
+        cursor: pointer;
+
+        &:hover {
+          color: @blue-1;
+          transition: color 0.3s;
+        }
+      }
+
+      &:not(:last-child) {
+        margin-right: -1px;
+        border-right: 1px solid @grey-3;
+
+        .@{card-prefix-cls}-rtl & {
+          border-right: none;
+          border-left: 1px solid @grey-3;
+        }
+      }
+    }
+  }
+
+  &-type-inner &-head {
+    padding: 0 12px;
+    background-color: @backgroundColor;
+
+    &-title {
+      padding: 12px 0;
+      font-size: @font-size-14;
+    }
+  }
+
+  &-type-inner &-body {
+    padding: 16px 12px;
+  }
+
+  &-type-inner &-extra {
+    padding: 12px + 1.5px 0;
+  }
+
+  &-meta {
+    margin: -4px 0;
+    &::before {
+      display: table;
+      content: '';
+    }
+
+    &-avatar {
+      float: left;
+      padding-right: 16px;
+
+      .@{card-prefix-cls}-rtl & {
+        float: right;
+        padding-right: 0;
+        padding-left: 16px;
+      }
+    }
+
+    &-detail {
+      overflow: hidden;
+
+      > div:not(:last-child) {
+        margin-bottom: 12px;
+      }
+    }
+
+    &-title {
+      overflow: hidden;
+      color: @text-color-1;
+      font-weight: 500;
+      font-size: @font-size-16;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &-description {
+      color: @text-color-1;
+    }
+  }
+}

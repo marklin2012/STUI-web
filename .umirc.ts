@@ -18,6 +18,7 @@ export default defineConfig({
         children: [
           '/component/avatar',
           '/component/badge',
+          '/component/card',
           '/component/collapse',
           '/component/progress',
           '/component/tag',
