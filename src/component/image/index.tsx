@@ -22,11 +22,9 @@ const Image: CompositionImage<STImageProps> = ({
   ...restProps
 }) => {
   const prefixCls = customizePrefixCls ?? imgPrefixCls
-
   const mergedPreview = React.useMemo(() => {
     if (preview === false) return preview
     const _preview = typeof preview === 'object' ? preview : {}
-
     return {
       mask: (
         <div className={`${prefixCls}-mask-info`}>
@@ -36,8 +34,8 @@ const Image: CompositionImage<STImageProps> = ({
       ),
       icons,
       ..._preview,
-      transitionName: getTransitionName(prefixCls, 'zoom', _preview.transitionName),
-      maskTransitionName: getTransitionName(prefixCls, 'fade', _preview.maskTransitionName),
+      transitionName: getTransitionName('st', 'zoom', _preview.transitionName),
+      maskTransitionName: getTransitionName('st', 'fade', _preview.maskTransitionName),
     }
   }, [preview])
 
