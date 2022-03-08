@@ -1,0 +1,67 @@
+@import './affix.less';
+@import './allow-clear.less';
+@import '../../style/index.less';
+@import './inputConst.less';
+@import '../../style/theme/default.less';
+@import './rtl.less';
+@import './search-input.less';
+@import './mixin.less';
+
+@input-prefix-cls: ~'@{st-prefix}-input';
+
+// Input styles
+.@{input-prefix-cls} {
+  .reset-component();
+  .input();
+
+  &-group {
+    .reset-component();
+    .input-group(~'@{input-prefix-cls}');
+
+    &-wrapper {
+      display: inline-block;
+      width: 100%;
+      text-align: start;
+      vertical-align: top;
+    }
+  }
+
+  &-password-icon {
+    color: @text-color-2;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      color: @blue-1;
+    }
+  }
+
+  &[type='color'] {
+    height: @input-height-base;
+
+    &.@{input-prefix-cls}-lg {
+      height: @input-height-lg;
+    }
+    &.@{input-prefix-cls}-sm {
+      height: @input-height-sm;
+      padding-top: 3px;
+      padding-bottom: 3px;
+    }
+  }
+
+  &-textarea-show-count {
+    > .@{input-prefix-cls} {
+      height: 100%;
+    }
+
+    &::after {
+      position: relative;
+      float: right;
+      color: @text-color-4;
+      font-size: @font-size-base;
+      white-space: nowrap;
+      content: attr(data-count);
+      pointer-events: none;
+    }
+  }
+}

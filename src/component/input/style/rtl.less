@@ -1,0 +1,211 @@
+@import './inputConst.less';
+@import './inputConst.less';
+@import '../../style/index.less';
+@import '../../style/theme/default.less';
+
+@st-prefix-cls: ~'@{st-prefix}';
+@input-prefix-cls: ~'@{st-prefix}-input';
+
+.@{input-rtl-cls}-group {
+  &-wrapper {
+    &-rtl {
+      direction: rtl;
+    }
+  }
+
+  &-rtl {
+    direction: rtl;
+  }
+}
+
+// affix
+@input-affix-margin: 4px;
+
+.@{input-rtl-cls} {
+  &-affix-wrapper&-affix-wrapper-rtl {
+    > input.@{input-rtl-cls} {
+      border: none;
+      outline: none;
+    }
+  }
+
+  &-affix-wrapper-rtl {
+    .@{input-rtl-cls}-prefix {
+      margin: 0 0 0 @input-affix-margin;
+    }
+
+    .@{input-rtl-cls}-suffix {
+      margin: 0 @input-affix-margin 0 0;
+    }
+  }
+
+  &-textarea {
+    &-rtl {
+      direction: rtl;
+    }
+
+    &-rtl&-show-count::after {
+      text-align: left;
+    }
+  }
+}
+
+// allow-clear
+.@{input-rtl-cls}-clear-icon {
+  &-has-suffix {
+    .@{input-rtl-cls}-affix-wrapper-rtl & {
+      margin-right: 0;
+      margin-left: @input-affix-margin;
+    }
+  }
+
+  .@{input-rtl-cls}-affix-wrapper-rtl & {
+    right: auto;
+    left: 8px;
+  }
+}
+
+// mixin
+@input-rtl-cls: st-input-rtl;
+
+.active() {
+  .@{input-rtl-cls} & {
+    border-right-width: 0;
+    border-left-width: @border-width-base !important;
+  }
+}
+
+.hover() {
+  .@{input-rtl-cls} & {
+    border-right-width: 0;
+    border-left-width: @border-width-base !important;
+  }
+}
+
+.input() {
+  &-rtl {
+    direction: rtl;
+  }
+}
+
+// label input
+.input-group(@inputClass) {
+  > .@{inputClass}-rtl:first-child,
+  &-rtl &-addon:first-child {
+    border-radius: 0 @border-radius-base @border-radius-base 0;
+  }
+
+  &-addon:first-child {
+    .@{inputClass}-group-rtl & {
+      border-right: @border-width-base solid @grey-3;
+      border-left: 0;
+    }
+  }
+
+  &-addon:last-child {
+    .@{inputClass}-group-rtl & {
+      border-right: 0;
+      border-left: @border-width-base solid @grey-3;
+    }
+  }
+
+  > .@{inputClass}:last-child,
+  &-addon:last-child {
+    .@{inputClass}-group-rtl& {
+      border-radius: @border-radius-base 0 0 @border-radius-base;
+    }
+  }
+
+  .@{inputClass}-affix-wrapper {
+    &:not(:first-child) {
+      .@{inputClass}-group-rtl& {
+        border-radius: @border-radius-base 0 0 @border-radius-base;
+      }
+    }
+
+    &:not(:last-child) {
+      .@{inputClass}-group-rtl& {
+        border-radius: 0 @border-radius-base @border-radius-base 0;
+      }
+    }
+  }
+
+  &&-compact {
+    & > *:not(:last-child) {
+      .@{inputClass}-group-rtl& {
+        margin-right: 0;
+        margin-left: -@border-width-base;
+        border-left-width: @border-width-base;
+      }
+    }
+
+    & > *:first-child,
+    & > .@{st-prefix-cls}-select:first-child > .@{st-prefix-cls}-select-selector,
+    & > .@{st-prefix-cls}-select-auto-complete:first-child .@{st-prefix-cls}-input,
+    & > .@{st-prefix-cls}-cascader-picker:first-child .@{st-prefix-cls}-input {
+      .@{inputClass}-group-rtl& {
+        border-radius: 0 @border-radius-base @border-radius-base 0;
+      }
+    }
+
+    & > *:last-child,
+    & > .@{st-prefix-cls}-select:last-child > .@{st-prefix-cls}-select-selector,
+    & > .@{st-prefix-cls}-select-auto-complete:last-child .@{st-prefix-cls}-input,
+    & > .@{st-prefix-cls}-cascader-picker:last-child .@{st-prefix-cls}-input,
+    & > .@{st-prefix-cls}-cascader-picker-focused:last-child .@{st-prefix-cls}-input {
+      .@{inputClass}-group-rtl& {
+        border-left-width: @border-width-base;
+        border-radius: @border-radius-base 0 0 @border-radius-base;
+      }
+    }
+
+    .@{st-prefix-cls}-input-group-wrapper-rtl + .@{st-prefix-cls}-input-group-wrapper-rtl {
+      margin-right: -1px;
+      margin-left: 0;
+    }
+
+    .@{st-prefix-cls}-input-group-wrapper-rtl:not(:last-child) {
+      &.@{st-prefix-cls}-input-search > .@{st-prefix-cls}-input-group {
+        & > .@{st-prefix-cls}-input {
+          border-radius: 0 @border-radius-base @border-radius-base 0;
+        }
+      }
+    }
+  }
+}
+
+// search-input
+@search-prefix: ~'@{st-prefix-cls}-input-search';
+@search-rtl-cls: ~'@{search-prefix}-rtl';
+
+.@{search-prefix}-rtl {
+  direction: rtl;
+
+  .@{st-prefix-cls}-input {
+    &:hover,
+    &:focus {
+      + .@{st-prefix-cls}-input-group-addon
+        .@{search-prefix}-button:not(.@{st-prefix-cls}-btn-primary) {
+        border-right-color: @blue-1;
+        border-left-color: @grey-3;
+      }
+    }
+  }
+
+  > .@{st-prefix-cls}-input-group {
+    > .@{st-prefix-cls}-input-affix-wrapper {
+      &:hover,
+      &-focused {
+        border-right-color: @blue-1;
+      }
+    }
+
+    > .@{st-prefix-cls}-input-group-addon {
+      right: -1px;
+      left: auto;
+      .@{search-prefix}-button {
+        border-radius: @border-radius-base 0 0 @border-radius-base;
+      }
+    }
+  }
+}

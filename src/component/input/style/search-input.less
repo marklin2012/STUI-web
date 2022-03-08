@@ -1,0 +1,70 @@
+@import '../../style/theme/default.less';
+@import '../../style/index.less';
+@import './inputConst.less';
+
+@st-prefix-cls: ~'@{st-prefix}';
+@search-prefix: ~'@{st-prefix}-input-search';
+
+.@{search-prefix} {
+  .@{st-prefix-cls}-input {
+    &:hover,
+    &:focus {
+      border-color: @grey-3;
+
+      + .@{st-prefix-cls}-input-group-addon
+        .@{search-prefix}-button:not(.@{st-prefix-cls}-btn-primary) {
+        border-left-color: @grey-3;
+      }
+    }
+  }
+
+  .@{st-prefix-cls}-input-affix-wrapper {
+    border-radius: 0;
+  }
+
+  .@{st-prefix-cls}-input-lg {
+    line-height: @line-height-base - 0.0002;
+  }
+
+  > .@{st-prefix-cls}-input-group {
+    > .@{st-prefix-cls}-input-group-addon:last-child {
+      left: -1px;
+      padding: 0;
+      border: 0;
+
+      .@{search-prefix}-button {
+        padding-top: 0;
+        padding-bottom: 0;
+        border-radius: 0 @border-radius-base @border-radius-base 0;
+      }
+
+      .@{search-prefix}-button:not(.@{st-prefix-cls}-btn-primary) {
+        color: @text-color-2;
+
+        &.@{st-prefix-cls}-btn-loading::before {
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  &-button {
+    height: @input-height-base;
+
+    &:hover,
+    &:focus {
+      z-index: 1;
+    }
+  }
+
+  &-large &-button {
+    height: @input-height-lg;
+  }
+
+  &-small &-button {
+    height: @input-height-sm;
+  }
+}

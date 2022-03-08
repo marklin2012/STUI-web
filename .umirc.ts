@@ -31,7 +31,7 @@ export default defineConfig({
       },
       {
         title: '表单组件',
-        children: ['./component/switch'],
+        children: ['./component/input', './component/switch'],
       },
     ],
   },

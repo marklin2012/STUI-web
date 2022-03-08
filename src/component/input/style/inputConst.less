@@ -1,0 +1,31 @@
+@import '../../style/index.less';
+
+@input-height-base: 32px;
+@input-height-lg: 40px;
+@input-height-sm: 24px;
+@font-size-base: @font-size-14;
+@font-size-lg: @font-size-16;
+@font-size-sm: @font-size-12;
+@line-height-base: 1.5715;
+@border-width-base: 1px;
+@border-radius-base: 4px;
+@input-affix-margin: 4px;
+@textarea-min-height: 60px;
+
+@input-padding-horizontal-base: 12px;
+@input-padding-horizontal-sm: 8px;
+@input-padding-horizontal-lg: @input-padding-horizontal-base;
+
+@input-padding-vertical-base: max(
+  (round(((@input-height-base - @font-size-base * @line-height-base) / 2) * 10) / 10) -
+    @border-width-base,
+  3px
+);
+@input-padding-vertical-sm: max(
+  (round(((@input-height-sm - @font-size-sm * @line-height-base) / 2) * 10) / 10) -
+    @border-width-base,
+  0
+);
+@input-padding-vertical-lg: (
+    ceil(((@input-height-lg - @font-size-lg * @line-height-base) / 2) * 10) / 10
+  ) - @border-width-base;

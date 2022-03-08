@@ -13,5 +13,6 @@ export { default as Avatar } from './component/avatar'
 export { default as Image } from './component/image'
 export { default as Collapse } from './component/collapse'
 export { default as Card } from './component/card'
+export { default as Input } from './component/input'
 
 library.add(fas, far)
