@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { map } from 'lodash'
 import React from 'react'
-import { DirectionType, Omit } from '../_util/type'
+import { DirectionType } from '../_util/type'
 import Grid from './grid'
 import Meta from './meta'
 import './style'
