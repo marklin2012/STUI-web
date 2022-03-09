@@ -1,0 +1,30 @@
+@import '../../style/theme/default.less';
+
+@checkbox-group-item-margin-right: 8px;
+
+.stCheckboxFn(@checkbox-prefix-cls: ~'@{st-prefix}-checkbox') {
+  .@{checkbox-prefix-cls}-rtl {
+    direction: rtl;
+  }
+
+  .@{checkbox-prefix-cls}-group {
+    &-item {
+      .@{checkbox-prefix-cls}-group-rtl & {
+        margin-right: 0;
+        margin-left: @checkbox-group-item-margin-right;
+      }
+
+      &:last-child {
+        .@{checkbox-prefix-cls}-group-rtl & {
+          margin-left: 0 !important;
+        }
+      }
+    }
+
+    &-item + &-item {
+      .@{checkbox-prefix-cls}-group-rtl & {
+        margin-left: @checkbox-group-item-margin-right;
+      }
+    }
+  }
+}
