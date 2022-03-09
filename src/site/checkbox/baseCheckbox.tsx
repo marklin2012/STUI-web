@@ -6,13 +6,22 @@ import { CheckboxValueType } from '../../component/checkbox/group'
 import '../../component/checkbox/style'
 import './index.less'
 
-export default () => {
+function BaseCheckBox() {
+  const [selected, setSelected] = React.useState(['checkbox1'])
+
   function onChange(checkedValues: CheckboxValueType[]) {
     console.log('checked = ', checkedValues)
   }
 
   function checkedChange(e: CheckboxChangeEvent) {
-    console.log(`${e.target.checked}`)
+    console.log(`${e.target.value}-checked: ${e.target.checked}`)
+    let newSelected = [...selected]
+    if (selected.indexOf(e.target.value) !== -1) {
+      newSelected = selected.splice(selected.indexOf(e.target.value), 1)
+    } else {
+      newSelected.push(e.target.value)
+    }
+    setSelected(newSelected)
   }
 
   const plainOptions = ['checkbox1', 'checkbox2', 'checkbox3', 'checkbox4']
@@ -25,7 +34,7 @@ export default () => {
   ]
 
   const verOptions = [
-    { label: 'checkbox1', value: 'checkbox1', checked: true },
+    { label: 'checkbox1', value: 'checkbox1' },
     { label: 'checkbox2', value: 'checkbox2' },
     { label: 'checkbox3', value: 'checkbox3' },
     { label: 'checkbox4', value: 'checkbox4' },
@@ -38,7 +47,8 @@ export default () => {
       <div key={verOption.value}>
         <Checkbox
           disabled={verOption.disabled}
-          checked={verOption.checked}
+          value={verOption.value}
+          defaultChecked={selected.indexOf(verOption.value) !== -1}
           onChange={checkedChange}
         >
           {verOption.label}
@@ -50,11 +60,13 @@ export default () => {
 
   return (
     <div className="checkbox">
-      <Checkbox.Group options={plainOptions} defaultValue={[]} onChange={onChange} />
+      <Checkbox.Group options={plainOptions} onChange={onChange} />
       <div className="space12"></div>
-      <Checkbox.Group options={options} defaultValue={[]} onChange={onChange} />
+      <Checkbox.Group options={options} onChange={onChange} />
       <div className="space50"></div>
       {children}
     </div>
   )
 }
+
+export default () => BaseCheckBox()
