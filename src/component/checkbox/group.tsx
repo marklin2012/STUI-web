@@ -3,8 +3,7 @@ import classNames from 'classnames'
 import { DirectionType } from '../_util/type'
 import { filter, findIndex, map } from 'lodash'
 import omit from 'rc-util/lib/omit'
-import Checkbox from './checkbox'
-import './style'
+import Checkbox, { CheckboxChangeEvent } from './checkbox'
 
 export type CheckboxValueType = string | number | boolean
 
@@ -13,7 +12,7 @@ export interface CheckboxOptionType {
   value: CheckboxValueType
   style?: React.CSSProperties
   disabled?: boolean
-  checkedChange?: (e: boolean) => void
+  onChange?: (e: CheckboxChangeEvent) => void
 }
 
 export interface AbstractCheckboxGroupProps {
@@ -119,7 +118,7 @@ const InternalCheckboxGroup: React.ForwardRefRenderFunction<HTMLDivElement, Chec
         disabled={'disabled' in option ? option.disabled : restProps.disabled}
         value={option.value}
         checked={value.indexOf(option.value) !== -1}
-        checkedChange={() => checkedChangeHandle(option)}
+        onChange={option.onChange}
         className={`${groupPrefixCls}-item`}
         style={option.style}
       >
@@ -149,10 +148,6 @@ const InternalCheckboxGroup: React.ForwardRefRenderFunction<HTMLDivElement, Chec
       <GroupContext.Provider value={context}>{children}</GroupContext.Provider>
     </div>
   )
-
-  function checkedChangeHandle(option: CheckboxOptionType) {
-    toggleOption(option)
-  }
 }
 
 const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps>(InternalCheckboxGroup)

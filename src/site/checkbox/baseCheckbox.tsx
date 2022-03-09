@@ -1,6 +1,7 @@
 import { map } from 'lodash'
 import React from 'react'
 import { Checkbox } from '../..'
+import { CheckboxChangeEvent } from '../../component/checkbox/checkbox'
 import { CheckboxValueType } from '../../component/checkbox/group'
 import '../../component/checkbox/style'
 import './index.less'
@@ -10,8 +11,8 @@ export default () => {
     console.log('checked = ', checkedValues)
   }
 
-  function checkedChange(value: string, checked: boolean) {
-    console.log(`${value}-checked:${checked}`)
+  function checkedChange(e: CheckboxChangeEvent) {
+    console.log(`${e.target.checked}`)
   }
 
   const plainOptions = ['checkbox1', 'checkbox2', 'checkbox3', 'checkbox4']
@@ -38,7 +39,7 @@ export default () => {
         <Checkbox
           disabled={verOption.disabled}
           checked={verOption.checked}
-          checkedChange={(checked) => checkedChange(verOption.value, checked)}
+          onChange={checkedChange}
         >
           {verOption.label}
         </Checkbox>

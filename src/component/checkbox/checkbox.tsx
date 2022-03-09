@@ -4,14 +4,14 @@ import { DirectionType } from '../_util/type'
 import { GroupContext } from './group'
 import RcCheckbox from 'rc-checkbox'
 
-export interface AbstractCheckboxProps {
+export interface AbstractCheckboxProps<T> {
   prefixCls?: string
   className?: string
   defaultChecked?: boolean
   checked?: boolean
   style?: React.CSSProperties
   disabled?: boolean
-  onChange?: (e: Event) => void
+  onChange?: (e: T) => void
   onClick?: React.MouseEventHandler<HTMLElement>
   onMouseEnter?: React.MouseEventHandler<HTMLElement>
   onMouseLeave?: React.MouseEventHandler<HTMLElement>
@@ -28,27 +28,36 @@ export interface AbstractCheckboxProps {
   direction?: DirectionType
 }
 
-export interface CheckboxProps extends AbstractCheckboxProps {
-  indeterminate?: boolean
-  /// 回调请使用checkedChange
-  checkedChange?: (checked: boolean) => void
+export interface CheckboxChangeEventTarget extends CheckboxProps {
+  checked: boolean
 }
 
-const InternalCheckbox: React.FC<CheckboxProps> = ({
-  prefixCls: customPrefixCls,
-  className,
-  children,
-  indeterminate = false,
-  checked = false,
-  style,
-  checkedChange,
-  onMouseEnter,
-  onMouseLeave,
-  skipGroup = false,
-  direction,
-  ...restProps
-}) => {
-  const [isChecked, setISChecked] = React.useState(checked)
+export interface CheckboxChangeEvent {
+  target: CheckboxChangeEventTarget
+  stopPropagation: () => void
+  preventDefault: () => void
+  nativeEvent: MouseEvent
+}
+
+export interface CheckboxProps extends AbstractCheckboxProps<CheckboxChangeEvent> {
+  indeterminate?: boolean
+}
+
+const InternalCheckbox: React.ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> = (
+  {
+    prefixCls: customPrefixCls,
+    className,
+    children,
+    indeterminate = false,
+    style,
+    onMouseEnter,
+    onMouseLeave,
+    skipGroup = false,
+    direction,
+    ...restProps
+  },
+  ref,
+) => {
   const checkboxGroup = React.useContext(GroupContext)
   const prevValue = React.useRef(restProps.value)
 
@@ -103,27 +112,13 @@ const InternalCheckbox: React.FC<CheckboxProps> = ({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <RcCheckbox
-        {...checkboxProps}
-        prefixCls={prefixCls}
-        className={checkboxCls}
-        checked={isChecked}
-        onChange={onChangeHandle}
-      />
+      <RcCheckbox {...checkboxProps} prefixCls={prefixCls} className={checkboxCls} ref={ref} />
       {children !== undefined && <span>{children}</span>}
     </label>
   )
-
-  function onChangeHandle(e: Event) {
-    setISChecked(!isChecked)
-
-    if (checkedChange) {
-      checkedChange(!isChecked)
-    }
-  }
 }
 
-const STCheckBox = InternalCheckbox
+const STCheckBox = React.forwardRef<HTMLInputElement, CheckboxProps>(InternalCheckbox)
 
 STCheckBox.displayName = 'Checkbox'
 
