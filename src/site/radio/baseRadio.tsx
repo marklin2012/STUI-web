@@ -43,7 +43,7 @@ function BaseVerRadio() {
 
   let children = map(options, (option) => {
     return (
-      <>
+      <div key={option}>
         <Radio
           value={option}
           checked={value === option}
@@ -53,7 +53,7 @@ function BaseVerRadio() {
           {option}
         </Radio>
         <div className="space12" />
-      </>
+      </div>
     )
   })
 
