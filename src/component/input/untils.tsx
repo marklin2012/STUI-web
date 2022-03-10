@@ -1,14 +1,12 @@
 import classNames from 'classnames'
-import { DirectionType } from '../_util/type'
+import { DirectionType, SizeType } from '../_util/type'
 import { ClearableInputProps } from './clearableLabelInput'
 import { InputProps } from './input'
-
-export type InputSizeType = 'small' | 'middle' | 'large' | undefined
 
 export function getInputClassName(
   prefixCls: string,
   bordered: boolean,
-  size?: InputSizeType,
+  size?: SizeType,
   disabled?: boolean,
   direction?: DirectionType,
 ) {

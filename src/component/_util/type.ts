@@ -7,3 +7,5 @@ export type ElementOf<T> = T extends (infer E)[] ? E : T extends readonly (infer
 export type LiteralUnion<T extends U, U> = T | (U & {})
 
 export type DirectionType = 'ltr' | 'rtl' | undefined
+
+export type SizeType = 'small' | 'middle' | 'large' | undefined

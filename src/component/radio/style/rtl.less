@@ -1,0 +1,61 @@
+@import '../../style/index.less';
+@import './radioConstant.less';
+
+@radio-prefix-cls: ~'@{st-prefix}-radio';
+@radio-group-prefix-cls: ~'@{radio-prefix-cls}-group';
+@radio-prefix-cls-button-wrapper: ~'@{radio-prefix-cls}-button-wrapper';
+
+.@{radio-group-prefix-cls} {
+  &&-rtl {
+    direction: rtl;
+  }
+}
+
+// 一般状态
+.@{radio-prefix-cls}-wrapper {
+  &&-rtl {
+    margin-right: 0;
+    margin-left: @radio-wrapper-margin-right;
+    direction: rtl;
+  }
+}
+
+.@{radio-prefix-cls-button-wrapper} {
+  &&-rtl {
+    border-right-width: 0;
+    border-left-width: @radio-border-width;
+  }
+
+  &:not(:first-child) {
+    &::before {
+      .@{radio-prefix-cls-button-wrapper}.@{radio-prefix-cls-button-wrapper}-rtl& {
+        right: -1px;
+        left: 0;
+      }
+    }
+  }
+
+  &:first-child {
+    .@{radio-prefix-cls-button-wrapper}.@{radio-prefix-cls-button-wrapper}-rtl& {
+      border-right: @radio-border-width @radio-border-style @radio-border-color;
+      border-radius: 0 @radio-border-radius @radio-border-radius 0;
+    }
+    .@{radio-prefix-cls-button-wrapper}-checked:not([class*=~"' @{radio-prefix-cls}-button-wrapper-disabled'"])& {
+      border-right-color: @radio-button-hover-color;
+    }
+  }
+
+  &:last-child {
+    .@{radio-prefix-cls-button-wrapper}.@{radio-prefix-cls-button-wrapper}-rtl& {
+      border-radius: @radio-border-radius 0 0 @radio-border-radius;
+    }
+  }
+
+  &-disabled {
+    &:first-child {
+      .@{radio-prefix-cls-button-wrapper}.@{radio-prefix-cls-button-wrapper}-rtl& {
+        border-right-color: @radio-border-color;
+      }
+    }
+  }
+}
