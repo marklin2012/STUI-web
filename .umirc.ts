@@ -35,6 +35,7 @@ export default defineConfig({
           './component/checkbox',
           './component/input',
           './component/radio',
+          './component/rate',
           './component/switch',
         ],
       },

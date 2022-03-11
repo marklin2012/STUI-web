@@ -44,7 +44,8 @@
     "rc-motion":"^2.4.5",
     "rc-collapse":"^3.1.2",
     "rc-textarea":"^0.3.7",
-    "rc-checkbox":"^2.3.2"
+    "rc-checkbox":"^2.3.2",
+    "rc-rate":"^2.9.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.1",

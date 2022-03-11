@@ -16,5 +16,6 @@ export { default as Card } from './component/card'
 export { default as Input } from './component/input'
 export { default as Radio } from './component/radio'
 export { default as Checkbox } from './component/checkbox'
+export { default as Rate } from './component/rate'
 
 library.add(fas, far)
