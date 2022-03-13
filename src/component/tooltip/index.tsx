@@ -232,7 +232,7 @@ const Tooltip = React.forwardRef<unknown, TooltipProps>((props, ref) => {
     arrowContentStyle = { background: color }
   }
 
-  const motionName = `${prefixCls}-zoom-big-fast`
+  const motionName = 'st-zoom-big-fast'
 
   return (
     <RcTooltip
