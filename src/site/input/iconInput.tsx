@@ -13,7 +13,7 @@ export default () => {
       <div className="row">
         <p className="head">邮箱地址:</p>
         <Input
-          value={'123456@outlook.com'}
+          defaultValue={'123456@outlook.com'}
           suffix={<Icon icon={'check-circle'} color={'#49C564'} />}
         />
       </div>

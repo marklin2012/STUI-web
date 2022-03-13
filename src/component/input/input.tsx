@@ -1,13 +1,13 @@
 import classNames from 'classnames'
 import omit from 'rc-util/lib/omit'
 import React from 'react'
-import { DirectionType, LiteralUnion } from '../_util/type'
+import { DirectionType, LiteralUnion, SizeType } from '../_util/type'
 import ClearableLabeledInput from './clearableLabelInput'
 import Group from './group'
 import Password from './password'
 import Search from './search'
 import TextArea from './textArea'
-import { getInputClassName, hasPrefixSuffix, InputSizeType } from './untils'
+import { getInputClassName, hasPrefixSuffix } from './untils'
 import './style'
 
 export interface InputFocusOptions extends FocusOptions {
@@ -22,7 +22,7 @@ export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix' | 'type'> {
   prefixCls?: string
   id?: string
-  size?: InputSizeType
+  size?: SizeType
   type?: LiteralUnion<
     | 'button'
     | 'checkbox'
@@ -161,11 +161,15 @@ class Input extends React.Component<InputProps, InputState> {
       prevValue: props.value,
     }
   }
-
+  // 接收新的参数来更新state
   static getDerivedStateFromProps(nextProps: InputProps, { prevValue }: InputState) {
-    const newState: Partial<InputState> = { prevValue: nextProps.value }
-    if (nextProps.value !== undefined || prevValue !== nextProps.value) {
-      newState.value = nextProps.value
+    const value = typeof nextProps.value === 'undefined' ? nextProps.defaultValue : nextProps.value
+    if (value === prevValue) {
+      return null
+    }
+    const newState: Partial<InputState> = { prevValue: value }
+    if (value !== undefined || prevValue !== value) {
+      newState.value = value
     }
     if (nextProps.disabled) {
       newState.focused = false
@@ -244,7 +248,7 @@ class Input extends React.Component<InputProps, InputState> {
 
   renderInput = (
     prefixCls: string,
-    size: InputSizeType | undefined,
+    size: SizeType | undefined,
     bordered: boolean,
     input: { autoComplete: string } | undefined,
   ) => {
