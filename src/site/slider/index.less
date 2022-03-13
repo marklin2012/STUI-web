@@ -1,0 +1,32 @@
+.slider {
+  display: block;
+
+  .columnSpace {
+    height: 40px;
+  }
+
+  .subRow {
+    display: flex;
+    flex-flow: row wrap;
+
+    .subSlider {
+      display: block;
+      flex: 0 0 calc(100% - 80px);
+    }
+
+    .subInput {
+      width: 66px;
+      height: 32px;
+    }
+
+    .rowSpace {
+      width: 12px;
+    }
+  }
+
+  .vertical {
+    display: inline-block;
+    height: 400px;
+    margin-left: 50px;
+  }
+}

@@ -17,5 +17,6 @@ export { default as Input } from './component/input'
 export { default as Radio } from './component/radio'
 export { default as Checkbox } from './component/checkbox'
 export { default as Rate } from './component/rate'
+export { default as Slider } from './component/slider'
 
 library.add(fas, far)
