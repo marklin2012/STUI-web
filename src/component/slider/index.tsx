@@ -71,16 +71,9 @@ export interface SliderRangeProps extends SliderBaseProps {
 
 export type Visibles = { [index: number]: boolean }
 
-export interface ConfigPopupProps {
-  getPopupContainer?: (triggerNode?: HTMLElement) => HTMLElement
-}
-
-export const ConfigPopupContext = React.createContext<ConfigPopupProps>({})
-
 const Slider = React.forwardRef<unknown, SliderSingleProps | SliderRangeProps>(
   (props, ref: any) => {
     const direction = props.direction
-    const { getPopupContainer } = React.useContext(ConfigPopupContext)
     const [visibles, setVisibles] = React.useState<Visibles>({})
 
     const toggleTooltipVisible = (index: number, visible: boolean) => {
@@ -118,7 +111,7 @@ const Slider = React.forwardRef<unknown, SliderSingleProps | SliderRangeProps>(
           transitionName={'st-zoom-down'}
           key={index}
           overlayClassName={`${prefixCls}-tooltip`}
-          getPopupContainer={getTooltipPopupContainer || getPopupContainer}
+          getPopupContainer={getTooltipPopupContainer}
           color={tooltipColor ?? '#1070ff'}
         >
           <RcHandle

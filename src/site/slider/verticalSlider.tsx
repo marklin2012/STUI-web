@@ -24,6 +24,9 @@ export default () => {
         <Slider range={true} defaultValue={[20, 50]} vertical={true} tooltipPlacement={'top'} />
       </div>
       <div className="vertical">
+        <Slider defaultValue={20} vertical={true} tooltipPlacement={'top'} tooltipVisible={true} />
+      </div>
+      <div className="vertical">
         <Slider
           defaultValue={100}
           vertical={true}

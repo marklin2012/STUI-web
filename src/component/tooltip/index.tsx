@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import getPlacements, { AdjustOverflow, PlacementsConfig } from './placements'
+import React from 'react'
+import useMergedState from 'rc-util/lib/hooks/useMergedState'
+import getPlacements, { AdjustOverflow } from './placements'
 import RcTooltip from 'rc-tooltip'
 import { TooltipProps as RcTooltipProps } from 'rc-tooltip/lib/Tooltip'
 import { LiteralUnion } from '../_util/type'
@@ -7,10 +8,7 @@ import { PresetColorType, PresetColorTypes } from '../_util/colors'
 import { placements as Placements } from 'rc-tooltip/lib/placements'
 import { cloneElement, isValidElement } from '../_util/reactNode'
 import classNames from 'classnames'
-import './style'
 import { RenderFunction } from '../_util/getRenderPropValue'
-
-// export { AdjustOverflow, PlacementsConfig }
 
 export type TooltipPlacement =
   | 'top'
@@ -127,7 +125,10 @@ function getDisabledCompatibleChildren(element: React.ReactElement<any>, prefixC
 const prefixCls = 'st-tooltip'
 
 const Tooltip = React.forwardRef<unknown, TooltipProps>((props, ref) => {
-  const [visible, setVisible] = React.useState(props.visible ? props.visible : false)
+  const [visible, setVisible] = useMergedState(false, {
+    value: props.visible,
+    defaultValue: props.defaultVisible,
+  })
 
   const direction = props.direction
 

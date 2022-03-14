@@ -18,6 +18,10 @@
 
 <code src='../../site/slider/marksSlider.tsx'></code>
 
+### 自定义标签
+
+<code src='../../site/slider/tooltipShowAlways.tsx'></code>
+
 ### 垂直方向
 
 <code src='../../site/slider/verticalSlider.tsx'></code>
