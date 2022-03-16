@@ -36,6 +36,7 @@ export default defineConfig({
           './component/input',
           './component/radio',
           './component/rate',
+          './component/select',
           './component/slider',
           './component/switch',
         ],

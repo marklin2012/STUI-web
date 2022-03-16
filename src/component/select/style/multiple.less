@@ -1,0 +1,217 @@
+@import '../../style/index.less';
+
+@select-prefix-cls: ~'@{st-prefix}-select';
+
+@select-overflow-prefix-cls: ~'@{select-prefix-cls}-selection-overflow';
+@select-multiple-item-border-width: 1px;
+
+@select-multiple-padding: 4px;
+@select-padding-vertical: 8px;
+@select-multiple-disabled-background: @grey-4;
+@select-multiple-item-spacing-half: 4px;
+@select-multiple-item-height: 24px;
+@select-multiple-item-height-lg: 32px;
+
+/**
+ * Do not merge `height` & `line-height` under style with `selection` & `search`,
+ * since chrome may update to redesign with its align logic.
+ */
+
+// =========================== Overflow ===========================
+.@{select-overflow-prefix-cls} {
+  position: relative;
+  display: flex;
+  flex: auto;
+  flex-wrap: wrap;
+  max-width: 100%;
+
+  &-item {
+    flex: none;
+    align-self: center;
+    max-width: 100%;
+  }
+}
+
+.@{select-prefix-cls} {
+  &-multiple {
+    // ========================= Selector =========================
+    .@{select-prefix-cls}-selector {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      // Multiple is little different that horizontal is follow the vertical
+      padding: 0 @select-padding-vertical;
+
+      .@{select-prefix-cls}-show-search& {
+        cursor: text;
+      }
+
+      .@{select-prefix-cls}-disabled& {
+        background: @select-multiple-disabled-background;
+        cursor: not-allowed;
+      }
+
+      &::after {
+        display: inline-block;
+        width: 0;
+        margin: @select-multiple-item-spacing-half 0;
+        line-height: @select-multiple-item-height;
+        content: '\a0';
+      }
+    }
+
+    &.@{select-prefix-cls}-show-arrow .@{select-prefix-cls}-selector,
+    &.@{select-prefix-cls}-allow-clear .@{select-prefix-cls}-selector {
+      padding-right: @font-size-12 + @select-padding-vertical;
+    }
+
+    // ======================== Selections ========================
+    .@{select-prefix-cls}-selection-item {
+      position: relative;
+      display: flex;
+      flex: none;
+      box-sizing: border-box;
+      max-width: 100%;
+
+      height: @select-multiple-item-height;
+      // margin-top: @select-multiple-item-spacing-half;
+      // margin-bottom: @select-multiple-item-spacing-half;
+      line-height: @select-multiple-item-height - 2;
+      background: @grey-4;
+      border-radius: 2px;
+      cursor: default;
+      transition: font-size 0.3s, line-height 0.3s, height 0.3s;
+      user-select: none;
+      margin-inline-end: @select-multiple-padding;
+      padding-inline-start: @select-padding-vertical + @select-multiple-padding;
+      padding-inline-end: @select-padding-vertical + @select-multiple-padding;
+
+      .@{select-prefix-cls}-disabled& {
+        color: @grey-3;
+        border-color: @grey-4;
+        cursor: not-allowed;
+      }
+
+      // It's ok not to do this, but 24px makes bottom narrow in view should adjust
+      &-content {
+        display: inline-block;
+        margin-right: @select-multiple-padding;
+        overflow: hidden;
+        white-space: pre; // fix whitespace wrapping. custom tags display all whitespace within.
+        text-overflow: ellipsis;
+      }
+
+      &-remove {
+        display: inline-block;
+        color: @text-color-2;
+        font-weight: bold;
+        font-size: 10px;
+        line-height: inherit;
+        cursor: pointer;
+
+        &:hover {
+          color: @blue-1;
+        }
+      }
+    }
+
+    // ========================== Input ==========================
+    .@{select-overflow-prefix-cls}-item + .@{select-overflow-prefix-cls}-item {
+      .@{select-prefix-cls}-selection-search {
+        margin-inline-start: 0;
+      }
+    }
+
+    .@{select-prefix-cls}-selection-search {
+      position: relative;
+      max-width: 100%;
+      margin-inline-start: @select-multiple-padding;
+
+      &-input,
+      &-mirror {
+        height: @select-multiple-item-height;
+        line-height: @select-multiple-item-height;
+        transition: all 0.3s;
+      }
+
+      &-input {
+        width: 100%;
+        min-width: 4.1px; // fix search cursor missing
+      }
+
+      &-mirror {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        white-space: pre; // fix whitespace wrapping caused width calculation bug
+        visibility: hidden;
+      }
+    }
+
+    // ======================= Placeholder =======================
+    .@{select-prefix-cls}-selection-placeholder {
+      position: absolute;
+      top: 50%;
+      right: @select-padding-vertical;
+      left: @select-padding-vertical;
+      transform: translateY(-50%);
+      transition: all 0.3s;
+    }
+
+    // ============================================================
+    // ==                          Size                          ==
+    // ============================================================
+    .select-size(@suffix, @input-height) {
+      @merged-cls: ~'@{select-prefix-cls}-@{suffix}';
+      &.@{merged-cls} {
+        @select-selection-height: @input-height - 2;
+        @select-height-without-border: @input-height - 2;
+
+        .@{select-prefix-cls}-selector::after {
+          line-height: @select-selection-height;
+        }
+
+        .@{select-prefix-cls}-selection-item {
+          height: @select-selection-height;
+          line-height: @select-selection-height - 2;
+        }
+
+        .@{select-prefix-cls}-selection-search {
+          height: @select-selection-height;
+          line-height: @select-selection-height;
+
+          &-input,
+          &-mirror {
+            height: @select-selection-height;
+            line-height: @select-selection-height - 2;
+          }
+        }
+      }
+    }
+
+    .select-size('lg', 40px);
+    .select-size('sm', 24px);
+
+    // Size small need additional set padding
+    &.@{select-prefix-cls}-sm {
+      .@{select-prefix-cls}-selection-placeholder {
+        left: @select-padding-vertical;
+      }
+      // https://github.com/ant-design/ant-design/issues/29559
+      .@{select-prefix-cls}-selection-search {
+        margin-inline-start: 3px;
+      }
+    }
+    &.@{select-prefix-cls}-lg {
+      .@{select-prefix-cls}-selection-item {
+        height: @select-multiple-item-height-lg;
+        line-height: @select-multiple-item-height-lg;
+      }
+    }
+  }
+
+  &-disabled .@{select-prefix-cls}-selection-item-remove {
+    display: none;
+  }
+}

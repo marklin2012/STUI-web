@@ -1,0 +1,308 @@
+@import '../../style/index.less';
+@import '../../input/style/mixin.less';
+@import './single';
+@import './multiple';
+@import './rtl';
+
+@select-prefix-cls: ~'@{st-prefix}-select';
+@select-height-without-border: 32px;
+@select-dropdown-edge-child-vertical-padding: 4px;
+@select-border-radius: 2px;
+@select-multiple-disabled-background: @white;
+@select-padding-vertical: 8px;
+@font-size-sm: 16px;
+@disabled-color: @grey-3;
+@select-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+  0 9px 28px 8px rgba(0, 0, 0, 0.05);
+
+.select-selector() {
+  position: relative;
+  background-color: @white;
+  border: 1px solid @grey-3;
+  border-radius: @select-border-radius;
+  transition: all 0.3s @ease-in-out;
+
+  input {
+    cursor: pointer;
+  }
+
+  .@{select-prefix-cls}-show-search& {
+    cursor: text;
+
+    input {
+      cursor: auto;
+    }
+  }
+
+  .@{select-prefix-cls}-focused:not(.@{select-prefix-cls}-disabled)& {
+    .active();
+  }
+
+  .@{select-prefix-cls}-disabled& {
+    color: @grey-3;
+    background: @backgroundColor;
+    border: 1px solid @grey-4;
+    cursor: not-allowed;
+
+    .@{select-prefix-cls}-multiple& {
+      background: @backgroundColor;
+    }
+
+    input {
+      cursor: not-allowed;
+    }
+  }
+}
+
+/* Reset search input style */
+.select-search-input-without-border() {
+  .@{select-prefix-cls}-selection-search-input {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    appearance: none;
+
+    &::-webkit-search-cancel-button {
+      display: none;
+      -webkit-appearance: none;
+    }
+  }
+}
+
+.@{select-prefix-cls} {
+  .reset-component();
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+  &:not(&-customize-input) &-selector {
+    .select-selector();
+    .select-search-input-without-border();
+  }
+
+  &:not(&-disabled):hover &-selector {
+    .hover();
+  }
+
+  // ======================== Selection ========================
+  &-selection-item {
+    flex: 1;
+    overflow: hidden;
+    font-weight: normal;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    // IE11 css hack. `*::-ms-backdrop,` is a must have
+    @media all and (-ms-high-contrast: none) {
+      *::-ms-backdrop,
+      & {
+        flex: auto;
+      }
+    }
+  }
+
+  // ======================= Placeholder =======================
+  &-selection-placeholder {
+    flex: 1;
+    overflow: hidden;
+    color: @text-color-4;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    pointer-events: none;
+
+    // IE11 css hack. `*::-ms-backdrop,` is a must have
+    @media all and (-ms-high-contrast: none) {
+      *::-ms-backdrop,
+      & {
+        flex: auto;
+      }
+    }
+  }
+
+  // ========================== Arrow ==========================
+  &-arrow {
+    position: absolute;
+    top: 50%;
+    right: @select-padding-vertical;
+    width: @font-size-sm;
+    height: @font-size-sm;
+    margin-top: (-@font-size-sm / 2);
+    color: @disabled-color;
+    font-size: @font-size-sm;
+    line-height: 1;
+    text-align: center;
+    pointer-events: none;
+
+    .@{select-prefix-cls}-disabled & {
+      cursor: not-allowed;
+    }
+  }
+
+  // ========================== Clear ==========================
+  &-clear {
+    position: absolute;
+    top: 50%;
+    right: @select-padding-vertical;
+    z-index: 1;
+    display: inline-block;
+    width: @font-size-sm;
+    height: @font-size-sm;
+    margin-top: (-@font-size-sm / 2);
+    color: @disabled-color;
+    font-size: @font-size-sm;
+    font-style: normal;
+    line-height: 1;
+    text-align: center;
+    text-transform: none;
+    background: @white;
+    cursor: pointer;
+    opacity: 0;
+    transition: color 0.3s ease, opacity 0.15s ease;
+    text-rendering: auto;
+
+    &::before {
+      display: block;
+    }
+
+    &:hover {
+      color: @text-color-2;
+    }
+
+    .@{select-prefix-cls}:hover & {
+      opacity: 1;
+    }
+  }
+
+  // ========================== Popup ==========================
+  &-dropdown {
+    .reset-component();
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    z-index: @zindex-dropdown;
+    box-sizing: border-box;
+    padding: @select-dropdown-edge-child-vertical-padding 0;
+    overflow: hidden;
+    font-size: @font-size-14;
+    // Fix select render lag of long text in chrome
+    font-variant: initial;
+    background-color: @white;
+    border-radius: @select-border-radius;
+    outline: none;
+    box-shadow: @select-shadow;
+
+    &.@{st-prefix}-slide-up-enter.@{st-prefix}-slide-up-enter-active&-placement-bottomLeft,
+    &.@{st-prefix}-slide-up-appear.@{st-prefix}-slide-up-appear-active&-placement-bottomLeft {
+      animation-name: stSlideUpIn;
+    }
+
+    &.@{st-prefix}-slide-up-enter.@{st-prefix}-slide-up-enter-active&-placement-topLeft,
+    &.@{st-prefix}-slide-up-appear.@{st-prefix}-slide-up-appear-active&-placement-topLeft {
+      animation-name: stSlideDownIn;
+    }
+
+    &.@{st-prefix}-slide-up-leave.@{st-prefix}-slide-up-leave-active&-placement-bottomLeft {
+      animation-name: stSlideUpOut;
+    }
+
+    &.@{st-prefix}-slide-up-leave.@{st-prefix}-slide-up-leave-active&-placement-topLeft {
+      animation-name: stSlideDownOut;
+    }
+
+    &-hidden {
+      display: none;
+    }
+
+    &-empty {
+      color: @disabled-color;
+    }
+  }
+
+  // ========================= Options =========================
+  .item() {
+    position: relative;
+    display: block;
+    min-height: 24px;
+    padding: @select-padding-vertical @select-padding-horizontal;
+    color: @text-color-1;
+    font-weight: normal;
+    font-size: @font-size-14;
+    line-height: 22px;
+  }
+
+  &-item-empty {
+    .item();
+    color: @disabled-color;
+  }
+
+  &-item {
+    .item();
+
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    // =========== Group ============
+    &-group {
+      color: @text-color-3;
+      font-size: @font-size-12;
+      cursor: default;
+    }
+
+    // =========== Option ===========
+    &-option {
+      display: flex;
+
+      &-content {
+        flex: auto;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      &-state {
+        flex: none;
+      }
+
+      &-active:not(&-disabled) {
+        background-color: @blue-3;
+      }
+
+      &-selected:not(&-disabled) {
+        color: @text-color-1;
+        background-color: @grey-4;
+
+        .@{select-prefix-cls}-item-option-state {
+          color: @white;
+        }
+      }
+
+      &-disabled {
+        &.@{select-prefix-cls}-item-option-selected {
+          background-color: @white;
+        }
+        color: @disabled-color;
+        cursor: not-allowed;
+      }
+
+      &-grouped {
+        padding-left: @select-padding-vertical;
+      }
+    }
+  }
+
+  // ============================================================
+  // ==                          Size                          ==
+  // ============================================================
+  &-lg {
+    font-size: @font-size-14;
+  }
+
+  // no border style
+  &-borderless &-selector {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+}

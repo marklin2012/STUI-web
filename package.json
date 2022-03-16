@@ -46,7 +46,8 @@
     "rc-textarea": "^0.3.7",
     "rc-checkbox": "^2.3.2",
     "rc-rate": "^2.9.1",
-    "rc-slider": "~9.7.4"
+    "rc-slider": "~9.7.4",
+    "rc-select": "^14.0.3"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.1",
