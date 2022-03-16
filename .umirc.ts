@@ -32,6 +32,7 @@ export default defineConfig({
       {
         title: '表单组件',
         children: [
+          './component/cascader',
           './component/checkbox',
           './component/input',
           './component/radio',

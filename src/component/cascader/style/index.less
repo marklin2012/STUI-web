@@ -1,0 +1,99 @@
+@import '../../style/index.less';
+@import './rtl';
+
+@cascader-prefix-cls: ~'@{st-prefix}-cascader';
+
+.stCheckboxFn(@checkbox-prefix-cls: ~'@{cascader-prefix-cls}-checkbox');
+
+.@{cascader-prefix-cls} {
+  width: 184px;
+
+  &-checkbox {
+    top: 0;
+    margin-right: 8px;
+  }
+
+  &-menus {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+
+    &.@{cascader-prefix-cls}-menu-empty {
+      .@{cascader-prefix-cls}-menu {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  &-menu {
+    min-width: 112px;
+    height: 136px;
+    margin: 0;
+    margin: -4px 0;
+    padding: 4px 0;
+    overflow: auto;
+    vertical-align: top;
+    list-style: none;
+    border-right: 1px solid @grey-4;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+
+    &-item {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      padding: 5px 12px;
+      overflow: hidden;
+      line-height: 22px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover {
+        background: @grey-4;
+      }
+
+      &-disabled {
+        color: @grey-3;
+        cursor: not-allowed;
+
+        &:hover {
+          background: transparent;
+        }
+      }
+
+      .@{cascader-prefix-cls}-menu-empty & {
+        color: @grey-3;
+        cursor: default;
+        pointer-events: none;
+      }
+
+      &-active:not(&-disabled) {
+        &,
+        &:hover {
+          background-color: @grey-4;
+        }
+      }
+
+      &-content {
+        flex: auto;
+      }
+
+      &-expand &-expand-icon,
+      &-loading-icon {
+        margin-left: 4px;
+        color: @text-color-2;
+        font-size: 10px;
+
+        .@{cascader-prefix-cls}-menu-item-disabled& {
+          color: @grey-3;
+        }
+      }
+
+      &-keyword {
+        color: @blue-1;
+      }
+    }
+  }
+}

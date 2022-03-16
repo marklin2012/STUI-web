@@ -19,5 +19,6 @@ export { default as Checkbox } from './component/checkbox'
 export { default as Rate } from './component/rate'
 export { default as Slider } from './component/slider'
 export { default as Select } from './component/select'
+export { default as Cascader } from './component/cascader'
 
 library.add(fas, far)
