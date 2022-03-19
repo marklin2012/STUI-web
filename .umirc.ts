@@ -40,6 +40,8 @@ export default defineConfig({
           './component/select',
           './component/slider',
           './component/switch',
+          './component/timePicker',
+          './component/datePicker',
         ],
       },
     ],
