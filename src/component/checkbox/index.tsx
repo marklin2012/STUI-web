@@ -2,6 +2,9 @@ import React from 'react'
 import STCheckBox, { CheckboxProps } from './checkbox'
 import Group from './group'
 
+export type { CheckboxProps, CheckboxChangeEvent } from './checkbox'
+export type { CheckboxGroupProps, CheckboxOptionType, CheckboxValueType } from './group'
+
 interface CompoundedComponent
   extends React.ForwardRefExoticComponent<CheckboxProps & React.RefAttributes<HTMLInputElement>> {
   Group: typeof Group

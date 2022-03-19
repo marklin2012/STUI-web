@@ -1,6 +1,5 @@
 import React from 'react'
-import { Radio } from '../..'
-import { RadioChangeEvent } from '../../component/radio'
+import { Radio, RadioChangeEvent } from '../..'
 import '../../component/radio/style'
 import './index.less'
 

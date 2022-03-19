@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { TimePicker, Radio, RadioChangeEvent } from '../..'
 import '../../component/timePicker/style'
-import '../../component/datePicker/style'
 import './index.less'
 import moment from 'moment'
 import { SizeType } from '../../component/_util/type'

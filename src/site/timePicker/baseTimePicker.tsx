@@ -1,7 +1,6 @@
 import React from 'react'
 import { TimePicker } from '../..'
 import '../../component/timePicker/style'
-import '../../component/datePicker/style'
 import './index.less'
 import moment from 'moment'
 

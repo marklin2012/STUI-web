@@ -1,6 +1,5 @@
 import React from 'react'
 import { Card, Icon } from '../..'
-import Meta from '../../component/card/meta'
 import { defaultCardContent } from './defaultContent'
 import './index.less'
 
@@ -25,7 +24,7 @@ export default () => {
             <Icon key={'ellipsis'} icon={'ellipsis'} />,
           ]}
         >
-          <Meta description={defaultCardContent()} />
+          <Card.Meta description={defaultCardContent()} />
         </Card>
       </div>
 
@@ -40,7 +39,7 @@ export default () => {
             <Icon key={'ellipsis'} icon={'ellipsis'} />,
           ]}
         >
-          <Meta description={defaultCardContent()} />
+          <Card.Meta description={defaultCardContent()} />
         </Card>
       </div>
     </div>

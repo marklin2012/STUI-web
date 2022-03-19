@@ -4,11 +4,11 @@ import Search from './search'
 import TextArea from './textArea'
 import Password from './password'
 
-// export { InputProps } from './input';
-// export { GroupProps } from './group';
-// export { SearchProps } from './search';
-// export { TextAreaProps } from './textArea';
-// export { PasswordProps } from './password';
+export type { InputProps } from './input'
+export type { GroupProps } from './group'
+export type { SearchProps } from './search'
+export type { TextAreaProps } from './textArea'
+export type { PasswordProps } from './password'
 
 Input.Group = Group
 Input.Search = Search

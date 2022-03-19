@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Tag } from '../../index'
+import { Tag } from '../..'
 import './index.less'
 import '../../component/tag/style'
 

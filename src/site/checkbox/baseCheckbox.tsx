@@ -1,8 +1,6 @@
 import { map } from 'lodash'
 import React from 'react'
-import { Checkbox } from '../..'
-import { CheckboxChangeEvent } from '../../component/checkbox/checkbox'
-import { CheckboxValueType } from '../../component/checkbox/group'
+import { Checkbox, CheckboxChangeEvent, CheckboxValueType } from '../..'
 import '../../component/checkbox/style'
 import './index.less'
 

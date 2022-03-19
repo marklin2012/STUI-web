@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Progress } from '../../index'
 import '../../component/progress/style'
 import './index.less'

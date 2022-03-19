@@ -27,11 +27,11 @@ export interface TagProps {
   onClosed?: () => void
 }
 
-export interface TagCompounded extends React.FC<TagProps> {
+export interface TagCompoundedProps extends React.FC<TagProps> {
   CheckableTag: typeof CheckableTag
 }
 
-const Tag: TagCompounded = (props) => {
+const Tag: TagCompoundedProps = (props) => {
   const {
     children,
     closable = false,

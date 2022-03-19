@@ -42,6 +42,8 @@ const Image: CompositionImage<STImageProps> = ({
   return <RcImage prefixCls={prefixCls} preview={mergedPreview} {...restProps} />
 }
 
+export type { ImageProps }
+
 Image.PreviewGroup = PreviewGroup
 
 export default Image

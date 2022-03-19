@@ -8,7 +8,7 @@ import './style'
 
 export const CardPrefixCls = 'st-card'
 
-interface CardProps {
+export interface CardProps {
   prefixCls?: string
   className?: string
   id?: string

@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.less'
 import '../../component/tag/style'
-import { Tag } from '../../index'
+import { Tag } from '../..'
 
 export default () => {
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Badge, Switch } from '../../index'
 import '../../component/badge/style'
 import './index.less'

@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { Cascader, Radio } from '../..'
+import { Cascader, Radio, RadioChangeEvent } from '../..'
 import './index.less'
 import '../../component/cascader/style'
 import { SizeType } from '../../component/_util/type'
-import { RadioChangeEvent } from '../../component/radio'
 
 function DifSizeCascader() {
   const [size, setSize] = useState('middle' as SizeType)

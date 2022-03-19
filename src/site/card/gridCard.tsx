@@ -1,6 +1,5 @@
 import React from 'react'
-import { Card, Icon } from '../..'
-import Meta from '../../component/card/meta'
+import { Card } from '../..'
 import { defaultCardContent1 } from './defaultContent'
 import './index.less'
 

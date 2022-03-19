@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { Radio, Select } from '../..'
+import { Radio, Select, RadioChangeEvent } from '../..'
 import './index.less'
 import '../../component/select/style'
-import { RadioChangeEvent } from '../../component/radio'
 import { SizeType } from '../../component/_util/type'
 
 const { Option } = Select
