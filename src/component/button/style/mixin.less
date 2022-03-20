@@ -100,16 +100,18 @@
 .button-variant-other(@color; @background; @border) {
   @focusColor: fade(@color, 80%);
   @activeColor: fade(@color, 70%);
+  @focusBorderColor: fade(@border, 80%);
+  @activeBorderColor: fade(@border, 70%);
 
   .button-color(@color; @background; @border);
 
   &:hover,
   &:focus {
-    .button-color(@focusColor; @background; @focusColor);
+    .button-color(@focusColor; @background; @focusBorderColor);
   }
 
   &:active {
-    .button-color(@activeColor; @background; @activeColor);
+    .button-color(@activeColor; @background; @activeBorderColor);
   }
   .button-disabled();
 }
