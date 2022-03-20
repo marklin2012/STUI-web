@@ -1,9 +1,9 @@
 import classNames from 'classnames'
 import React, { cloneElement } from 'react'
 import Icon from '../icon'
-import { DirectionType, tuple } from '../_util/type'
+import { DirectionType, SizeType, tuple } from '../_util/type'
 import { InputProps } from './input'
-import { getInputClassName, hasPrefixSuffix, InputSizeType } from './untils'
+import { getInputClassName, hasPrefixSuffix } from './untils'
 import './style'
 
 const ClearableInputType = tuple('text', 'input')
@@ -30,7 +30,7 @@ interface BasicProps {
 }
 
 export interface ClearableInputProps extends BasicProps {
-  size?: InputSizeType
+  size?: SizeType
   suffix?: React.ReactNode
   prefix?: React.ReactNode
   addonBefore?: React.ReactNode

@@ -1,0 +1,232 @@
+@import '../../style/index.less';
+@import './mixin.less';
+@import './rtl';
+
+@btn-prefix-cls: ~'@{st-prefix}-btn';
+
+// for compatible
+@btn-ghost-color: @text-color-1;
+@btn-ghost-bg: transparent;
+@btn-ghost-border: @grey-3;
+@btn-group-border: @grey-4;
+
+// Button styles
+// -----------------------------
+.@{btn-prefix-cls} {
+  line-height: @btn-line-height;
+  .btn();
+  .btn-default();
+
+  > span {
+    display: inline-block;
+  }
+
+  &-primary {
+    .btn-primary();
+
+    .@{btn-prefix-cls}-group &:not(:first-child):not(:last-child) {
+      border-right-color: @btn-group-border;
+      border-left-color: @btn-group-border;
+
+      &:disabled {
+        border-color: @btn-default-border;
+      }
+    }
+
+    .@{btn-prefix-cls}-group &:first-child {
+      &:not(:last-child) {
+        border-right-color: @btn-group-border;
+
+        &[disabled] {
+          border-right-color: @btn-default-border;
+        }
+      }
+    }
+
+    .@{btn-prefix-cls}-group &:last-child:not(:first-child),
+    .@{btn-prefix-cls}-group & + & {
+      border-left-color: @btn-group-border;
+
+      &[disabled] {
+        border-left-color: @btn-default-border;
+      }
+    }
+  }
+
+  &-ghost {
+    .btn-ghost();
+  }
+
+  &-dashed {
+    .btn-dashed();
+  }
+
+  // type="danger" will deprecated
+  // use danger instead
+  &-danger {
+    .btn-danger();
+  }
+
+  &-success {
+    .btn-success();
+  }
+
+  &-link {
+    .btn-link();
+  }
+
+  &-text {
+    .btn-text();
+  }
+
+  &-dangerous {
+    .btn-danger-default();
+  }
+
+  &-dangerous&-primary {
+    .btn-danger();
+  }
+
+  &-dangerous&-link {
+    .btn-danger-link();
+  }
+
+  &-dangerous&-text {
+    .btn-danger-text();
+  }
+
+  &-icon-only {
+    .btn-square(@btn-prefix-cls);
+    vertical-align: -3px;
+  }
+
+  a&-icon-only {
+    vertical-align: -1px;
+  }
+
+  &-round {
+    .btn-round(@btn-prefix-cls);
+    &.@{btn-prefix-cls}-icon-only {
+      width: auto;
+    }
+  }
+
+  &-circle {
+    .btn-circle(@btn-prefix-cls);
+  }
+
+  &::before {
+    position: absolute;
+    top: -@btn-border-width;
+    right: -@btn-border-width;
+    bottom: -@btn-border-width;
+    left: -@btn-border-width;
+    z-index: 1;
+    display: none;
+    background: @backgroundColor;
+    border-radius: inherit;
+    opacity: 0.35;
+    transition: opacity 0.2s;
+    content: '';
+    pointer-events: none;
+  }
+
+  &&-loading {
+    position: relative;
+    cursor: default;
+
+    &::before {
+      display: block;
+    }
+  }
+
+  & > &-loading-icon {
+    transition: width 0.3s @ease-in-out, opacity 0.3s @ease-in-out;
+
+    svg {
+      animation: loadingCircle 1.5s infinite linear;
+    }
+  }
+
+  &-group {
+    .btn-group(@btn-prefix-cls);
+  }
+
+  &:focus > span,
+  &:active > span {
+    position: relative;
+  }
+
+  &&-background-ghost {
+    color: @blue-1;
+    border-color: @blue-1;
+
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      background: transparent;
+    }
+
+    &:hover,
+    &:focus {
+      color: @blue-1;
+      border-color: @blue-1;
+    }
+
+    &:active {
+      color: @blue-3;
+      border-color: @blue-3;
+    }
+
+    &[disabled] {
+      color: @grey-3;
+      background: transparent;
+      border-color: @grey-3;
+    }
+  }
+
+  &-background-ghost&-primary {
+    .button-variant-ghost(@blue-1, @blue-1);
+  }
+
+  &-background-ghost&-danger {
+    .button-variant-ghost(@assist-red, @assist-red);
+  }
+
+  &-background-ghost&-dangerous {
+    .button-variant-ghost(@assist-red, @assist-red);
+  }
+
+  &-background-ghost&-dangerous&-link {
+    .button-variant-ghost(@assist-red, transparent);
+  }
+
+  &-two-chinese-chars::first-letter {
+    letter-spacing: 0.34em;
+  }
+
+  &&-block {
+    width: 100%;
+  }
+  // same method as Select
+  &:empty {
+    display: inline-block;
+    width: 0;
+    visibility: hidden;
+    content: '\a0';
+  }
+}
+
+a.@{btn-prefix-cls} {
+  padding-top: 0.01px !important;
+  line-height: @btn-height - 2px;
+
+  &-lg {
+    line-height: @btn-height-lg - 2px;
+  }
+
+  &-sm {
+    line-height: @btn-height-sm - 2px;
+  }
+}

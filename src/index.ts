@@ -7,6 +7,9 @@ export { default as Alert } from './component/alert'
 export type { AvatarProps } from './component/avatar'
 export { default as Avatar } from './component/avatar'
 
+export type { ButtonProps } from './component/button'
+export { default as Button } from './component/button'
+
 export type { BadgeProps } from './component/badge'
 export { default as Badge } from './component/badge'
 

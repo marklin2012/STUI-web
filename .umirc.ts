@@ -11,7 +11,7 @@ export default defineConfig({
     '/component': [
       {
         title: '通用',
-        children: ['/component/icon'],
+        children: ['/component/button', '/component/icon'],
       },
       {
         title: '数据展示',
