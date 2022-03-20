@@ -14,6 +14,10 @@ export default defineConfig({
         children: ['/component/button', '/component/icon'],
       },
       {
+        title: '导航',
+        children: ['./component/dropdown'],
+      },
+      {
         title: '数据展示',
         children: [
           '/component/avatar',

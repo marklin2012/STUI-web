@@ -1,0 +1,15 @@
+@import '../../style/color/colors.less';
+@import '../../style/theme/default.less';
+
+@dropdown-prefix-cls: ~'@{st-prefix}-dropdown';
+
+.@{dropdown-prefix-cls}-menu-item {
+  &&-danger {
+    color: @assist-red;
+
+    &:hover {
+      color: @text-color-3;
+      background-color: @assist-red;
+    }
+  }
+}
