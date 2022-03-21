@@ -15,7 +15,7 @@ export default defineConfig({
       },
       {
         title: '导航',
-        children: ['./component/dropdown'],
+        children: ['./component/dropdown', './component/menu'],
       },
       {
         title: '数据展示',

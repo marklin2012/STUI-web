@@ -45,6 +45,9 @@ export { default as Image } from './component/image'
 export type { InputProps } from './component/input'
 export { default as Input } from './component/input'
 
+export type { MenuProps, SubMenuProps, MenuItemProps } from './component/menu'
+export { default as Menu } from './component/menu'
+
 export type { ProgressProps } from './component/progress'
 export { default as Progress } from './component/progress'
 
