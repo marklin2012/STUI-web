@@ -27,19 +27,19 @@ export default () => {
   return (
     <div className="dropdown-flex">
       <Dropdown overlay={menu} trigger={['click']}>
-        <span style={{ color: '#095BF9' }}>
-          Click me <Icon icon={'angle-down'} />
+        <span style={{ color: '#095BF9', fontSize: 14 }}>
+          Click me <Icon icon={'angle-down'} style={{ paddingLeft: 8 }} />
         </span>
       </Dropdown>
       <div className="rowSpace" />
       <Dropdown overlay={menu} trigger={['click']}>
-        <Button size="small">
+        <Button>
           Click me <Icon icon={'angle-down'} style={{ paddingLeft: 8 }} />
         </Button>
       </Dropdown>
       <div className="rowSpace" />
       <Dropdown overlay={menu} trigger={['click']}>
-        <Button size="small" type="primary">
+        <Button type="primary">
           Click me <Icon icon={'angle-down'} style={{ paddingLeft: 8 }} />
         </Button>
       </Dropdown>

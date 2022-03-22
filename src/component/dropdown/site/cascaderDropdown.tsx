@@ -42,8 +42,8 @@ export default () => {
 
   return (
     <Dropdown overlay={menu}>
-      <span style={{ color: '#095BF9' }}>
-        鼠标移入查看菜单样式 <Icon icon={'angle-down'} />
+      <span style={{ color: '#095BF9', fontSize: 14 }}>
+        鼠标移入查看菜单样式 <Icon icon={'angle-down'} style={{ paddingLeft: 8 }} />
       </span>
     </Dropdown>
   )

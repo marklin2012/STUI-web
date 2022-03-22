@@ -25,20 +25,20 @@ export default () => {
   return (
     <div className="dropdown-flex">
       <Dropdown overlay={menu}>
-        <span style={{ color: '#095BF9' }}>
-          Hover me <Icon icon={'angle-down'} />
+        <span style={{ color: '#095BF9', fontSize: 14 }}>
+          Hover me <Icon icon={'angle-down'} style={{ paddingLeft: 8 }} />
         </span>
       </Dropdown>
       <div className="rowSpace" />
       <Dropdown overlay={menu} placement={'bottomCenter'}>
-        <span style={{ color: '#095BF9' }}>
-          Hover me <Icon icon={'angle-down'} />
+        <span style={{ color: '#095BF9', fontSize: 14 }}>
+          Hover me <Icon icon={'angle-down'} style={{ paddingLeft: 8 }} />
         </span>
       </Dropdown>
       <div className="rowSpace" />
       <Dropdown overlay={menu} placement={'bottomRight'}>
-        <span style={{ color: '#095BF9' }}>
-          Hover me <Icon icon={'angle-down'} />
+        <span style={{ color: '#095BF9', fontSize: 14 }}>
+          Hover me <Icon icon={'angle-down'} style={{ paddingLeft: 8 }} />
         </span>
       </Dropdown>
     </div>

@@ -25,8 +25,8 @@ export default () => {
   return (
     <div className="dropdown-flex">
       <Dropdown overlay={menu} trigger={['click']}>
-        <span style={{ color: '#095BF9' }}>
-          Click 触发 <Icon icon={'angle-down'} />
+        <span style={{ color: '#095BF9', fontSize: 14 }}>
+          Click 触发 <Icon icon={'angle-down'} style={{ paddingLeft: 8 }} />
         </span>
       </Dropdown>
     </div>
