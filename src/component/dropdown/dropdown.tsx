@@ -93,7 +93,7 @@ const Dropdown: DropdownInterface = (props) => {
         expandIcon
       ) : (
         <span className={`${prefixCls}-menu-submenu-arrow`}>
-          <Icon icon={'angle-down'} className={`${prefixCls}-menu-submenu-arrow-icon`} />
+          <Icon icon={'angle-right'} className={`${prefixCls}-menu-submenu-arrow-icon`} />
         </span>
       )
 

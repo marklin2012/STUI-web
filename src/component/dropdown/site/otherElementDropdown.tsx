@@ -20,26 +20,27 @@ export default () => {
         a danger item
       </Menu.Item>
       <Menu.Item key={5}>5st menu item</Menu.Item>
+      <Menu.Divider />
       <Menu.Item key={6}>6st menu item</Menu.Item>
     </Menu>
   )
   return (
     <div className="dropdown-flex">
-      <Dropdown overlay={menu}>
+      <Dropdown overlay={menu} trigger={['click']}>
         <span style={{ color: '#095BF9' }}>
-          Hover me <Icon icon={'angle-down'} />
+          Click me <Icon icon={'angle-down'} />
         </span>
       </Dropdown>
       <div className="rowSpace" />
-      <Dropdown overlay={menu}>
+      <Dropdown overlay={menu} trigger={['click']}>
         <Button size="small">
-          Hover me <Icon icon={'angle-down'} style={{ paddingLeft: 8 }} />
+          Click me <Icon icon={'angle-down'} style={{ paddingLeft: 8 }} />
         </Button>
       </Dropdown>
       <div className="rowSpace" />
-      <Dropdown overlay={menu}>
+      <Dropdown overlay={menu} trigger={['click']}>
         <Button size="small" type="primary">
-          Hover me <Icon icon={'angle-down'} style={{ paddingLeft: 8 }} />
+          Click me <Icon icon={'angle-down'} style={{ paddingLeft: 8 }} />
         </Button>
       </Dropdown>
     </div>

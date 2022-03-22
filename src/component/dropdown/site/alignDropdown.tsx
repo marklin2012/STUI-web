@@ -4,7 +4,6 @@ import './index.less'
 import '../style'
 import Icon from '../../icon'
 import Menu from '../../menu'
-import Button from '../../button'
 
 export default () => {
   const menu = (
@@ -31,16 +30,16 @@ export default () => {
         </span>
       </Dropdown>
       <div className="rowSpace" />
-      <Dropdown overlay={menu}>
-        <Button size="small">
-          Hover me <Icon icon={'angle-down'} style={{ paddingLeft: 8 }} />
-        </Button>
+      <Dropdown overlay={menu} placement={'bottomCenter'}>
+        <span style={{ color: '#095BF9' }}>
+          Hover me <Icon icon={'angle-down'} />
+        </span>
       </Dropdown>
       <div className="rowSpace" />
-      <Dropdown overlay={menu}>
-        <Button size="small" type="primary">
-          Hover me <Icon icon={'angle-down'} style={{ paddingLeft: 8 }} />
-        </Button>
+      <Dropdown overlay={menu} placement={'bottomRight'}>
+        <span style={{ color: '#095BF9' }}>
+          Hover me <Icon icon={'angle-down'} />
+        </span>
       </Dropdown>
     </div>
   )
