@@ -1,0 +1,58 @@
+@import '../../style/index.less';
+
+@breadcrumb-prefix-cls: ~'@{st-prefix}-breadcrumb';
+@breadcrumb-icon-prefix: ~'@{st-css-icon-prefix}';
+@breadcrumb-font-size: @font-size-14;
+@breadcrumb-item-color: @text-color-3;
+@breadcrumb-last-item-color: @text-color-1;
+@breadcrumb-link-color-hover: @blue-1;
+@breadcrumb-separator-color: @text-color-3;
+
+.@{breadcrumb-prefix-cls} {
+  .reset-component();
+
+  color: @breadcrumb-item-color;
+  font-size: @breadcrumb-font-size;
+
+  a {
+    color: @breadcrumb-item-color;
+    text-decoration: none;
+    transition: color 0.3s;
+
+    &:hover {
+      color: @breadcrumb-link-color-hover;
+    }
+  }
+
+  & > span:last-child {
+    color: @breadcrumb-last-item-color;
+
+    a {
+      color: @breadcrumb-last-item-color;
+    }
+  }
+
+  & > span:last-child &-separator {
+    display: none;
+  }
+
+  &-separator {
+    margin: 0px 8px;
+    color: @breadcrumb-separator-color;
+  }
+
+  &-link {
+    > .@{breadcrumb-icon-prefix} + span,
+    > .@{breadcrumb-icon-prefix} + a {
+      margin-left: 8px;
+    }
+  }
+
+  &-overlay-link {
+    > .@{breadcrumb-icon-prefix} {
+      margin-left: 8px;
+    }
+  }
+}
+
+@import './rtl';

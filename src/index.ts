@@ -13,6 +13,9 @@ export { default as Button } from './component/button'
 export type { BadgeProps } from './component/badge'
 export { default as Badge } from './component/badge'
 
+export type { BreadcrumbProps, BreadcrumbItemProps } from './component/breadcrumb'
+export { default as Breadcrumb } from './component/breadcrumb'
+
 export type { CardProps } from './component/card'
 export { default as Card } from './component/card'
 

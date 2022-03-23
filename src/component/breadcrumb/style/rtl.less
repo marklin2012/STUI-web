@@ -1,0 +1,31 @@
+@import '../../style/index.less';
+
+.@{breadcrumb-prefix-cls} {
+  &-rtl {
+    .clearfix();
+    direction: rtl;
+
+    > span {
+      float: right;
+    }
+  }
+
+  &-link {
+    > .@{breadcrumb-icon-prefix} + span,
+    > .@{breadcrumb-icon-prefix} + a {
+      .@{breadcrumb-prefix-cls}-rtl & {
+        margin-right: 8px;
+        margin-left: 0;
+      }
+    }
+  }
+
+  &-overlay-link {
+    > .@{breadcrumb-icon-prefix} {
+      .@{breadcrumb-prefix-cls}-rtl & {
+        margin-right: 8px;
+        margin-left: 0;
+      }
+    }
+  }
+}
