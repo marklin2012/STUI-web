@@ -1,13 +1,15 @@
 @import '../../style/index.less';
 
-@badge-prefix-cls: st-badge;
-@number-prefix-cls: st-scroll-number;
+@badge-prefix-cls: ~'@{st-prefix}-badge';
+@number-prefix-cls: ~'@{st-prefix}-scroll-number';
 
 @badge-height: 20px;
 @badge-dot-size: 6px;
 @badge-height-sm: 16px;
 
 .@{badge-prefix-cls} {
+  .reset-component();
+
   position: relative;
   display: inline-block;
   line-height: 1;
@@ -111,44 +113,45 @@
       color: @text-color-1;
       font-size: @font-size-14;
     }
-
-    &-zoom-appear,
-    &-zoom-enter {
-      animation: zoomBadgeIn 0.3s cubic-bezier(0.12, 0.4, 0.29, 1.46);
-      animation-fill-mode: both;
-    }
-
-    &-zoom-leave {
-      animation: zoomBadgeOut 0.3s cubic-bezier(0.71, -0.46, 0.88, 0.6);
-      animation-fill-mode: both;
-    }
-
-    &-not-a-wrapper {
-      &:not(.@{badge-prefix-cls}-status) {
-        vertical-align: middle;
-      }
-
-      .@{number-prefix-cls} {
-        position: relative;
-        top: auto;
-        display: block;
-      }
-
-      .@{badge-prefix-cls}-count {
-        transform: none;
-      }
-    }
   }
-}
 
-@keyframes statusProcessing {
-  0% {
-    transform: scale(0.8);
-    opacity: 0.5;
+  &-zoom-appear,
+  &-zoom-enter {
+    animation: zoomBadgeIn 0.3s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+    animation-fill-mode: both;
   }
-  100% {
-    transform: scale(2.4);
-    opacity: 0;
+
+  &-zoom-leave {
+    animation: zoomBadgeOut 0.3s cubic-bezier(0.71, -0.46, 0.88, 0.6);
+    animation-fill-mode: both;
+  }
+
+  &-not-a-wrapper {
+    .@{badge-prefix-cls}-zoom-appear,
+    .@{badge-prefix-cls}-zoom-enter {
+      animation: noWrapperZoomBadgeIn @animation-duration-slow @ease-out-back;
+    }
+
+    .@{badge-prefix-cls}-zoom-leave {
+      animation: noWrapperZoomBadgeOut @animation-duration-slow @ease-in-back;
+    }
+
+    &:not(.@{badge-prefix-cls}-status) {
+      vertical-align: middle;
+    }
+
+    .@{number-prefix-cls}-custom-component,
+    .@{badge-prefix-cls}-count {
+      transform: none;
+    }
+
+    .@{number-prefix-cls}-custom-component,
+    .@{number-prefix-cls} {
+      position: relative;
+      top: auto;
+      display: block;
+      transform-origin: 50% 50%;
+    }
   }
 }
 
@@ -172,6 +175,17 @@
   }
 }
 
+@keyframes statusProcessing {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
 @keyframes zoomBadgeIn {
   0% {
     transform: scale(0) translate(50%, -50%);
@@ -188,6 +202,28 @@
   }
   100% {
     transform: scale(0) translate(50%, -50%);
+    opacity: 0;
+  }
+}
+
+@keyframes noWrapperZoomBadgeIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes noWrapperZoomBadgeOut {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
     opacity: 0;
   }
 }

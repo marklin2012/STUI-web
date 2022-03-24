@@ -3,8 +3,8 @@ import classNames from 'classnames'
 import ScrollNumber from './scrollNumber'
 import { PresetColorTypes, PresetColorType, PresetStatusColorType } from '../_util/colors'
 import { LiteralUnion } from '../_util/type'
-import Animate from 'rc-animate'
 import Ribbon from './ribbon'
+import CSSMotion from 'rc-motion'
 
 export interface BadgeProps {
   count?: React.ReactNode
@@ -47,7 +47,6 @@ const Badge: CompoundedComponent = ({
   showZero = false,
   direction = 'ltr',
   size = 'default',
-  ...restProps
 }) => {
   const getNumberedDisplayCount = () => {
     const displayCount = (count as number) > (overflowCount as number) ? `${overflowCount}+` : count
@@ -179,7 +178,7 @@ const Badge: CompoundedComponent = ({
     const styleWithOffset = getStyleWithOffset()
     const statusTextColor = styleWithOffset && styleWithOffset.color
     return (
-      <span {...restProps} className={badgeClassName} style={styleWithOffset}>
+      <span className={badgeClassName} style={styleWithOffset}>
         <span className={statusCls} style={statusStyle} />
         <span style={{ color: statusTextColor }} className={`${prefixCls}-status-text`}>
           {text}
@@ -189,16 +188,50 @@ const Badge: CompoundedComponent = ({
   }
 
   return (
-    <span {...restProps} className={badgeClassName}>
+    <span className={badgeClassName}>
       {children}
-      <Animate
-        componet=""
-        showProp="data-show"
-        transitionName={children ? `${prefixCls}-zoom` : ''}
-        transitionAppear
-      >
-        {renderBadgeNumber()}
-      </Animate>
+      {isHidden() ? null : (
+        <CSSMotion
+          visible={!isHidden()}
+          motionName={'st-zoom'}
+          motionAppear={false}
+          motionDeadline={1000}
+        >
+          {() => {
+            const displayCount = getDisplayCount()
+            const dot = isDot()
+            const hidden = isHidden()
+
+            const scrollNumberCls = classNames({
+              [`${prefixCls}-dot`]: dot,
+              [`${prefixCls}-count`]: !dot,
+              [`${prefixCls}-count-sm`]: size === 'small',
+              [`${prefixCls}'-multiple-words`]:
+                !dot && count && count.toString && count.toString().length > 1,
+              [`${prefixCls}-status-${status}`]: !!status,
+              [`${prefixCls}-status-${color}`]: isPresetColor(color),
+            })
+
+            let statusStyle: React.CSSProperties | undefined = getStyleWithOffset()
+            if (color && !isPresetColor(color)) {
+              statusStyle = statusStyle || {}
+              statusStyle.background = color
+            }
+
+            return (
+              <ScrollNumber
+                data-show={!hidden}
+                className={scrollNumberCls}
+                count={displayCount}
+                displayComponent={renderDisplayComponent()}
+                title={getScrollNumberTitle()}
+                style={statusStyle}
+                key="scrollNumber"
+              />
+            )
+          }}
+        </CSSMotion>
+      )}
       {renderStatusText()}
     </span>
   )
