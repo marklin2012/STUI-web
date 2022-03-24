@@ -69,6 +69,9 @@ export { default as Slider } from './component/slider'
 export type { SwitchProps } from './component/switch'
 export { default as Switch } from './component/switch'
 
+export type { TabsProps, TabPaneProps } from './component/tabs'
+export { default as Tabs } from './component/tabs'
+
 export type { TagProps, TagCompoundedProps } from './component/tag'
 export { default as Tag } from './component/tag'
 

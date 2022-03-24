@@ -1,0 +1,39 @@
+@import './constant.less';
+
+.@{tab-prefix-cls} {
+  &-small {
+    > .@{tab-prefix-cls}-nav {
+      .@{tab-prefix-cls}-tab {
+        padding: @tabs-horizontal-padding-sm;
+        font-size: @tabs-title-font-size;
+      }
+    }
+  }
+
+  &-large {
+    > .@{tab-prefix-cls}-nav {
+      .@{tab-prefix-cls}-tab {
+        padding: @tabs-horizontal-padding-lg;
+        font-size: @tabs-title-font-size-lg;
+      }
+    }
+  }
+
+  &-card {
+    &.@{tab-prefix-cls}-small {
+      > .@{tab-prefix-cls}-nav {
+        .@{tab-prefix-cls}-tab {
+          padding: @tabs-card-horizontal-padding-sm;
+        }
+      }
+    }
+
+    &.@{tab-prefix-cls}-large {
+      > .@{tab-prefix-cls}-nav {
+        .@{tab-prefix-cls}-tab {
+          padding: @tabs-card-horizontal-padding-lg;
+        }
+      }
+    }
+  }
+}

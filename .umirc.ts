@@ -15,7 +15,12 @@ export default defineConfig({
       },
       {
         title: '导航',
-        children: ['./component/breadcrumb', './component/dropdown', './component/menu'],
+        children: [
+          './component/breadcrumb',
+          './component/dropdown',
+          './component/menu',
+          './component/tabs',
+        ],
       },
       {
         title: '数据展示',
