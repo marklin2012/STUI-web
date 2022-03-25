@@ -51,6 +51,9 @@ export { default as Input } from './component/input'
 export type { MenuProps, SubMenuProps, MenuItemProps } from './component/menu'
 export { default as Menu } from './component/menu'
 
+export type { PaginationProps } from './component/pagination'
+export { default as Pagination } from './component/pagination'
+
 export type { ProgressProps } from './component/progress'
 export { default as Progress } from './component/progress'
 

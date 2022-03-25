@@ -18,6 +18,7 @@ export default defineConfig({
         children: [
           './component/breadcrumb',
           './component/dropdown',
+          './component/pagination',
           './component/menu',
           './component/tabs',
         ],

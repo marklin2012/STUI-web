@@ -52,7 +52,8 @@
     "rc-picker": "^2.6.4",
     "rc-dropdown": "^3.3.3",
     "rc-menu": "^9.5.1",
-    "rc-tabs": "^11.11.0"
+    "rc-tabs": "^11.11.0",
+    "rc-pagination": "^3.1.15"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.1",
