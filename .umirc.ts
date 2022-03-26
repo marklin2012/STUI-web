@@ -20,6 +20,7 @@ export default defineConfig({
           './component/dropdown',
           './component/pagination',
           './component/menu',
+          './component/steps',
           './component/tabs',
         ],
       },

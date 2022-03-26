@@ -69,6 +69,9 @@ export { default as Select } from './component/select'
 export type { SliderSingleProps, SliderRangeProps } from './component/slider'
 export { default as Slider } from './component/slider'
 
+export type { stepProps, StepsProps } from './component/steps'
+export { default as Steps } from './component/steps'
+
 export type { SwitchProps } from './component/switch'
 export { default as Switch } from './component/switch'
 
