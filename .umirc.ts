@@ -6,6 +6,9 @@ export default defineConfig({
   logo: '/images/logo.png',
   mode: 'site',
   outputPath: 'docs-dist',
+  base: '/STUI-web',
+  publicPath: '/STUI-web/',
+  exportStatic: {},
   // more config: https://d.umijs.org/config
   menus: {
     '/component': [
