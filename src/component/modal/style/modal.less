@@ -1,0 +1,150 @@
+@import '../../style/index.less';
+
+@root-st-prefix: ~'@{st-prefix}';
+@dialog-prefix-cls: ~'@{st-prefix}-modal';
+
+.@{dialog-prefix-cls} {
+  .reset-component();
+  .modal-mask();
+
+  position: relative;
+  top: 100px;
+  width: auto;
+  max-width: calc(100vw - 32px);
+  margin: 0 auto;
+  padding-bottom: 24px;
+
+  &-wrap {
+    z-index: @zindex-modal;
+  }
+
+  &-title {
+    margin: 0;
+    color: fade(@black, 85%);
+    font-weight: 500;
+    font-size: @font-size-16;
+    line-height: 22px;
+    word-wrap: break-word;
+  }
+
+  &-content {
+    position: relative;
+    background-color: @white;
+    background-clip: padding-box;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+      0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    pointer-events: auto;
+  }
+
+  &-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: @zindex-popup-close;
+    padding: 0;
+    color: @text-color-2;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &-x {
+      display: block;
+      width: 56px;
+      height: 56px;
+      font-size: @font-size-16;
+      font-style: normal;
+      line-height: 56px;
+      text-align: center;
+      text-transform: none;
+      text-rendering: auto;
+    }
+
+    &:focus,
+    &:hover {
+      color: fade(@black, 75%);
+      text-decoration: none;
+    }
+  }
+
+  &-header {
+    padding: 16px 24px;
+    color: @text-color-1;
+    background: @white;
+    border-bottom: 1px solid @grey-3;
+    border-radius: 2px 2px 0 0;
+  }
+
+  &-body {
+    padding: 24px;
+    font-size: @font-size-14;
+    line-height: 22px;
+    word-wrap: break-word;
+  }
+
+  &-footer {
+    padding: 10px 16px;
+    text-align: right;
+    background: transparent;
+    // border-top: 1px solid @grey-3;
+    border-radius: 0 0 2px 2px;
+
+    .@{root-st-prefix}-btn + .@{root-st-prefix}-btn:not(.@{root-st-prefix}-dropdown-trigger) {
+      margin-bottom: 0;
+      margin-left: 8px;
+    }
+
+    .@{root-st-prefix}-btn-default {
+      color: @text-color-3;
+      border-color: @grey-3;
+    }
+  }
+
+  &-open {
+    overflow: hidden;
+  }
+}
+
+.@{dialog-prefix-cls}-centered {
+  text-align: center;
+
+  &::before {
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+    content: '';
+  }
+  .@{dialog-prefix-cls} {
+    top: 0;
+    display: inline-block;
+    padding-bottom: 0;
+    text-align: left;
+    vertical-align: middle;
+  }
+}
+
+.@{dialog-prefix-cls}-isScrolled {
+  .@{dialog-prefix-cls}-body {
+    height: 100px;
+    overflow: scroll;
+  }
+}
+
+@media (max-width: (768px - 1px)) {
+  .@{dialog-prefix-cls} {
+    max-width: calc(100vw - 16px);
+    margin: 8px auto;
+  }
+  .@{dialog-prefix-cls}-centered {
+    .@{dialog-prefix-cls} {
+      flex: 1;
+    }
+  }
+}

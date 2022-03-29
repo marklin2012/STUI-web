@@ -51,6 +51,9 @@ export { default as Input } from './component/input'
 export type { MenuProps, SubMenuProps, MenuItemProps } from './component/menu'
 export { default as Menu } from './component/menu'
 
+export type { ModalProps, ModalFuncProps } from './component/modal'
+export { default as Modal } from './component/modal'
+
 export type { PaginationProps } from './component/pagination'
 export { default as Pagination } from './component/pagination'
 

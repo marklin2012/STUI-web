@@ -1,0 +1,77 @@
+@import '../../style/index.less';
+
+@root-st-prefix: ~'@{st-prefix}';
+@st-icon-prefix: ~'@{st-css-icon-prefix}';
+@confirm-prefix-cls: ~'@{st-prefix}-modal-confirm';
+@modal-confirm-body-padding: 32px 32px 24px;
+
+.@{confirm-prefix-cls} {
+  .@{root-st-prefix}-modal-header {
+    display: none;
+  }
+
+  .@{root-st-prefix}-modal-body {
+    padding: @modal-confirm-body-padding;
+  }
+
+  &-body-wrapper {
+    .clearfix();
+  }
+
+  &-body {
+    .@{confirm-prefix-cls}-title {
+      display: block;
+      // create BFC to avoid
+      overflow: hidden;
+      color: fade(@black, 85%);
+      font-weight: 500;
+      font-size: @font-size-16;
+      line-height: 1.4;
+    }
+
+    .@{confirm-prefix-cls}-content {
+      margin-top: 8px;
+      color: @text-color-1;
+      font-size: @font-size-14;
+    }
+
+    > .@{st-icon-prefix} {
+      float: left;
+      margin-right: 16px;
+      font-size: 22px;
+
+      // `content` after `icon` should set marginLeft
+      + .@{confirm-prefix-cls}-title + .@{confirm-prefix-cls}-content,
+      + .@{confirm-prefix-cls}-content {
+        margin-left: 38px;
+      }
+    }
+  }
+
+  .@{confirm-prefix-cls}-btns {
+    float: right;
+    margin-top: 24px;
+
+    .@{root-st-prefix}-btn + .@{root-st-prefix}-btn {
+      margin-bottom: 0;
+      margin-left: 8px;
+    }
+  }
+
+  &-error &-body > .@{st-icon-prefix} {
+    color: @assist-red;
+  }
+
+  &-warning &-body > .@{st-icon-prefix},
+  &-confirm &-body > .@{st-icon-prefix} {
+    color: @assist-orange;
+  }
+
+  &-info &-body > .@{st-icon-prefix} {
+    color: @blue-1;
+  }
+
+  &-success &-body > .@{st-icon-prefix} {
+    color: @assist-green;
+  }
+}
