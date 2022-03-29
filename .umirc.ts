@@ -38,7 +38,7 @@ export default defineConfig({
       },
       {
         title: '反馈',
-        children: ['/component/alert', '/component/modal'],
+        children: ['/component/alert', '/component/modal', '/component/notification'],
       },
       {
         title: '表单组件',

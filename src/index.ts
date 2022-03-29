@@ -54,6 +54,8 @@ export { default as Menu } from './component/menu'
 export type { ModalProps, ModalFuncProps } from './component/modal'
 export { default as Modal } from './component/modal'
 
+export { default as Notification } from './component/notification'
+
 export type { PaginationProps } from './component/pagination'
 export { default as Pagination } from './component/pagination'
 
