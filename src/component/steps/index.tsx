@@ -1,7 +1,7 @@
 import React from 'react'
 import RcSteps from 'rc-steps'
 import type { ProgressDotRender } from 'rc-steps/lib/Steps'
-import type { Status } from 'rc-steps/lib/interface'
+import type { Status as StepsStatus } from 'rc-steps/lib/interface'
 import classNames from 'classnames'
 import Progress from '../progress'
 import userBreakpoint from '../_util/hooks/useBreakpoint'
@@ -20,18 +20,20 @@ export interface StepsProps {
   progressDot?: boolean | ProgressDotRender
   responsive?: boolean
   size?: 'default' | 'small'
-  status?: Status
+  status?: StepsStatus
   style?: React.CSSProperties
   percent?: number
   onChange?: (current: number) => void
 }
+
+export type { StepsStatus }
 
 export interface stepProps {
   className?: string
   description?: React.ReactNode
   icon?: React.ReactNode
   onClick?: React.MouseEventHandler<HTMLElement>
-  status?: Status
+  status?: StepsStatus
   disabled?: boolean
   title?: React.ReactNode
   subTitle?: React.ReactNode

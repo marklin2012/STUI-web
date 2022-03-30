@@ -26,18 +26,32 @@
 
 ### 步骤切换
 
+<code src='./site/switchSteps.tsx'></code>
+
 ### 可点击
+
+<code src='./site/clickSteps.tsx'></code>
 
 ### 步骤错误
 
+<code src='./site/errorSteps.tsx'></code>
+
 ### 竖直方向
+
+<code src='./site/verticalSteps.tsx'></code>
 
 ### 小型竖直
 
-### 箭头
+<code src='./site/verticalSmall.tsx'></code>
 
 ### 导航
 
+<code src='./site/navSteps.tsx'></code>
+
 ### 点状
 
+<code src='./site/dotSteps.tsx'></code>
+
 ### 自定义
+
+<code src='./site/customSteps.tsx'></code>

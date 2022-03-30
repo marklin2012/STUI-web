@@ -37,6 +37,9 @@ export { default as Collapse } from './component/collapse'
 export type { DatePickerProps } from './component/datePicker'
 export { default as DatePicker } from './component/datePicker'
 
+export type { DrawerProps } from './component/drawer'
+export { default as Drawer } from './component/drawer'
+
 export type { DropdownProps, DropdownButtonType, DropdownButtonProps } from './component/dropdown'
 export { default as Dropdown } from './component/dropdown'
 
@@ -50,6 +53,11 @@ export { default as Input } from './component/input'
 
 export type { MenuProps, SubMenuProps, MenuItemProps } from './component/menu'
 export { default as Menu } from './component/menu'
+
+export type { ModalProps, ModalFuncProps } from './component/modal'
+export { default as Modal } from './component/modal'
+
+export { default as Notification } from './component/notification'
 
 export type { PaginationProps } from './component/pagination'
 export { default as Pagination } from './component/pagination'
@@ -69,7 +77,7 @@ export { default as Select } from './component/select'
 export type { SliderSingleProps, SliderRangeProps } from './component/slider'
 export { default as Slider } from './component/slider'
 
-export type { stepProps, StepsProps } from './component/steps'
+export type { stepProps, StepsProps, StepsStatus } from './component/steps'
 export { default as Steps } from './component/steps'
 
 export type { SwitchProps } from './component/switch'
