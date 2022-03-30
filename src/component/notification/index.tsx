@@ -185,7 +185,7 @@ export interface ArgsProps {
   bottom?: number
   getContainer?: () => HTMLElement
   closeIcon?: React.ReactNode
-  closeable?: boolean
+  closable?: boolean
 }
 
 function getRCNoticeProps(args: ArgsProps, prefixCls: string, iconPrefixCls?: string) {
@@ -202,7 +202,7 @@ function getRCNoticeProps(args: ArgsProps, prefixCls: string, iconPrefixCls?: st
     style,
     className,
     closeIcon = defaultCloseIcon,
-    closeable,
+    closable,
   } = args
 
   const duration = durationArg === undefined ? defaultDuration : durationArg
@@ -241,7 +241,7 @@ function getRCNoticeProps(args: ArgsProps, prefixCls: string, iconPrefixCls?: st
       </div>
     ),
     duration,
-    closable: closeable ?? true,
+    closable: closable ?? true,
     closeIcon: closeIconToRender,
     onClose,
     onClick,
