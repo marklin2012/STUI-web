@@ -57,7 +57,8 @@
     "rc-pagination": "^3.1.15",
     "rc-steps": "^4.1.4",
     "rc-dialog": "^8.7.0",
-    "rc-notification": "^4.5.7"
+    "rc-notification": "^4.5.7",
+    "rc-drawer": "^4.4.3"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.1",

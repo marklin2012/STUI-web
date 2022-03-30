@@ -37,6 +37,9 @@ export { default as Collapse } from './component/collapse'
 export type { DatePickerProps } from './component/datePicker'
 export { default as DatePicker } from './component/datePicker'
 
+export type { DrawerProps } from './component/drawer'
+export { default as Drawer } from './component/drawer'
+
 export type { DropdownProps, DropdownButtonType, DropdownButtonProps } from './component/dropdown'
 export { default as Dropdown } from './component/dropdown'
 

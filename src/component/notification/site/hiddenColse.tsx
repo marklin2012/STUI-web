@@ -10,7 +10,7 @@ export default () => {
       description:
         '这是文本信息这是文本信息这是文本信息这是文本信息，这是文本信息这是文本信息这是文本信息这是文本信息',
       onClick: () => {},
-      closeable: false,
+      closable: false,
     })
   }
 
