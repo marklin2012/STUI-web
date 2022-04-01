@@ -1,0 +1,46 @@
+@import '../../style/index.less';
+
+@st-icon-prefix: ~'@{st-css-icon-prefix}';
+@popconfirm-btn-prefix-cls: ~'@{st-prefix}-btn';
+@popconfirm-prefix-cls: ~'@{st-prefix}-popconfirm';
+@popconfirm-tooltip-prefix-cls: ~'@{st-prefix}-tooltip';
+@popconfirm-popover-prefix-cls: ~'@{st-prefix}-popover';
+
+.@{popconfirm-prefix-cls} {
+  z-index: @zindex-popoconfirm;
+
+  .@{popconfirm-tooltip-prefix-cls}-content {
+    .@{popconfirm-tooltip-prefix-cls}-inner {
+      min-width: 182px;
+      background-color: @white;
+
+      .@{popconfirm-popover-prefix-cls}-inner-content {
+        padding: 0;
+      }
+
+      .@{popconfirm-popover-prefix-cls}-message {
+        display: flex;
+        color: @text-color-1;
+
+        .@{st-icon-prefix} {
+          color: @blue-1;
+        }
+
+        &-title {
+          padding-left: 10px;
+        }
+      }
+
+      .@{popconfirm-popover-prefix-cls}-buttons {
+        .@{popconfirm-btn-prefix-cls}-default {
+          color: @text-color-3;
+          border-color: @grey-3;
+        }
+      }
+    }
+  }
+
+  .@{popconfirm-tooltip-prefix-cls}-arrow-content {
+    background-color: @white;
+  }
+}

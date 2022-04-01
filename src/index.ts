@@ -62,6 +62,12 @@ export { default as Notification } from './component/notification'
 export type { PaginationProps } from './component/pagination'
 export { default as Pagination } from './component/pagination'
 
+export type { PopconfirmProps } from './component/popconfirm'
+export { default as Popconfirm } from './component/popconfirm'
+
+export type { PopoverProps } from './component/popover'
+export { default as Popover } from './component/popover'
+
 export type { ProgressProps } from './component/progress'
 export { default as Progress } from './component/progress'
 
