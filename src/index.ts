@@ -83,6 +83,9 @@ export { default as Select } from './component/select'
 export type { SliderSingleProps, SliderRangeProps } from './component/slider'
 export { default as Slider } from './component/slider'
 
+export type { SpinProps } from './component/spin'
+export { default as Spin } from './component/spin'
+
 export type { stepProps, StepsProps, StepsStatus } from './component/steps'
 export { default as Steps } from './component/steps'
 
