@@ -21,25 +21,29 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  overflow: auto;
   font-size: @font-size-12;
   background-color: @white;
 
   .row1 {
     margin-bottom: 40px;
-    margin-left: 120px;
-    white-space: nowrap;
+    text-align: center;
 
-    .data1 {
-      position: relative;
+    .content {
       display: inline-flex;
-      margin-right: 120px;
-      padding: 0;
-      text-align: center;
 
-      .span {
-        padding: 4px 8px;
-        border: 1px solid @grey-2;
+      .data1 {
+        margin-right: 120px;
+        padding: 0;
+
+        &:last-child {
+          margin-right: 0px;
+        }
+
+        .span {
+          padding: 4px 8px;
+          line-height: 25px;
+          border: 1px solid @grey-2;
+        }
       }
     }
   }
@@ -53,10 +57,10 @@
       width: 120px;
       margin-bottom: 40px;
       padding: 0;
-      text-align: center;
 
       .span {
         padding: 4px 8px;
+        line-height: 25px;
         border: 1px solid @grey-2;
       }
     }
@@ -71,10 +75,10 @@
       width: 120px;
       margin-bottom: 40px;
       padding: 0;
-      text-align: center;
 
       .span {
         padding: 4px 8px;
+        line-height: 25px;
         border: 1px solid @grey-2;
       }
     }
@@ -82,20 +86,26 @@
 
   .row2 {
     clear: both;
-    margin-top: 40px;
-    margin-left: 120px;
+    width: 100%;
     white-space: nowrap;
+    text-align: center;
 
-    .data1 {
-      position: relative;
+    .content {
       display: inline-flex;
-      margin-right: 120px;
-      padding: 0;
-      text-align: center;
 
-      .span {
-        padding: 4px 8px;
-        border: 1px solid @grey-2;
+      .data1 {
+        margin-right: 120px;
+        padding: 0;
+
+        &:last-child {
+          margin-right: 0px;
+        }
+
+        .span {
+          padding: 4px 8px;
+          line-height: 25px;
+          border: 1px solid @grey-2;
+        }
       }
     }
   }
