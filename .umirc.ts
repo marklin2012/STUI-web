@@ -43,6 +43,7 @@ export default defineConfig({
           '/component/drawer',
           '/component/modal',
           '/component/notification',
+          '/component/popconfirm',
         ],
       },
       {
