@@ -44,6 +44,7 @@ export default defineConfig({
           '/component/modal',
           '/component/notification',
           '/component/popconfirm',
+          '/component/spin',
         ],
       },
       {

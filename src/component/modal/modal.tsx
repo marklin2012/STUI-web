@@ -147,6 +147,7 @@ const Modal: React.FC<ModalProps> = (props) => {
   }
 
   const renderFooter = (locale: ModalLocale) => {
+    if (footer === null) return
     const { okText, okType, cancelText, confirmLoading } = props
     return (
       <>
