@@ -1,0 +1,591 @@
+@import '../../style/index.less';
+
+@st-root-prefix: ~'@{st-prefix}';
+@st-icon-prefix: ~'@{st-css-icon-prefix}';
+@upload-prefix-cls: ~'@{st-prefix}-upload';
+@upload-item: ~'@{st-prefix}-upload-list-item';
+@upload-picture-card-size: 100px;
+@upload-picture-card-border-style: solid;
+@upload-background-color-light: @backgroundColor;
+@upload-border-radius: 4px;
+@upload-line-height: 1.5715;
+@upload-font-size: @font-size-14;
+
+.@{upload-prefix-cls} {
+  .reset-component();
+
+  outline: 0;
+
+  p {
+    margin: 0;
+  }
+
+  &-btn {
+    display: block;
+    width: 100%;
+    outline: none;
+  }
+
+  input[type='file'] {
+    cursor: pointer;
+  }
+
+  &&-select {
+    display: inline-block;
+  }
+
+  &&-disabled {
+    cursor: not-allowed;
+  }
+
+  &&-select-picture-card {
+    width: @upload-picture-card-size;
+    height: @upload-picture-card-size;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    text-align: center;
+    vertical-align: top;
+    background-color: @upload-background-color-light;
+    border: 1px dashed @grey-3;
+    border-radius: @upload-border-radius;
+    cursor: pointer;
+    transition: border-color 0.3s;
+
+    > .@{upload-prefix-cls} {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+    }
+
+    &:hover {
+      border-color: @blue-1;
+      .@{upload-prefix-cls}-disabled& {
+        border-color: @grey-3;
+      }
+    }
+  }
+
+  &&-drag {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: @upload-background-color-light;
+    border: 1px dashed @grey-3;
+    border-radius: @upload-border-radius;
+    cursor: pointer;
+    transition: border-color 0.3s;
+
+    .@{upload-prefix-cls} {
+      padding: 16px 0;
+    }
+
+    &.@{upload-prefix-cls}-drag-hover:not(.@{upload-prefix-cls}-disabled) {
+      border-color: @blue-4;
+    }
+
+    &.@{upload-prefix-cls}-disabled {
+      cursor: not-allowed;
+    }
+
+    .@{upload-prefix-cls}-btn {
+      display: table;
+      height: 100%;
+    }
+
+    .@{upload-prefix-cls}-drag-container {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    &:not(.@{upload-prefix-cls}-disabled):hover {
+      border-color: @blue-3;
+    }
+
+    p.@{upload-prefix-cls}-drag-icon {
+      .@{st-icon-prefix} {
+        color: @blue-3;
+        font-size: 48px;
+      }
+
+      margin-bottom: 20px;
+    }
+    p.@{upload-prefix-cls}-text {
+      margin: 0 0 4px;
+      color: fade(@black, 85%);
+      font-size: @font-size-16;
+    }
+    p.@{upload-prefix-cls}-hint {
+      color: @text-color-2;
+      font-size: @font-size-14;
+    }
+
+    .@{st-icon-prefix}-plus {
+      color: @grey-3;
+      font-size: 30px;
+      transition: all 0.3s;
+
+      &:hover {
+        color: @text-color-2;
+      }
+    }
+    &:hover .@{st-icon-prefix}-plus {
+      color: @text-color-2;
+    }
+  }
+
+  &-picture-card-wrapper {
+    .clearfix();
+
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.@{upload-prefix-cls}-list {
+  .reset-component();
+  .clearfix();
+  line-height: @upload-line-height;
+
+  // ============================ Item ============================
+  &-item {
+    position: relative;
+    height: @upload-line-height * @upload-font-size;
+    margin-top: 8px;
+    font-size: @upload-font-size;
+
+    &-name {
+      display: inline-block;
+      width: 100%;
+      padding-left: @upload-font-size + 8px;
+      overflow: hidden;
+      line-height: @upload-line-height;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &-card-actions {
+      position: absolute;
+      right: 0;
+
+      &-btn {
+        opacity: 0;
+      }
+      &-btn.@{st-root-prefix}-btn-sm {
+        height: 20px;
+        line-height: 1;
+      }
+
+      &.picture {
+        top: 22px;
+        line-height: 0;
+      }
+
+      &-btn:focus,
+      &.picture &-btn {
+        opacity: 1;
+      }
+
+      .@{st-icon-prefix} {
+        color: @blue-1;
+      }
+    }
+
+    &-info {
+      height: 100%;
+      padding: 0 4px;
+      transition: background-color 0.3s;
+
+      > span {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .@{st-icon-prefix}-loading,
+      .@{upload-prefix-cls}-text-icon {
+        .@{st-icon-prefix} {
+          position: absolute;
+          top: (@upload-font-size / 2) - 2px;
+          color: @text-color-2;
+          font-size: @upload-font-size;
+        }
+      }
+    }
+
+    .@{st-icon-prefix}-close {
+      position: absolute;
+      top: 6px;
+      right: 4px;
+      color: @text-color-2;
+      font-size: 10px;
+      line-height: 0;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s;
+
+      &:hover {
+        color: @text-color-1;
+      }
+    }
+
+    &:hover &-info {
+      background-color: @grey-4;
+    }
+
+    &:hover .@{st-icon-prefix}-close {
+      opacity: 1;
+    }
+
+    &:hover &-card-actions-btn {
+      opacity: 1;
+    }
+
+    &-error,
+    &-error .@{upload-prefix-cls}-text-icon > .@{st-icon-prefix},
+    &-error &-name {
+      color: @assist-red;
+    }
+
+    &-error &-card-actions {
+      .@{st-icon-prefix} {
+        color: @assist-red;
+      }
+
+      &-btn {
+        opacity: 1;
+      }
+    }
+
+    &-progress {
+      position: absolute;
+      bottom: -12px;
+      width: 100%;
+      padding-left: @upload-font-size + 12px;
+      font-size: @upload-font-size;
+      line-height: 0;
+    }
+  }
+
+  // =================== Picture & Picture Card ===================
+  &-picture,
+  &-picture-card {
+    .@{upload-item} {
+      position: relative;
+      height: 66px;
+      padding: 4px;
+      border: 1px @upload-picture-card-border-style @grey-3;
+      border-radius: @upload-border-radius;
+
+      &:hover {
+        background: transparent;
+      }
+
+      &-error {
+        border-color: @assist-red;
+      }
+    }
+
+    .@{upload-item}-info {
+      padding: 0;
+    }
+
+    .@{upload-item}:hover .@{upload-item}-info {
+      background: transparent;
+    }
+
+    .@{upload-item}-uploading {
+      border-style: dashed;
+    }
+
+    .@{upload-item}-thumbnail {
+      width: 48px;
+      height: 48px;
+      line-height: 60px;
+      text-align: center;
+      opacity: 0.8;
+
+      .@{st-icon-prefix} {
+        font-size: 26px;
+      }
+    }
+
+    .@{upload-item}-error .@{upload-item}-thumbnail {
+      .@{st-icon-prefix} {
+        svg path {
+          &[fill='#e6f7ff'] {
+            fill: fade(@assist-red, 50%);
+          }
+
+          &[fill='#1890ff'] {
+            fill: @assist-red;
+          }
+        }
+      }
+    }
+
+    .@{upload-item}-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 26px;
+      transform: translate(-50%, -50%);
+
+      .@{st-icon-prefix} {
+        font-size: 26px;
+      }
+    }
+
+    .@{upload-item}-image {
+      max-width: 100%;
+    }
+
+    .@{upload-item}-thumbnail img {
+      display: block;
+      width: 48px;
+      height: 48px;
+      overflow: hidden;
+    }
+
+    .@{upload-item}-name {
+      display: inline-block;
+      box-sizing: border-box;
+      max-width: 100%;
+      margin: 0 0 0 8px;
+      padding-right: 8px;
+      padding-left: 48px;
+      overflow: hidden;
+      line-height: 44px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      transition: all 0.3s;
+    }
+
+    .@{upload-item}-uploading .@{upload-item}-name {
+      margin-bottom: 12px;
+    }
+
+    .@{upload-item}-progress {
+      bottom: 14px;
+      width: ~'calc(100% - 24px)';
+      margin-top: 0;
+      padding-left: 56px;
+    }
+
+    .@{st-icon-prefix}-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      line-height: 1;
+      opacity: 1;
+    }
+  }
+
+  // ======================== Picture Card ========================
+  &-picture-card {
+    &-container {
+      display: inline-block;
+      width: @upload-picture-card-size;
+      height: @upload-picture-card-size;
+      margin: 0 8px 8px 0;
+      vertical-align: top;
+    }
+
+    &.@{upload-prefix-cls}-list::after {
+      display: none;
+    }
+
+    .@{upload-item} {
+      height: ~'calc(100% - 10px)';
+      margin: 0;
+    }
+
+    .@{upload-item}-info {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+
+      &::before {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background-color: fade(@black, 50%);
+        opacity: 0;
+        transition: all 0.3s;
+        content: ' ';
+      }
+    }
+
+    .@{upload-item}:hover .@{upload-item}-info::before {
+      opacity: 1;
+    }
+
+    .@{upload-item}-actions {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 10;
+      white-space: nowrap;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: all 0.3s;
+
+      .@{st-icon-prefix}-eye,
+      .@{st-icon-prefix}-download,
+      .@{st-icon-prefix}-delete {
+        z-index: 10;
+        width: 16px;
+        margin: 0 4px;
+        color: @white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+          color: @text-color-2;
+        }
+      }
+    }
+
+    .@{upload-item}-info:hover + .@{upload-item}-actions,
+    .@{upload-item}-actions:hover {
+      opacity: 1;
+    }
+
+    .@{upload-item}-thumbnail,
+    .@{upload-item}-thumbnail img {
+      position: static;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .@{upload-item}-name {
+      display: none;
+      margin: 8px 0 0;
+      padding: 0;
+      line-height: @upload-line-height;
+      text-align: center;
+    }
+
+    .@{upload-item}-file + .@{upload-item}-name {
+      position: absolute;
+      bottom: 10px;
+      display: block;
+    }
+
+    .@{upload-item}-uploading {
+      &.@{upload-item} {
+        background-color: @upload-background-color-light;
+      }
+
+      .@{upload-item}-info {
+        height: auto;
+
+        &::before,
+        .@{st-icon-prefix}-eye,
+        .@{st-icon-prefix}-delete {
+          display: none;
+        }
+      }
+    }
+
+    .@{upload-item}-progress {
+      bottom: 32px;
+      width: calc(100% - 14px);
+      padding-left: 0;
+    }
+  }
+
+  // ======================= Picture & Text =======================
+  &-text,
+  &-picture {
+    &-container {
+      transition: opacity @animation-duration-slow, height @animation-duration-slow;
+
+      &::before {
+        display: table;
+        width: 0;
+        height: 0;
+        content: '';
+      }
+
+      // Don't know why span here, just stretch it
+      .@{upload-prefix-cls}-span {
+        display: block;
+        flex: auto;
+      }
+    }
+
+    // text & picture no need this additional element.
+    // But it used for picture-card, let's keep it.
+    .@{upload-prefix-cls}-span {
+      display: flex;
+      align-items: center;
+
+      > * {
+        flex: none;
+      }
+    }
+
+    .@{upload-item}-name {
+      flex: auto;
+      margin: 0;
+      padding: 0 4px;
+    }
+
+    .@{upload-item}-card-actions {
+      position: static;
+    }
+  }
+
+  // ============================ Text ============================
+  &-text {
+    .@{upload-prefix-cls}-text-icon {
+      .@{st-icon-prefix} {
+        position: static;
+      }
+    }
+  }
+
+  // =========================== Motion ===========================
+  .@{upload-prefix-cls}-animate-inline-appear,
+  .@{upload-prefix-cls}-animate-inline-enter,
+  .@{upload-prefix-cls}-animate-inline-leave {
+    animation-duration: @animation-duration-slow;
+    animation-fill-mode: @ease-in-out-circ;
+  }
+
+  .@{upload-prefix-cls}-animate-inline-appear,
+  .@{upload-prefix-cls}-animate-inline-enter {
+    animation-name: uploadAnimateInlineIn;
+  }
+
+  .@{upload-prefix-cls}-animate-inline-leave {
+    animation-name: uploadAnimateInlineOut;
+  }
+}
+
+@keyframes uploadAnimateInlineIn {
+  from {
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes uploadAnimateInlineOut {
+  to {
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+  }
+}
