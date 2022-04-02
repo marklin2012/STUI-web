@@ -52,6 +52,7 @@ export default defineConfig({
         children: [
           './component/cascader',
           './component/checkbox',
+          './component/datePicker',
           './component/input',
           './component/radio',
           './component/rate',
@@ -59,7 +60,7 @@ export default defineConfig({
           './component/slider',
           './component/switch',
           './component/timePicker',
-          './component/datePicker',
+          './component/upload',
         ],
       },
     ],

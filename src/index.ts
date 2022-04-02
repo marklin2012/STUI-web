@@ -104,4 +104,7 @@ export { default as TimePicker } from './component/timePicker'
 export type { TooltipProps } from './component/tooltip'
 export { default as Tooltip } from './component/tooltip'
 
+export type { UploadProps } from './component/upload'
+export { default as Upload } from './component/upload'
+
 library.add(fas, far)
