@@ -433,6 +433,15 @@
       opacity: 0;
       transition: all 0.3s;
 
+      .@{st-root-prefix}-btn {
+        background: transparent;
+      }
+
+      > a {
+        position: relative;
+        top: 2px;
+      }
+
       .@{st-icon-prefix}-eye,
       .@{st-icon-prefix}-download,
       .@{st-icon-prefix}-delete {
@@ -445,7 +454,7 @@
         transition: all 0.3s;
 
         &:hover {
-          color: @text-color-2;
+          color: @blue-3;
         }
       }
     }
