@@ -205,7 +205,7 @@ const ListItem = React.forwardRef(
       >
         {typeof customPreviewIcon === 'function'
           ? customPreviewIcon(file)
-          : customPreviewIcon || prefixClsIcon(<Icon icon={'eye'} />)}
+          : customPreviewIcon || prefixClsIcon(<Icon icon={'eye'} />, 'eye')}
       </a>
     ) : null
 
