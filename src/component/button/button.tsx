@@ -99,7 +99,7 @@ export interface BaseButtonProps {
   type?: ButtonType
   icon?: React.ReactNode
   shape?: ButtonShape
-  size?: SizeType
+  size?: SizeType | number
   loading?: boolean | { delay?: number }
   prefixCls?: string
   className?: string
