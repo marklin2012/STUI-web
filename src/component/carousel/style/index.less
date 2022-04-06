@@ -5,6 +5,7 @@
 @carousel-dot-width: 16px;
 @carousel-dot-height: 3px;
 @carousel-dot-active-width: 24px;
+@carousel-arrows-height: 30px;
 
 .@{carousel-prefix-cls} {
   .reset-component();
@@ -126,17 +127,17 @@
     top: 50%;
     z-index: 10;
     display: block;
-    width: 44px;
-    height: 44px;
+    width: @carousel-arrows-height;
+    height: @carousel-arrows-height;
     margin-top: -20px;
     padding: 0;
     color: @white;
     font-size: inherit;
-    line-height: 44px;
+    line-height: @carousel-arrows-height;
     text-align: center;
     background: @shade-color-25;
     border: 0;
-    border-radius: 22px;
+    border-radius: @carousel-arrows-height / 2;
     outline: none;
     cursor: pointer;
 
