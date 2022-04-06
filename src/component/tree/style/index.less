@@ -1,0 +1,11 @@
+@import './mixin.less';
+@import './directory.less';
+
+@tree-prefix-cls: ~'@{st-prefix}-tree';
+@tree-node-prefix-cls: ~'@{tree-prefix-cls}-treenode';
+
+.stCheckboxFn(@checkbox-prefix-cls: ~'@{st-prefix}-tree-checkbox');
+
+.@{tree-prefix-cls} {
+  .TreeFn(@tree-prefix-cls);
+}

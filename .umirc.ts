@@ -38,6 +38,7 @@ export default defineConfig({
           '/component/progress',
           '/component/tag',
           '/component/tooltip',
+          '/component/tree',
         ],
       },
       {

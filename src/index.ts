@@ -107,6 +107,13 @@ export { default as TimePicker } from './component/timePicker'
 export type { TooltipProps } from './component/tooltip'
 export { default as Tooltip } from './component/tooltip'
 
+export type {
+  TreeProps,
+  STTreeNodeProps as TreeNodeProps,
+  DataNode as TreeDataNode,
+} from './component/tree'
+export { default as Tree } from './component/tree'
+
 export type { UploadProps } from './component/upload'
 export { default as Upload } from './component/upload'
 
