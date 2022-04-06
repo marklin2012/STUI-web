@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { composeRef } from 'rc-util/lib/ref'
 import React from 'react'
+import Button from '../button'
 import Icon from '../icon'
 import { cloneElement } from '../_util/reactNode'
 import { DirectionType } from '../_util/type'
@@ -38,8 +39,8 @@ const Search = React.forwardRef<Input, SearchProps>((props, ref) => {
     ...restProps
   } = props
 
-  const prefixCls = customPrefixCls ?? InputPrefixCls
-  const inputPrefixCls = customInputPrefixCls ?? `${InputPrefixCls}-search`
+  const prefixCls = customPrefixCls ?? `${InputPrefixCls}-search`
+  const inputPrefixCls = customInputPrefixCls ?? InputPrefixCls
   const size = customSize ?? 'middle'
   const inputRef = React.useRef<Input>(null)
 
@@ -80,15 +81,19 @@ const Search = React.forwardRef<Input, SearchProps>((props, ref) => {
     })
   } else {
     button = (
-      <span
+      <Button
         className={btnClassName}
+        type={enterButton ? 'primary' : undefined}
+        size={size}
+        disabled={disabled}
         key="enterButton"
-        aria-disabled={disabled}
         onMouseDown={onMouseDown}
         onClick={onSearch}
+        loading={loading}
+        icon={searchIcon}
       >
-        {searchIcon}
-      </span>
+        {enterButton}
+      </Button>
     )
   }
 
