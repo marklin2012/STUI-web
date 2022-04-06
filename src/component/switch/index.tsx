@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import classNames from 'classnames'
 
 const prefixCls = 'st-switch'
@@ -46,6 +46,10 @@ const Switch: React.FC<SwitchProps> = ({
   const isTextShowOut = () => {
     return childrensPosition === 'out'
   }
+
+  React.useEffect(() => {
+    setIsChecked(checked)
+  }, [checked])
 
   let shapeClasses = classNames(
     {
