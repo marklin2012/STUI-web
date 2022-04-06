@@ -1,6 +1,9 @@
 import React from 'react'
 
 export function prefixClsIcon(children: React.ReactNode, prefixCls?: string) {
-  const iconPrefixCls = prefixCls !== undefined ? `sticon-${prefixCls}` : 'sticon'
+  let iconPrefixCls = 'sticon'
+  if (prefixCls) {
+    iconPrefixCls = `${iconPrefixCls}-${prefixCls}`
+  }
   return <span className={iconPrefixCls}>{children}</span>
 }

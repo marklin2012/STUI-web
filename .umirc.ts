@@ -30,6 +30,7 @@ export default defineConfig({
           '/component/avatar',
           '/component/badge',
           '/component/card',
+          '/component/carousel',
           '/component/collapse',
           '/component/progress',
           '/component/tag',

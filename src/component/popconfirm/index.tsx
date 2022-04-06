@@ -165,7 +165,7 @@ Popcomfirm.defaultProps = {
   placement: 'top' as PopconfirmProps['placement'],
   trigger: 'click' as PopconfirmProps['trigger'],
   okType: 'primary' as PopconfirmProps['okType'],
-  icon: prefixClsIcon(<Icon icon={'info-circle'} />, 'sticon'),
+  icon: prefixClsIcon(<Icon icon={'info-circle'} />),
   disable: false,
 }
 
