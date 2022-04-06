@@ -19,6 +19,9 @@ export { default as Breadcrumb } from './component/breadcrumb'
 export type { CardProps } from './component/card'
 export { default as Card } from './component/card'
 
+export type { CarouselProps } from './component/carousel'
+export { default as Carousel } from './component/carousel'
+
 export type { CascaderProps } from './component/cascader'
 export { default as Cascader } from './component/cascader'
 
