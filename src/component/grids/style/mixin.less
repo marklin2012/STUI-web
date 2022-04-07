@@ -1,0 +1,54 @@
+@import '../../style/index.less';
+
+@st-root-prefix: ~'@{st-prefix}';
+@grid-columns: 24;
+// mixins for grid system
+// ------------------------
+.loop-grid-columns(@index, @class) when (@index > 0) {
+  .@{st-root-prefix}-col@{class}-@{index} {
+    display: block;
+    flex: 0 0 percentage((@index / @grid-columns));
+    max-width: percentage((@index / @grid-columns));
+  }
+  .@{st-root-prefix}-col@{class}-push-@{index} {
+    left: percentage((@index / @grid-columns));
+  }
+  .@{st-root-prefix}-col@{class}-pull-@{index} {
+    right: percentage((@index / @grid-columns));
+  }
+  .@{st-root-prefix}-col@{class}-offset-@{index} {
+    margin-left: percentage((@index / @grid-columns));
+  }
+  .@{st-root-prefix}-col@{class}-order-@{index} {
+    order: @index;
+  }
+  .loop-grid-columns((@index - 1), @class);
+}
+
+.loop-grid-columns(@index, @class) when (@index = 0) {
+  .@{st-root-prefix}-col@{class}-@{index} {
+    display: none;
+  }
+  .@{st-root-prefix}-col-push-@{index} {
+    left: auto;
+  }
+  .@{st-root-prefix}-col-pull-@{index} {
+    right: auto;
+  }
+  .@{st-root-prefix}-col@{class}-push-@{index} {
+    left: auto;
+  }
+  .@{st-root-prefix}-col@{class}-pull-@{index} {
+    right: auto;
+  }
+  .@{st-root-prefix}-col@{class}-offset-@{index} {
+    margin-left: 0;
+  }
+  .@{st-root-prefix}-col@{class}-order-@{index} {
+    order: 0;
+  }
+}
+
+.make-grid(@class: ~'') {
+  .loop-grid-columns(@grid-columns, @class);
+}
