@@ -34,6 +34,9 @@ export type {
 } from './component/checkbox'
 export { default as Checkbox } from './component/checkbox'
 
+export type { ColProps } from './component/grids/col'
+export { default as Col } from './component/grids/col'
+
 export type { CollapseProps, CollapsePanelProps } from './component/collapse'
 export { default as Collapse } from './component/collapse'
 
@@ -45,6 +48,8 @@ export { default as Drawer } from './component/drawer'
 
 export type { DropdownProps, DropdownButtonType, DropdownButtonProps } from './component/dropdown'
 export { default as Dropdown } from './component/dropdown'
+
+export { default as Grid } from './component/grids'
 
 export { default as Icon } from './component/icon'
 
@@ -79,6 +84,9 @@ export { default as Radio } from './component/radio'
 
 export type { RateProps } from './component/rate'
 export { default as Rate } from './component/rate'
+
+export type { RowProps } from './component/grids/row'
+export { default as Row } from './component/grids/row'
 
 export type { SelectProps } from './component/select'
 export { default as Select } from './component/select'
