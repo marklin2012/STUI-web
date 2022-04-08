@@ -35,6 +35,7 @@ export default defineConfig({
           '/component/card',
           '/component/carousel',
           '/component/collapse',
+          '/component/list',
           '/component/progress',
           '/component/tag',
           '/component/tooltip',

@@ -1,0 +1,42 @@
+.@{list-prefix-cls}-bordered {
+  border: 1px solid @list-border-color;
+  border-radius: @list-border-radius;
+  .@{list-prefix-cls}-header {
+    padding-right: @list-padding;
+    padding-left: @list-padding;
+  }
+
+  .@{list-prefix-cls}-footer {
+    padding-right: @list-padding;
+    padding-left: @list-padding;
+  }
+
+  .@{list-prefix-cls}-item {
+    padding-right: @list-padding;
+    padding-left: @list-padding;
+  }
+
+  .@{list-prefix-cls}-pagination {
+    margin: @list-margin @list-padding;
+  }
+
+  &.@{list-prefix-cls}-sm {
+    .@{list-prefix-cls}-item {
+      padding: @list-item-padding-sm;
+    }
+    .@{list-prefix-cls}-header,
+    .@{list-prefix-cls}-footer {
+      padding: @list-item-padding-sm;
+    }
+  }
+
+  &.@{list-prefix-cls}-lg {
+    .@{list-prefix-cls}-item {
+      padding: @list-item-padding-lg;
+    }
+    .@{list-prefix-cls}-header,
+    .@{list-prefix-cls}-footer {
+      padding: @list-item-padding-lg;
+    }
+  }
+}

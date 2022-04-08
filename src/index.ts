@@ -51,6 +51,9 @@ export { default as Dropdown } from './component/dropdown'
 
 export { default as Grid } from './component/grids'
 
+export type { ListProps } from './component/list'
+export { default as List } from './component/list'
+
 export { default as Icon } from './component/icon'
 
 export type { ImageProps } from './component/image'
