@@ -1,0 +1,18 @@
+@import '../color/colors.less';
+
+.operation-unit() {
+  color: @blue-1;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  transition: color 0.3s;
+
+  &:focus,
+  &:hover {
+    color: @blue-2;
+  }
+
+  &:active {
+    color: @blue-3;
+  }
+}

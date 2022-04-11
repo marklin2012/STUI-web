@@ -37,6 +37,7 @@ export default defineConfig({
           '/component/collapse',
           '/component/list',
           '/component/progress',
+          '/component/table',
           '/component/tag',
           '/component/tooltip',
           '/component/tree',
