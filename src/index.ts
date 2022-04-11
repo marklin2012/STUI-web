@@ -112,6 +112,16 @@ export { default as Tabs } from './component/tabs'
 export type { TagProps, TagCompoundedProps } from './component/tag'
 export { default as Tag } from './component/tag'
 
+export type {
+  TableProps,
+  TablePaginationConfig,
+  ColumnGroupType as TableColumnGroupType,
+  ColumnType as TableColumnType,
+  ColumnProps as TableColumnProps,
+  ColumnsType as TableColumnsType,
+} from './component/table'
+export { default as Table } from './component/table'
+
 export type { TimePickerProps, TimeRangePickerProps } from './component/timePicker'
 export { default as TimePicker } from './component/timePicker'
 

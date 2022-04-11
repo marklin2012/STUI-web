@@ -1,0 +1,761 @@
+@import '../../style/index.less';
+@import './bordered.less';
+@import './radius.less';
+@import './size.less';
+
+@st-root-prefix: ~'@{st-prefix}';
+@st-icon-prefix: ~'@{st-css-icon-prefix}';
+@table-prefix-cls: ~'@{st-prefix}-table';
+@tree-prefix-cls: ~'@{st-prefix}-tree';
+@dropdown-prefix-cls: ~'@{st-prefix}-dropdown';
+@descriptions-prefix-cls: ~'@{st-prefix}-descriptions';
+
+@table-border: 1px solid @grey-3;
+@table-padding-vertical: 16px;
+@table-padding-horizontal: 16px;
+@table-border-radius: 4px;
+@table-padding-vertical-md: (@table-padding-vertical * 3 / 4);
+@table-padding-horizontal-md: (@table-padding-horizontal / 2);
+@table-padding-vertical-sm: (@table-padding-vertical / 2);
+@table-padding-horizontal-sm: (@table-padding-horizontal / 2);
+@table-font-size: @font-size-14;
+@table-font-size-md: @font-size-14;
+@table-font-size-sm: @font-size-14;
+@table-font-sm: @font-size-12;
+@table-header-bg-sm: @backgroundColor;
+
+@table-header-icon-color: @text-color-4;
+@table-header-icon-color-hover: fade(@table-header-icon-color, 90%);
+@table-sticky-scroll-bar-bg: fade(#000, 35%);
+@table-sticky-zindex: calc(@zindex-table-fixed + 1);
+@table-sticky-scroll-bar-active-bg: fade(@table-sticky-scroll-bar-bg, 80%);
+@table-filter-dropdown-max-height: 264px;
+
+@table-selection-column-width: 32px;
+@table-line-height: 1.5715;
+
+.@{table-prefix-cls}-wrapper {
+  clear: both;
+  max-width: 100%;
+  .clearfix();
+}
+
+.@{table-prefix-cls} {
+  .reset-component();
+  position: relative;
+  font-size: @table-font-size;
+  background: @white;
+  border-radius: @table-border-radius;
+
+  table {
+    width: 100%;
+    text-align: left;
+    border-radius: @table-border-radius @table-border-radius 0 0;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  // ============================= Cell =============================
+  &-thead > tr > th,
+  &-tbody > tr > td,
+  tfoot > tr > th,
+  tfoot > tr > td {
+    position: relative;
+    padding: @table-padding-vertical @table-padding-horizontal;
+    overflow-wrap: break-word;
+  }
+
+  &-cell-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+
+    // Fixed first or last should special process
+    &.@{table-prefix-cls}-cell-fix-left-last,
+    &.@{table-prefix-cls}-cell-fix-right-first {
+      overflow: visible;
+
+      .@{table-prefix-cls}-cell-content {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .@{table-prefix-cls}-column-title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: keep-all;
+    }
+  }
+
+  // ============================ Title =============================
+  &-title {
+    padding: @table-padding-vertical @table-padding-horizontal;
+  }
+
+  // ============================ Footer ============================
+  &-footer {
+    padding: @table-padding-vertical @table-padding-horizontal;
+    color: @text-color-1;
+    background: @grey-4;
+  }
+
+  // ============================ Header ============================
+  &-thead {
+    > tr {
+      > th {
+        position: relative;
+        color: @text-color-1;
+        font-weight: 500;
+        text-align: left;
+        background: @grey-4;
+        border-bottom: @table-border;
+        transition: background 0.3s ease;
+
+        &[colspan]:not([colspan='1']) {
+          text-align: center;
+        }
+
+        &:not(:last-child):not(.@{table-prefix-cls}-selection-column):not(.@{table-prefix-cls}-row-expand-icon-cell):not([colspan])::before {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          width: 1px;
+          height: 1.6em;
+          background-color: @fade-black-10;
+          transform: translateY(-50%);
+          transition: background-color 0.3s;
+          content: '';
+        }
+      }
+    }
+
+    > tr:not(:last-child) > th {
+      &[colspan] {
+        border-bottom: 0;
+      }
+    }
+  }
+
+  // ============================= Body =============================
+  &-tbody {
+    > tr {
+      > td {
+        border-bottom: @table-border;
+        transition: background 0.3s;
+
+        // ========================= Nest Table ===========================
+        > .@{table-prefix-cls}-wrapper:only-child,
+        > .@{table-prefix-cls}-expanded-row-fixed > .@{table-prefix-cls}-wrapper:only-child {
+          .@{table-prefix-cls} {
+            margin: -@table-padding-vertical -@table-padding-horizontal -@table-padding-vertical (@table-padding-horizontal +
+                  ceil(@table-font-sm * 1.4));
+
+            &-tbody > tr:last-child > td {
+              border-bottom: 0;
+
+              &:first-child,
+              &:last-child {
+                border-radius: 0;
+              }
+            }
+          }
+        }
+      }
+
+      &.@{table-prefix-cls}-row:hover > td,
+      > td.@{table-prefix-cls}-cell-row-hover {
+        background: @blue-3;
+      }
+
+      &.@{table-prefix-cls}-row-selected {
+        > td {
+          background: @grey-4;
+          border-color: rgba(0, 0, 0, 0.03);
+        }
+
+        &:hover {
+          > td {
+            background: @blue-3;
+          }
+        }
+      }
+    }
+  }
+
+  // =========================== Summary ============================
+  &-summary {
+    position: relative;
+    z-index: @zindex-table-fixed;
+    background: @white;
+
+    div& {
+      box-shadow: 0 -1px 0 @grey-3;
+    }
+
+    > tr {
+      > th,
+      > td {
+        border-bottom: @table-border;
+      }
+    }
+  }
+
+  // ========================== Pagination ==========================
+  &-pagination.@{st-root-prefix}-pagination {
+    margin: 16px 0;
+  }
+
+  &-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 8px;
+
+    > * {
+      flex: none;
+    }
+
+    &-left {
+      justify-content: flex-start;
+    }
+
+    &-center {
+      justify-content: center;
+    }
+
+    &-right {
+      justify-content: flex-end;
+    }
+  }
+
+  // ================================================================
+  // =                           Function                           =
+  // ================================================================
+
+  // ============================ Sorter ============================
+  &-thead th.@{table-prefix-cls}-column-has-sorters {
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      background: fade(@grey-4, 90%);
+
+      &::before {
+        background-color: transparent !important;
+      }
+    }
+
+    &.@{table-prefix-cls}-cell-fix-left:hover,
+    &.@{table-prefix-cls}-cell-fix-right:hover {
+      background: fade(@white, 90%);
+    }
+  }
+
+  &-thead th.@{table-prefix-cls}-column-sort {
+    background: @grey-4;
+
+    &::before {
+      background-color: transparent !important;
+    }
+  }
+
+  td&-column-sort {
+    background: @white;
+  }
+
+  &-column-title {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+  }
+
+  &-column-sorters {
+    display: flex;
+    flex: auto;
+    align-items: center;
+    justify-content: space-between;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      content: '';
+    }
+  }
+
+  &-column-sorter {
+    margin-left: 4px;
+    color: @table-header-icon-color;
+    font-size: 0;
+    transition: color 0.3s;
+
+    &-inner {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &-up,
+    &-down {
+      font-size: 11px;
+
+      &.active {
+        color: @blue-1;
+      }
+    }
+
+    &-up + &-down {
+      margin-top: -0.3em;
+    }
+  }
+
+  &-column-sorters:hover &-column-sorter {
+    color: @table-header-icon-color-hover;
+  }
+
+  // ============================ Filter ============================
+  &-filter-column {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-filter-trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: -4px (-@table-padding-horizontal / 2) -4px 4px;
+    padding: 0 4px;
+    color: @table-header-icon-color;
+    font-size: @table-font-sm;
+    border-radius: @table-border-radius;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      color: @text-color-2;
+      background: fade(@black, 0.04);
+    }
+
+    &.active {
+      color: @blue-1;
+    }
+  }
+
+  // Dropdown
+  &-filter-dropdown {
+    .reset-component();
+
+    min-width: 120px;
+    background-color: @white;
+    border-radius: @table-border-radius;
+    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+      0 9px 28px 8px rgba(0, 0, 0, 0.05);
+
+    // Reset menu
+    .@{dropdown-prefix-cls}-menu {
+      max-height: @table-filter-dropdown-max-height;
+      overflow-x: hidden;
+      border: 0;
+      box-shadow: none;
+
+      &:empty::after {
+        display: block;
+        padding: 8px 0;
+        color: @text-color-4;
+        font-size: @table-font-sm;
+        text-align: center;
+        content: 'Not Found';
+      }
+    }
+
+    &-tree {
+      padding: 8px 8px 0;
+
+      .@{tree-prefix-cls}-treenode .@{tree-prefix-cls}-node-content-wrapper:hover {
+        background-color: @white;
+      }
+
+      .@{tree-prefix-cls}-treenode-checkbox-checked .@{tree-prefix-cls}-node-content-wrapper {
+        &,
+        &:hover {
+          background-color: @blue-3;
+        }
+      }
+    }
+
+    &-search {
+      padding: 8px;
+      border-bottom: @table-border;
+
+      &-input {
+        input {
+          min-width: 140px;
+        }
+        .@{st-icon-prefix} {
+          color: @text-color-4;
+        }
+      }
+    }
+
+    &-checkall {
+      width: 100%;
+      margin-bottom: 4px;
+      margin-left: 4px;
+    }
+
+    &-submenu > ul {
+      max-height: calc(100vh - 130px);
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    // Checkbox
+    &,
+    &-submenu {
+      .@{st-root-prefix}-checkbox-wrapper + span {
+        padding-left: 8px;
+      }
+    }
+
+    // Operation
+    &-btns {
+      display: flex;
+      justify-content: space-between;
+      padding: 7px 8px;
+      overflow: hidden;
+      background-color: @white;
+      border-top: @table-border;
+    }
+  }
+
+  // ========================== Selections ==========================
+  &-selection-col {
+    width: @table-selection-column-width;
+  }
+
+  &-bordered &-selection-col {
+    width: @table-selection-column-width + 18px;
+  }
+
+  table tr th&-selection-column,
+  table tr td&-selection-column {
+    padding-right: 8px;
+    padding-left: 8px;
+    text-align: center;
+
+    .@{st-root-prefix}-radio-wrapper {
+      margin-right: 0;
+    }
+  }
+
+  table tr th&-selection-column&-cell-fix-left {
+    z-index: 3;
+  }
+
+  table tr th&-selection-column::after {
+    background-color: transparent !important;
+  }
+
+  &-selection {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+
+    &-extra {
+      position: absolute;
+      top: 0;
+      z-index: 1;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-inline-start: 100%;
+      padding-inline-start: 8pxs;
+
+      .@{st-icon-prefix} {
+        color: @table-header-icon-color;
+        font-size: 10px;
+
+        &:hover {
+          color: @table-header-icon-color-hover;
+        }
+      }
+    }
+  }
+
+  // ========================== Expandable ==========================
+  &-expand-icon-col {
+    width: 48px;
+  }
+
+  &-row-expand-icon-cell {
+    text-align: center;
+  }
+
+  &-row-indent {
+    float: left;
+    height: 1px;
+  }
+
+  &-row-expand-icon {
+    .operation-unit();
+    position: relative;
+    display: inline-flex;
+    float: left;
+    box-sizing: border-box;
+    width: @expand-icon-size;
+    height: @expand-icon-size;
+    padding: 0;
+    color: inherit;
+    line-height: ceil(((@table-font-sm * 1.4 - 1px * 3) / 2)) * 2 + 1px * 3;
+    background: @white;
+    border: @table-border;
+    border-radius: @table-border-radius;
+    outline: none;
+    transform: scale((unit(16px) / unit(@expand-icon-size)));
+    transition: all 0.3s;
+    user-select: none;
+    @expand-icon-size: ceil(((@table-font-sm * 1.4 - 1px * 3) / 2)) * 2 + 1px * 3;
+
+    &:focus,
+    &:hover,
+    &:active {
+      border-color: currentcolor;
+    }
+
+    &::before,
+    &::after {
+      position: absolute;
+      background: currentcolor;
+      transition: transform 0.3s ease-out;
+      content: '';
+    }
+
+    &::before {
+      top: ceil(((@table-font-sm * 1.4 - 1px * 3) / 2));
+      right: 3px;
+      left: 3px;
+      height: 1px;
+    }
+
+    &::after {
+      top: 3px;
+      bottom: 3px;
+      left: ceil(((@table-font-sm * 1.4 - 1px * 3) / 2));
+      width: 1px;
+      transform: rotate(90deg);
+    }
+
+    // Motion effect
+    &-collapsed::before {
+      transform: rotate(-180deg);
+    }
+
+    &-collapsed::after {
+      transform: rotate(0deg);
+    }
+
+    &-spaced {
+      &::before,
+      &::after {
+        display: none;
+        content: none;
+      }
+      background: transparent;
+      border: 0;
+      visibility: hidden;
+    }
+
+    .@{table-prefix-cls}-row-indent + & {
+      margin-top: ((@font-size-14 * @table-line-height - 1px * 3) / 2) -
+        ceil(((@table-font-sm * 1.4 - 1px * 3) / 2));
+      margin-right: 8px;
+    }
+  }
+
+  tr&-expanded-row {
+    &,
+    &:hover {
+      > td {
+        background: @grey-4;
+      }
+    }
+
+    .@{descriptions-prefix-cls}-view {
+      display: flex;
+
+      table {
+        flex: auto;
+        width: auto;
+      }
+    }
+  }
+
+  // With fixed
+  .@{table-prefix-cls}-expanded-row-fixed {
+    position: relative;
+    margin: -@table-padding-vertical -@table-padding-horizontal;
+    padding: @table-padding-vertical @table-padding-horizontal;
+  }
+
+  // ========================= Placeholder ==========================
+  &-tbody > tr&-placeholder {
+    text-align: center;
+    .@{table-prefix-cls}-empty & {
+      color: @text-color-4;
+    }
+
+    &:hover {
+      > td {
+        background: @white;
+      }
+    }
+  }
+
+  // ============================ Fixed =============================
+  &-cell-fix-left,
+  &-cell-fix-right {
+    position: sticky !important;
+    z-index: @zindex-table-fixed;
+    background: @white;
+  }
+
+  &-cell-fix-left-first::after,
+  &-cell-fix-left-last::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: -1px;
+    width: 30px;
+    transform: translateX(100%);
+    transition: box-shadow 0.3s;
+    content: '';
+    pointer-events: none;
+  }
+
+  &-cell-fix-right-first::after,
+  &-cell-fix-right-last::after {
+    position: absolute;
+    top: 0;
+    bottom: -1px;
+    left: 0;
+    width: 30px;
+    transform: translateX(-100%);
+    transition: box-shadow 0.3s;
+    content: '';
+    pointer-events: none;
+  }
+
+  .@{table-prefix-cls}-container {
+    &::before,
+    &::after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: 1;
+      width: 30px;
+      transition: box-shadow 0.3s;
+      content: '';
+      pointer-events: none;
+    }
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
+  }
+
+  &-ping-left {
+    &:not(.@{table-prefix-cls}-has-fix-left) .@{table-prefix-cls}-container {
+      position: relative;
+
+      &::before {
+        box-shadow: inset 10px 0 8px -8px fade(@shade-color-10, 5%);
+      }
+    }
+
+    .@{table-prefix-cls}-cell-fix-left-first::after,
+    .@{table-prefix-cls}-cell-fix-left-last::after {
+      box-shadow: inset 10px 0 8px -8px fade(@shade-color-10, 5%);
+    }
+
+    .@{table-prefix-cls}-cell-fix-left-last::before {
+      background-color: transparent !important;
+    }
+  }
+
+  &-ping-right {
+    &:not(.@{table-prefix-cls}-has-fix-right) .@{table-prefix-cls}-container {
+      position: relative;
+
+      &::after {
+        box-shadow: inset -10px 0 8px -8px fade(@shade-color-10, 5%);
+      }
+    }
+
+    .@{table-prefix-cls}-cell-fix-right-first::after,
+    .@{table-prefix-cls}-cell-fix-right-last::after {
+      box-shadow: inset -10px 0 8px -8px fade(@shade-color-10, 5%);
+    }
+  }
+
+  &-sticky {
+    &-holder {
+      position: sticky;
+      z-index: @table-sticky-zindex;
+      background: @white;
+    }
+
+    &-scroll {
+      position: sticky;
+      bottom: 0;
+      z-index: @table-sticky-zindex;
+      display: flex;
+      align-items: center;
+      background: lighten(@grey-3, 80%);
+      border-top: 1px solid @grey-3;
+      opacity: 0.6;
+
+      &:hover {
+        transform-origin: center bottom;
+      }
+
+      &-bar {
+        height: 8px;
+        background-color: @table-sticky-scroll-bar-bg;
+        border-radius: @table-border-radius;
+
+        &:hover {
+          background-color: @table-sticky-scroll-bar-active-bg;
+        }
+
+        &-active {
+          background-color: @table-sticky-scroll-bar-active-bg;
+        }
+      }
+    }
+  }
+}
+
+@media all and (-ms-high-contrast: none) {
+  .@{table-prefix-cls} {
+    &-ping-left {
+      .@{table-prefix-cls}-cell-fix-left-last::after {
+        box-shadow: none !important;
+      }
+    }
+
+    &-ping-right {
+      .@{table-prefix-cls}-cell-fix-right-first::after {
+        box-shadow: none !important;
+      }
+    }
+  }
+}

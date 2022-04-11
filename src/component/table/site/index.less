@@ -1,0 +1,13 @@
+@import '../../style/color/colors.less';
+
+.tableDemo {
+  display: block;
+
+  &-zebra {
+    .st-table-tbody > .st-table-row {
+      &:nth-child(2n) {
+        background: @grey-4;
+      }
+    }
+  }
+}
