@@ -1,0 +1,67 @@
+// ================================================================
+// =                      Children Component                      =
+// ================================================================
+.@{form-item-prefix-cls} {
+  // input[type=file]
+  .@{st-root-prefix}-upload {
+    background: transparent;
+  }
+  .@{st-root-prefix}-upload.@{st-root-prefix}-upload-drag {
+    background: @grey-4;
+  }
+
+  input[type='radio'],
+  input[type='checkbox'] {
+    width: 14px;
+    height: 14px;
+  }
+
+  // Radios and checkboxes on same line
+  .@{st-root-prefix}-radio-inline,
+  .@{st-root-prefix}-checkbox-inline {
+    display: inline-block;
+    margin-left: 8px;
+    font-weight: normal;
+    vertical-align: middle;
+    cursor: pointer;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  .@{st-root-prefix}-checkbox-vertical,
+  .@{st-root-prefix}-radio-vertical {
+    display: block;
+  }
+
+  .@{st-root-prefix}-checkbox-vertical + .@{st-root-prefix}-checkbox-vertical,
+  .@{st-root-prefix}-radio-vertical + .@{st-root-prefix}-radio-vertical {
+    margin-left: 0;
+  }
+
+  .@{st-root-prefix}-input-number {
+    + .@{form-prefix-cls}-text {
+      margin-left: 8px;
+    }
+
+    &-handler-wrap {
+      z-index: 2;
+    }
+  }
+
+  .@{st-root-prefix}-select,
+  .@{st-root-prefix}-cascader-picker {
+    width: 100%;
+  }
+
+  // Don't impact select inside input group and calendar header select
+  .@{st-root-prefix}-picker-calendar-year-select,
+  .@{st-root-prefix}-picker-calendar-month-select,
+  .@{st-root-prefix}-input-group .@{st-root-prefix}-select,
+  .@{st-root-prefix}-input-group .@{st-root-prefix}-cascader-picker,
+  .@{st-root-prefix}-input-number-group .@{st-root-prefix}-select,
+  .@{st-root-prefix}-input-number-group .@{st-root-prefix}-cascader-picker {
+    width: auto;
+  }
+}

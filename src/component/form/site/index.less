@@ -1,0 +1,51 @@
+@import '../../style/color/colors.less';
+
+.formDemo {
+  display: block;
+
+  .st-form:not(.st-form-inline):not(.st-form-vertical) {
+    max-width: 600px;
+  }
+
+  .btnActions {
+    display: inline-flex;
+
+    > button[type='reset'] {
+      color: @text-color-3;
+      background: @white;
+      border: 1px solid @grey-3;
+    }
+
+    .rowSpace {
+      width: 12px;
+    }
+  }
+
+  &-columnSpace {
+    height: 60px;
+  }
+
+  &-datePicker {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  .st-picker-range {
+    width: 100%;
+  }
+
+  #dynamic_form_item {
+    .dynamicDeleteBtn {
+      position: relative;
+      top: 3px;
+      margin: 0 8px;
+      color: @grey-3;
+      font-size: 24px;
+      line-height: 28px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+  }
+}

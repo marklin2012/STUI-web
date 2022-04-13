@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import useMergedState from 'rc-util/lib/hooks/useMergedState'
 import Radio from './radio'
 import { RadioGroupProps, RadioChangeEvent, RadioGroupButtonStyle } from './interface'
+import SizeContext from '../_util/sizeContext'
 import { RadioGroupContextProvider } from './context'
 import getDataOrAriaProps from '../_util/hooks/getDataOrAriaProps'
 
@@ -10,6 +11,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>((props, ref
   const [value, setValue] = useMergedState(props.defaultValue, {
     value: props.value,
   })
+  const size = React.useContext(SizeContext)
 
   const onRadioChange = (ev: RadioChangeEvent) => {
     const lastValue = value
@@ -77,7 +79,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>((props, ref
       })
     }
 
-    const mergedSize = customizeSize || 'middle'
+    const mergedSize = customizeSize || size
     const classString = classNames(
       groupPrefixCls,
       `${groupPrefixCls}-${buttonStyle}`,

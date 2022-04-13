@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Table, Input, Button } from '../../..'
+import { Table, Input, Button, Form } from '../../..'
 import '../style'
 import './index.less'
 
@@ -40,26 +40,53 @@ const EditableCell: React.FC<EditableCellProps> = ({
 }) => {
   const inputNode = <Input />
 
-  return <td {...restProps}>{editing ? <div style={{ margin: 0 }}>{inputNode}</div> : children}</td>
+  return (
+    <td {...restProps}>
+      {editing ? (
+        <Form.Item
+          name={dataIndex}
+          style={{ margin: 0 }}
+          rules={[
+            {
+              required: true,
+              message: `Please Input ${title}`,
+            },
+          ]}
+        >
+          {inputNode}
+        </Form.Item>
+      ) : (
+        children
+      )}
+    </td>
+  )
 }
 
 function EditableTable() {
+  const [form] = Form.useForm()
   const [data, setData] = useState(originData)
   const [editingKey, setEditingKey] = useState('')
 
   const isEditing = (record: Item) => record.key === editingKey
 
   const edit = (record: Partial<Item> & { key: React.Key }) => {
+    form.setFieldsValue({ title1: '', title2: '', title3: '', ...record })
     setEditingKey(record.key)
   }
 
   const save = async (key: React.Key) => {
     try {
+      const row = (await form.validateFields()) as Item
+
       const newData = [...data]
       const index = newData.findIndex((item) => key === item.key)
       if (index > -1) {
         const item = newData[index]
-        newData.splice(index, 1, { ...item })
+        newData.splice(index, 1, { ...item, ...row })
+        setData(newData)
+        setEditingKey('')
+      } else {
+        newData.push(row)
         setData(newData)
         setEditingKey('')
       }
@@ -123,15 +150,17 @@ function EditableTable() {
 
   return (
     <div className="tableDemo">
-      <Table
-        components={{
-          body: { cell: EditableCell },
-        }}
-        bordered
-        dataSource={data}
-        columns={mergedColumns}
-        rowClassName={'editable-row'}
-      />
+      <Form form={form} component={false}>
+        <Table
+          components={{
+            body: { cell: EditableCell },
+          }}
+          bordered
+          dataSource={data}
+          columns={mergedColumns}
+          rowClassName={'editable-row'}
+        />
+      </Form>
     </div>
   )
 }

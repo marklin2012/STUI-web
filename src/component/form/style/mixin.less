@@ -1,0 +1,112 @@
+@import '../../input/style/mixin.less';
+
+.form-control-validation(
+  @text-color: @black;
+  @border-color: @grey-3;
+  @background-color: @backgroundColor;
+  @hoverBorderColor: @blue-1;
+  @outlineColor: @blue-3;
+) {
+  .@{st-root-prefix}-form-item-split {
+    color: @text-color;
+  }
+  // 输入框的不同校验状态
+  :not(.@{st-root-prefix}-input-disabled):not(.@{st-root-prefix}-input-borderless).@{st-root-prefix}-input,
+  :not(.@{st-root-prefix}-input-affix-wrapper-disabled):not(.@{st-root-prefix}-input-affix-wrapper-borderless).@{st-root-prefix}-input-affix-wrapper,
+  :not(.@{st-root-prefix}-input-number-affix-wrapper-disabled):not(.@{st-root-prefix}-input-number-affix-wrapper-borderless).@{st-root-prefix}-input-number-affix-wrapper {
+    &,
+    &:hover {
+      background-color: @background-color;
+      border-color: @border-color;
+    }
+
+    &:focus,
+    &-focused {
+      .active(@border-color, @hoverBorderColor, @outlineColor);
+    }
+  }
+
+  .@{st-root-prefix}-calendar-picker-open .@{st-root-prefix}-calendar-picker-input {
+    .active(@border-color, @hoverBorderColor, @outlineColor);
+  }
+
+  .@{st-root-prefix}-input-prefix,
+  .@{st-root-prefix}-input-number-prefix {
+    color: @text-color;
+  }
+
+  .@{st-root-prefix}-input-group-addon,
+  .@{st-root-prefix}-input-number-group-addon {
+    color: @text-color;
+    border-color: @border-color;
+  }
+
+  .has-feedback {
+    color: @text-color;
+  }
+}
+
+// Reset form styles
+// -----------------------------
+// Based on Bootstrap framework
+.reset-form() {
+  legend {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0;
+    color: @text-color-2;
+    font-size: @font-size-16;
+    line-height: inherit;
+    border: 0;
+    border-bottom: 1px solid @grey-3;
+  }
+
+  label {
+    font-size: @font-size-14;
+  }
+
+  input[type='search'] {
+    box-sizing: border-box;
+  }
+
+  // Position radios and checkboxes better
+  input[type='radio'],
+  input[type='checkbox'] {
+    line-height: normal;
+  }
+
+  input[type='file'] {
+    display: block;
+  }
+
+  // Make range inputs behave like textual form controls
+  input[type='range'] {
+    display: block;
+    width: 100%;
+  }
+
+  // Make multiple select elements height not fixed
+  select[multiple],
+  select[size] {
+    height: auto;
+  }
+
+  // Focus for file, radio, and checkbox
+  input[type='file']:focus,
+  input[type='radio']:focus,
+  input[type='checkbox']:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+
+  // Adjust output element
+  output {
+    display: block;
+    padding-top: 15px;
+    color: @black;
+    font-size: @font-size-14;
+    line-height: 1.5715;
+  }
+}

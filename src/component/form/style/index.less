@@ -1,0 +1,306 @@
+@import '../../style/index.less';
+@import './components.less';
+@import './horizatal.less';
+@import './inline.less';
+@import './mixin.less';
+@import './status.less';
+@import './vertical.less';
+
+@st-icon-prefix: ~'@{st-css-icon-prefix}';
+@st-root-prefix: ~'@{st-prefix}';
+@form-prefix-cls: ~'@{st-prefix}-form';
+@form-item-prefix-cls: ~'@{form-prefix-cls}-item';
+
+@form-item-trailing-colon: true;
+@form-item-margin-bottom: 24px;
+@form-line-height: 1.5715;
+@form-font-height: ceil(@font-size-14 * @form-line-height);
+
+.@{form-prefix-cls} {
+  .reset-component();
+  .reset-form();
+
+  .@{form-prefix-cls}-text {
+    display: inline-block;
+    padding-right: 8px;
+  }
+
+  // ================================================================
+  // =                             Size                             =
+  // ================================================================
+  .formSize(@input-height) {
+    .@{form-item-prefix-cls}-label > label {
+      height: @input-height;
+    }
+
+    .@{form-item-prefix-cls}-control-input {
+      min-height: @input-height;
+    }
+  }
+
+  &-small {
+    .formSize(@input-height-sm);
+  }
+
+  &-large {
+    .formSize(@input-height-lg);
+  }
+}
+
+.explainAndExtraDistance(@num) when (@num >= 0) {
+  padding-top: floor(@num);
+}
+
+.explainAndExtraDistance(@num) when (@num < 0) {
+  margin-top: ceil(@num);
+  margin-bottom: ceil(@num);
+}
+
+// ================================================================
+// =                             Item                             =
+// ================================================================
+.@{form-item-prefix-cls} {
+  .reset-component();
+
+  margin-bottom: @form-item-margin-bottom;
+  vertical-align: top;
+  // We delay one frame (0.017s) here to let CSSMotion goes
+  transition: margin-bottom @animation-duration-slow 0.017s linear;
+
+  &-with-help {
+    margin-bottom: 0;
+    transition: none;
+  }
+
+  &-hidden,
+  &-hidden.@{st-root-prefix}-row {
+    display: none;
+  }
+
+  // ==============================================================
+  // =                            Label                           =
+  // ==============================================================
+  &-label {
+    display: inline-block;
+    flex-grow: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: right;
+    vertical-align: middle;
+
+    &-left {
+      text-align: left;
+    }
+
+    &-wrap {
+      overflow: unset;
+      line-height: (@form-line-height - 0.25em);
+      white-space: unset;
+    }
+
+    > label {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      max-width: 100%;
+      height: 32px;
+      color: @text-color-1;
+      font-size: @font-size-14;
+
+      > .@{st-icon-prefix} {
+        font-size: @font-size-14;
+        vertical-align: top;
+      }
+
+      // Required mark
+      &.@{form-item-prefix-cls}-required:not(.@{form-item-prefix-cls}-required-mark-optional)::before {
+        display: inline-block;
+        margin-right: 4px;
+        color: @assist-red;
+        font-size: @font-size-14;
+        line-height: 1;
+        content: '*';
+
+        .@{form-prefix-cls}-hide-required-mark & {
+          display: none;
+        }
+      }
+
+      // Optional mark
+      .@{form-item-prefix-cls}-optional {
+        display: inline-block;
+        margin-left: 4px;
+        color: @text-color-2;
+
+        .@{form-prefix-cls}-hide-required-mark & {
+          display: none;
+        }
+      }
+
+      // Optional mark
+      .@{form-item-prefix-cls}-tooltip {
+        color: @text-color-2;
+        cursor: help;
+        writing-mode: horizontal-tb;
+        margin-inline-start: 4px;
+      }
+
+      &::after {
+        & when (@form-item-trailing-colon=true) {
+          content: ':';
+        }
+        & when not (@form-item-trailing-colon=true) {
+          content: ' ';
+        }
+
+        position: relative;
+        top: -0.5px;
+        margin: 0 8px 0 2px;
+      }
+
+      &.@{form-item-prefix-cls}-no-colon::after {
+        content: ' ';
+      }
+    }
+  }
+
+  // ==============================================================
+  // =                            Input                           =
+  // ==============================================================
+  &-control {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    &:first-child:not([class^=~"'@{st-root-prefix}-col-'"]):not([class*=~"' @{st-root-prefix}-col-'"]) {
+      width: 100%;
+    }
+  }
+
+  &-control-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: @input-height-base;
+
+    &-content {
+      flex: auto;
+      max-width: 100%;
+
+      .st-input-password {
+        width: calc(100% - 26px);
+      }
+    }
+  }
+
+  // ==============================================================
+  // =                           Explain                          =
+  // ==============================================================
+  &-explain,
+  &-extra {
+    clear: both;
+    color: @text-color-2;
+    font-size: @font-size-14;
+    line-height: @form-line-height;
+    transition: color 0.3s @ease-out; // sync input color transition
+    .explainAndExtraDistance((@form-item-margin-bottom - @form-font-height) / 2);
+  }
+
+  &-explain-connected {
+    height: 0;
+    min-height: 0;
+    opacity: 0;
+  }
+
+  &-extra {
+    min-height: @form-item-margin-bottom;
+  }
+
+  .@{st-root-prefix}-input-textarea-show-count {
+    &::after {
+      margin-bottom: -22px;
+    }
+  }
+
+  &-with-help &-explain {
+    height: auto;
+    min-height: @form-item-margin-bottom;
+    opacity: 1;
+  }
+}
+
+// >>>>>>>>>> Motion <<<<<<<<<<
+// Explain holder
+.@{st-root-prefix}-show-help {
+  transition: height @animation-duration-slow linear, min-height @animation-duration-slow linear,
+    margin-bottom @animation-duration-slow @ease-in-out,
+    opacity @animation-duration-slow @ease-in-out;
+
+  &-leave {
+    min-height: @form-item-margin-bottom;
+
+    &-active {
+      min-height: 0;
+    }
+  }
+}
+
+// Explain
+.@{st-root-prefix}-show-help-item {
+  overflow: hidden;
+  transition: height @animation-duration-slow @ease-in-out,
+    opacity @animation-duration-slow @ease-in-out, transform @animation-duration-slow @ease-in-out !important;
+
+  &-appear,
+  &-enter {
+    transform: translateY(-5px);
+    opacity: 0;
+
+    &-active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  &-leave-active {
+    transform: translateY(-5px);
+  }
+}
+
+// need there different zoom animation
+// otherwise won't trigger anim
+@keyframes diffZoomIn1 {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes diffZoomIn2 {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes diffZoomIn3 {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
