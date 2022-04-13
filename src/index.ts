@@ -49,6 +49,9 @@ export { default as Drawer } from './component/drawer'
 export type { DropdownProps, DropdownButtonType, DropdownButtonProps } from './component/dropdown'
 export { default as Dropdown } from './component/dropdown'
 
+export type { FormInstance, FormProps, FormItemProps } from './component/form'
+export { default as Form } from './component/form'
+
 export { default as Grid } from './component/grids'
 
 export type { ListProps } from './component/list'

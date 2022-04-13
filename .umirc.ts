@@ -60,6 +60,7 @@ export default defineConfig({
           './component/cascader',
           './component/checkbox',
           './component/datePicker',
+          './component/form',
           './component/input',
           './component/radio',
           './component/rate',
