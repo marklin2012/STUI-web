@@ -387,22 +387,20 @@
     border-bottom: 1px solid @border-color-split;
     box-shadow: none;
 
-    &:not(.@{menu-prefix-cls}-dark) {
-      > .@{menu-prefix-cls}-item,
-      > .@{menu-prefix-cls}-submenu {
-        margin-top: -1px;
-        margin-bottom: 0;
-        padding: @menu-item-padding;
+    > .@{menu-prefix-cls}-item,
+    > .@{menu-prefix-cls}-submenu {
+      margin-top: -1px;
+      margin-bottom: 0;
+      padding: @menu-item-padding 40px;
 
-        &:hover,
-        &-active,
-        &-open,
-        &-selected {
-          color: @menu-highlight-color;
+      &:hover,
+      &-active,
+      &-open,
+      &-selected {
+        color: @menu-highlight-color;
 
-          &::after {
-            border-bottom: 2px solid @menu-highlight-color;
-          }
+        &::after {
+          border-bottom: 2px solid @menu-highlight-color;
         }
       }
     }

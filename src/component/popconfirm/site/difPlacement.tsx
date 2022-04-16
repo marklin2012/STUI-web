@@ -17,7 +17,9 @@ export default () => {
         }}
         placement={placement}
       >
-        <Button size="small">{title}</Button>
+        <Button size="small" className="triggerBtn">
+          {title}
+        </Button>
       </Popconfirm>
     )
   }

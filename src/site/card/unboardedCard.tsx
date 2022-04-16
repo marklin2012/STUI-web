@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from '../..'
+import { Card, Button } from '../..'
 import { defaultCardContent } from './defaultContent'
 import './index.less'
 
@@ -8,7 +8,7 @@ export default () => {
     <div className="card">
       <Card
         title="卡片标题"
-        extra={<span style={{ color: '#095BF9' }}>更多</span>}
+        extra={<Button type="link">更多</Button>}
         style={{ width: 300 }}
         bordered={false}
       >

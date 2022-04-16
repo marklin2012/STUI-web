@@ -1,4 +1,4 @@
-@import '../../style/color/colors.less';
+@import '../../style/index.less';
 
 @tooltip-prefix-cls: st-tooltip;
 
@@ -16,7 +16,7 @@
 // Base class
 .@{tooltip-prefix-cls} {
   position: absolute;
-  z-index: auto;
+  z-index: @zindex-tooltip;
   display: block;
   width: max-content;
   max-width: @tooltip-max-width;

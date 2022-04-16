@@ -1,7 +1,7 @@
 @import '../../style/index.less';
 
 @breadcrumb-prefix-cls: ~'@{st-prefix}-breadcrumb';
-@breadcrumb-icon-prefix: ~'@{st-css-icon-prefix}';
+@st-icon-prefix: ~'@{st-css-icon-prefix}';
 @breadcrumb-font-size: @font-size-14;
 @breadcrumb-item-color: @text-color-3;
 @breadcrumb-last-item-color: @text-color-1;
@@ -42,14 +42,14 @@
   }
 
   &-link {
-    > .@{breadcrumb-icon-prefix} + span,
-    > .@{breadcrumb-icon-prefix} + a {
+    > .@{st-icon-prefix} + span,
+    > .@{st-icon-prefix} + a {
       margin-left: 8px;
     }
   }
 
   &-overlay-link {
-    > .@{breadcrumb-icon-prefix} {
+    > .@{st-icon-prefix} {
       margin-left: 8px;
     }
   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Progress } from '../../index'
+import { Progress, Button } from '../../index'
 import '../../component/progress/style'
 import './index.less'
 
