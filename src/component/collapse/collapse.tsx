@@ -10,6 +10,7 @@ import collapseMotion from '../_util/motion'
 import toArray from 'rc-util/lib/Children/toArray'
 import omit from 'rc-util/lib/omit'
 import './style'
+import { prefixClsIcon } from '../_util/prefixClsIcon'
 
 export type ExpandIconPosition = 'left' | 'right' | undefined
 
@@ -70,11 +71,9 @@ const Collapse: CollapseInterface = (props) => {
   }
 
   const renderExpandIcon = (panelProps: PanelProps = {}) => {
-    const defaultIcon = panelProps.isActive ? (
-      <Icon icon={'angle-down'} />
-    ) : (
-      <Icon icon={'angle-right'} />
-    )
+    const defaultIcon = panelProps.isActive
+      ? prefixClsIcon(<Icon icon={'angle-down'} />)
+      : prefixClsIcon(<Icon icon={'angle-right'} />)
     const icon = (expandIcon ? expandIcon(panelProps) : defaultIcon) as React.ReactNode
 
     return (
@@ -108,11 +107,10 @@ const Collapse: CollapseInterface = (props) => {
       if (child.props?.collapsible) {
         const key = child.key || String(index)
         const { collapsible } = child.props
-        const childCollapsible = collapsible as CollapsibleType
         const childProps: CollapseProps & { key: React.Key } = {
           ...omit(child.props, ['collapsible']),
           key,
-          collapsible: childCollapsible ?? 'header',
+          collapsible: collapsible ?? 'header',
         }
         return cloneElement(child, childProps)
       }

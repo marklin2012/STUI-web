@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Icon } from '../..'
+import { Card, Button, Icon } from '../..'
 import { defaultCardContent } from './defaultContent'
 import './index.less'
 
@@ -9,7 +9,7 @@ export default () => {
       <div className="card1">
         <Card
           title="卡片标题"
-          extra={<span style={{ color: '#095BF9' }}>更多</span>}
+          extra={<Button type="link">更多</Button>}
           style={{ width: 300 }}
           cover={
             <img
@@ -31,7 +31,7 @@ export default () => {
       <div className="card1">
         <Card
           title="卡片标题"
-          extra={<span style={{ color: '#095BF9' }}>更多</span>}
+          extra={<Button type="link">更多</Button>}
           style={{ width: 300 }}
           actions={[
             <Icon key={'gear'} icon={'gear'} />,

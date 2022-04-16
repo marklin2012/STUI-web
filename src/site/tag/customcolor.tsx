@@ -3,27 +3,31 @@ import { Tag } from '../..'
 import './index.less'
 import '../../component/tag/style'
 
+const defaultStyle: React.CSSProperties = {
+  color: 'white',
+  borderColor: 'transparent',
+}
 export default () => (
   <div className="tag">
-    <Tag backgroundColor="red" color="white">
+    <Tag {...defaultStyle} backgroundColor="red">
       <p>Red</p>
     </Tag>
-    <Tag backgroundColor="orange" color="white">
+    <Tag {...defaultStyle} backgroundColor="orange">
       <p>Orange</p>
     </Tag>
-    <Tag backgroundColor="#FFCA28" color="white">
+    <Tag {...defaultStyle} backgroundColor="#FFCA28">
       <p>Yellow</p>
     </Tag>
-    <Tag backgroundColor="green" color="white">
+    <Tag {...defaultStyle} backgroundColor="green">
       <p>Green</p>
     </Tag>
-    <Tag backgroundColor="#00BCD4" color="white">
+    <Tag {...defaultStyle} backgroundColor="#00BCD4">
       <p>Cyan</p>
     </Tag>
-    <Tag backgroundColor="blue" color="white">
+    <Tag {...defaultStyle} backgroundColor="blue">
       <p>Blue</p>
     </Tag>
-    <Tag backgroundColor="#673AB7" color="white">
+    <Tag {...defaultStyle} backgroundColor="#673AB7">
       <p>Violet</p>
     </Tag>
   </div>
