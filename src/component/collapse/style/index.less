@@ -1,9 +1,11 @@
 @import '../../style/index.less';
+@import '../../style/core/motion/collapse.less';
 
 @collapse-prefix-cls: st-collapse;
 @collapse-line-height: 1.5715;
 
 .@{collapse-prefix-cls} {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-size: @font-size-14;
@@ -13,12 +15,6 @@
   border: 1px solid @grey-3;
   border-bottom: 0;
   border-radius: 4px;
-
-  *,
-  *:before,
-  *:after {
-    box-sizing: border-box;
-  }
 
   & > &-item {
     border-bottom: 1px solid @grey-3;
@@ -97,7 +93,7 @@
   &-content {
     color: @text-color-2;
     background-color: @white;
-    // border-top: 1px solid @grey-3;
+    border-top: 1px solid @grey-3;
 
     & > &-box {
       padding: 16px;
@@ -154,7 +150,7 @@
       }
       > .@{collapse-prefix-cls}-content {
         background-color: @white;
-        // border-top: 0;
+        border-top: 0;
         > .@{collapse-prefix-cls}-content-box {
           padding: 0px 16px;
         }
