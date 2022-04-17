@@ -1,0 +1,16 @@
+@import '../index.less';
+
+.st-motion-collapse-legacy {
+  overflow: hidden;
+
+  &-active {
+    transition: height @animation-duration-base @ease-in-out,
+      opacity @animation-duration-base @ease-in-out !important;
+  }
+}
+
+.st-motion-collapse {
+  overflow: hidden;
+  transition: height @animation-duration-base @ease-in-out,
+    opacity @animation-duration-base @ease-in-out !important;
+}
