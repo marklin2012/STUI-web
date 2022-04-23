@@ -56,13 +56,13 @@ function LoadMoreList() {
         renderItem={(item) => (
           <List.Item
             actions={[
-              <Button size={'small'} type="ghost">
+              <Button size={'small'} type="link">
                 编辑
               </Button>,
-              <Button size={'small'} type="ghost">
+              <Button size={'small'} type="link">
                 订阅
               </Button>,
-              <Button size={'small'} type="ghost">
+              <Button size={'small'} type="link">
                 删除
               </Button>,
             ]}

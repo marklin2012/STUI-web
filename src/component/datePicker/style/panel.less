@@ -3,6 +3,7 @@
 
 @picker-cell-inner-cls: ~'@{picker-prefix-cls}-cell-inner';
 @picker-panel-cell-width: 36px;
+@picker-panel-cell-height: 24px;
 @picker-padding-sm: 12px;
 @picker-padding-xs: 8px;
 @picker-border-color: @grey-3;
@@ -220,7 +221,11 @@
       position: relative;
 
       &::before {
-        background: @blue-2;
+        background: @grey-4;
+      }
+
+      &:hover {
+        color: @white;
       }
     }
 
@@ -235,7 +240,7 @@
     &-in-view&-range-start:not(&-range-start-single),
     &-in-view&-range-end:not(&-range-end-single) {
       &::before {
-        background: @blue-2;
+        background: @grey-4;
       }
     }
 
@@ -288,7 +293,7 @@
     .@{picker-prefix-cls}-panel
       > :not(.@{picker-prefix-cls}-date-panel)
       &-in-view&-in-range&-range-hover-end::before {
-      background: @blue-2;
+      background: @blue-4;
     }
 
     // range start border-radius
@@ -370,7 +375,7 @@
       }
 
       &::before {
-        background: @grey-1;
+        background: transparent;
       }
     }
     &-disabled&-today .@{cellClassName}::before {
@@ -449,7 +454,7 @@
     }
 
     &:active {
-      color: @blue-2;
+      color: @blue-4;
     }
 
     &&-disabled {
